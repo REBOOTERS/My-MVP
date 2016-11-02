@@ -20,7 +20,7 @@ import huyifei.mymvp.util.V;
 /**
  * Created by rookie on 2016/4/7.
  */
-public class MyLoginActivity extends AppCompatActivity implements View.OnClickListener,IUserLoginView{
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener,IUserLoginView{
     private Context mContext;
 
     private AutoCompleteTextView mEmailView;
@@ -49,6 +49,7 @@ public class MyLoginActivity extends AppCompatActivity implements View.OnClickLi
         clear.setOnClickListener(this);
 
         progressBar = V.f(this, R.id.login_progress);
+
         mUserLoginPresenter = new UserLoginPresenter(this);
 
     }
