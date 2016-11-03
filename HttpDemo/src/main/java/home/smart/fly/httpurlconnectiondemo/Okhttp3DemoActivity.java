@@ -1,12 +1,15 @@
 package home.smart.fly.httpurlconnectiondemo;
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -33,6 +36,8 @@ import okhttp3.Response;
 
 public class Okhttp3DemoActivity extends AppCompatActivity {
     private final String BASE_URL = "https://www.baidu.com";
+    private final String DOWNLOAD_URL = "https://raw.githubusercontent.com/REBOOTERS/SomeFile/master/App.pdf";
+    private final String DOWNLOAD_URL1 = "http://dl.bizhi.sogou.com/images/2015/06/26/1214911.jpg";
     private Context mContext;
 
     private TextView tv;
@@ -41,6 +46,9 @@ public class Okhttp3DemoActivity extends AppCompatActivity {
     private OkHttpClient client;
     private Request request;
     private MyHandler handler;
+
+    private ProgressDialog progressDialog;
+    private Call downloadCall;
 
 
     @Override
@@ -52,6 +60,19 @@ public class Okhttp3DemoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_okhttp_three_demo);
         tv = (TextView) findViewById(R.id.editText);
         loading = (ProgressBar) findViewById(R.id.loading);
+
+
+        progressDialog = new ProgressDialog(mContext);
+        progressDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancle", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                progressDialog.dismiss();
+                downloadCall.cancel();
+            }
+        });
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.setTitle("下载文件");
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
 
 
         findViewById(R.id.get).setOnClickListener(new View.OnClickListener() {
@@ -93,16 +114,15 @@ public class Okhttp3DemoActivity extends AppCompatActivity {
         findViewById(R.id.downloadFile).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())){
+                progressDialog.show();
+                if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
                     client = new OkHttpClient();
                     request = new Request.Builder()
-                            .url(BASE_URL)
+                            .url(DOWNLOAD_URL1)
                             .build();
-                    Call mCall = client.newCall(request);
-                    mCall.enqueue(new DownloadCallback());
+                    downloadCall = client.newCall(request);
+                    downloadCall.enqueue(new DownloadCallback());
                 }
-
-
 
 
             }
@@ -138,17 +158,28 @@ public class Okhttp3DemoActivity extends AppCompatActivity {
 
         @Override
         public void onResponse(Call call, Response response) throws IOException {
-            String path=Environment.getExternalStorageDirectory().getPath();
+            String path = Environment.getExternalStorageDirectory().getPath();
             File file = new File(path, "test.apk");
             FileOutputStream fileOutputStream;
             InputStream inputStream;
             inputStream = response.body().byteStream();
+
+
             fileOutputStream = new FileOutputStream(file);
             byte[] buffer = new byte[2048];
+
+            long fileSize = response.body().contentLength();
+            long temp = 0;
 
             int len = 0;
             while ((len = inputStream.read(buffer)) != -1) {
                 fileOutputStream.write(buffer, 0, len);
+                temp = temp + len;
+                int percent = (int) (temp * 100.0f / fileSize);
+                Message msg = new Message();
+                msg.what = 300;
+                msg.arg1 = percent;
+                handler.sendMessage(msg);
             }
             fileOutputStream.flush();
 
@@ -169,8 +200,15 @@ public class Okhttp3DemoActivity extends AppCompatActivity {
                 case 200:
                     String response = (String) msg.obj;
                     tv.setText(response);
-
-
+                    break;
+                case 300:
+                    int percent = msg.arg1;
+                    Log.e("llll", "the percent is " + percent);
+                    if (percent < 100) {
+                        progressDialog.setProgress(percent);
+                    } else {
+                        progressDialog.dismiss();
+                    }
                     break;
                 default:
                     break;
