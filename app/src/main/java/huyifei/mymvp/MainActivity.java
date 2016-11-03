@@ -16,6 +16,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import home.smart.fly.rxandroid.RxAndroidActivity;
+import home.smart.fly.rxandroid.RxJavaDemoActivity;
 import huyifei.mymvp.mvp.LoginActivity;
 import huyifei.mymvp.mvp.SimpleLoginActivity;
 import huyifei.mymvp.util.V;
@@ -42,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
     private void setData() {
         demos.add(new ItemInfo(R.string.app_name, SimpleLoginActivity.class));
         demos.add(new ItemInfo(R.string.app_name, LoginActivity.class));
+        demos.add(new ItemInfo(R.string.app_name, RxJavaDemoActivity.class));
+        demos.add(new ItemInfo(R.string.app_name, RxAndroidActivity.class));
     }
 
 
