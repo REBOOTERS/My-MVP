@@ -41,7 +41,7 @@ public class RxAndroidActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = this;
-        setContentView(R.layout.activity_rxdemo);
+        setContentView(R.layout.activity_rxd_android);
         Init();
     }
 
@@ -150,8 +150,7 @@ public class RxAndroidActivity extends AppCompatActivity {
 
     public void setView(String json) {
         Gson gson = new Gson();
-        DoubanBean douban = new DoubanBean();
-        douban = gson.fromJson(json, DoubanBean.class);
+        DoubanBean douban = gson.fromJson(json, DoubanBean.class);
         //
         Glide.with(mContext).load(douban.getIcon()).into(pic);
         title.setText(douban.getTitle());
