@@ -159,12 +159,10 @@ public class Okhttp3DemoActivity extends AppCompatActivity {
         @Override
         public void onResponse(Call call, Response response) throws IOException {
             String path = Environment.getExternalStorageDirectory().getPath();
-            File file = new File(path, "test.apk");
+            File file = new File(path, "test.jpg");
             FileOutputStream fileOutputStream;
             InputStream inputStream;
             inputStream = response.body().byteStream();
-
-
             fileOutputStream = new FileOutputStream(file);
             byte[] buffer = new byte[2048];
 
