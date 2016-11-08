@@ -40,16 +40,18 @@ public class ExpandableListActivity extends Activity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         expandableListView = (PinnedHeaderExpandableListView) findViewById(R.id.expandablelist);
-        stickyLayout = (StickyLayout)findViewById(R.id.sticky_layout);
+        stickyLayout = (StickyLayout) findViewById(R.id.sticky_layout);
         initData();
 
         adapter = new MyexpandableListAdapter(this);
         expandableListView.setAdapter(adapter);
 
-        // 展开所有group
-        for (int i = 0, count = expandableListView.getCount(); i < count; i++) {
-            expandableListView.expandGroup(i);
-        }
+//        // 展开所有group
+//        for (int i = 0, count = expandableListView.getCount(); i < count; i++) {
+//            expandableListView.expandGroup(i);
+//        }
+        //
+        expandableListView.expandGroup(0);
 
         expandableListView.setOnHeaderUpdateListener(this);
         expandableListView.setOnChildClickListener(this);
@@ -64,7 +66,7 @@ public class ExpandableListActivity extends Activity implements
     void initData() {
         groupList = new ArrayList<Group>();
         Group group = null;
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 10; i++) {
             group = new Group();
             group.setTitle("group-" + i);
             groupList.add(group);
@@ -111,9 +113,8 @@ public class ExpandableListActivity extends Activity implements
 
     /***
      * 数据源
-     * 
+     *
      * @author Administrator
-     * 
      */
     class MyexpandableListAdapter extends BaseExpandableListAdapter {
         private Context context;
@@ -165,7 +166,7 @@ public class ExpandableListActivity extends Activity implements
 
         @Override
         public View getGroupView(int groupPosition, boolean isExpanded,
-                View convertView, ViewGroup parent) {
+                                 View convertView, ViewGroup parent) {
             GroupHolder groupHolder = null;
             if (convertView == null) {
                 groupHolder = new GroupHolder();
@@ -189,8 +190,8 @@ public class ExpandableListActivity extends Activity implements
         }
 
         @Override
-        public View getChildView(int groupPosition, int childPosition,
-                boolean isLastChild, View convertView, ViewGroup parent) {
+        public View getChildView(final int groupPosition, final int childPosition,
+                                 boolean isLastChild, View convertView, ViewGroup parent) {
             ChildHolder childHolder = null;
             if (convertView == null) {
                 childHolder = new ChildHolder();
@@ -209,7 +210,8 @@ public class ExpandableListActivity extends Activity implements
                 button.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(ExpandableListActivity.this, "clicked pos=", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ExpandableListActivity.this, "clicked pos=" + groupPosition + "_"
+                                + childPosition, Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -236,16 +238,16 @@ public class ExpandableListActivity extends Activity implements
 
     @Override
     public boolean onGroupClick(final ExpandableListView parent, final View v,
-            int groupPosition, final long id) {
+                                int groupPosition, final long id) {
 
         return false;
     }
 
     @Override
     public boolean onChildClick(ExpandableListView parent, View v,
-            int groupPosition, int childPosition, long id) {
+                                int groupPosition, int childPosition, long id) {
         Toast.makeText(ExpandableListActivity.this,
-                childList.get(groupPosition).get(childPosition).getName(), 1)
+                childList.get(groupPosition).get(childPosition).getName(), Toast.LENGTH_SHORT)
                 .show();
 
         return false;

@@ -9,8 +9,12 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
@@ -57,6 +61,20 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         demos.add(new ItemInfo(R.string.app_name, RxAndroidActivity.class));
         demos.add(new ItemInfo(R.string.app_name, HttpDemoActivity.class));
         demos.add(new ItemInfo(R.string.app_name, ExpandableListActivity.class));
+        demos.add(new ItemInfo(R.string.app_name, ExpandableListActivity.class));
+        demos.add(new ItemInfo(R.string.app_name, ExpandableListActivity.class));
+        demos.add(new ItemInfo(R.string.app_name, ExpandableListActivity.class));
+        demos.add(new ItemInfo(R.string.app_name, ExpandableListActivity.class));
+        demos.add(new ItemInfo(R.string.app_name, ExpandableListActivity.class));
+        demos.add(new ItemInfo(R.string.app_name, ExpandableListActivity.class));
+        demos.add(new ItemInfo(R.string.app_name, ExpandableListActivity.class));
+        demos.add(new ItemInfo(R.string.app_name, ExpandableListActivity.class));
+        demos.add(new ItemInfo(R.string.app_name, ExpandableListActivity.class));
+        demos.add(new ItemInfo(R.string.app_name, ExpandableListActivity.class));
+        demos.add(new ItemInfo(R.string.app_name, ExpandableListActivity.class));
+        demos.add(new ItemInfo(R.string.app_name, ExpandableListActivity.class));
+        demos.add(new ItemInfo(R.string.app_name, ExpandableListActivity.class));
+        demos.add(new ItemInfo(R.string.app_name, ExpandableListActivity.class));
 
     }
 
@@ -64,8 +82,8 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     private void initView() {
         swipeRefreshLayout = V.f(this, R.id.swipe);
         swipeRefreshLayout.setOnRefreshListener(this);
-        swipeRefreshLayout.setColorSchemeResources(R.color.colorAccent,R.color.colorPrimary);
-        swipeRefreshLayout.setProgressBackgroundColorSchemeColor(Color.YELLOW);
+        swipeRefreshLayout.setColorSchemeResources(R.color.colorAccent, R.color.colorPrimary);
+        swipeRefreshLayout.setProgressBackgroundColorSchemeColor(Color.WHITE);
         listView = V.f(this, R.id.list);
         MyAdpater myAdpater = new MyAdpater();
         listView.setAdapter(myAdpater);
@@ -76,6 +94,8 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                 startActivity(intent);
             }
         });
+
+
     }
 
     @Override
@@ -89,8 +109,15 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     }
 
 
-    private class MyAdpater extends BaseAdapter {
+    private class MyAdpater extends BaseAdapter implements AbsListView.OnScrollListener {
+        private boolean scrollerDown = false;
+        private int firstItemTop = 0;
+        private int firstItemPosition = 0;
 
+
+        public MyAdpater() {
+            listView.setOnScrollListener(this);
+        }
 
         @Override
         public View getView(int index, View convertView, ViewGroup parent) {
@@ -102,6 +129,20 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             } else {
                 holder = (Holder) convertView.getTag();
             }
+
+
+            Animation animation = AnimationUtils.loadAnimation(mContext, R.anim.list_anim);
+            for (int i = 0; i < listView.getChildCount(); i++) {
+                View childView = listView.getChildAt(i);
+                childView.clearAnimation();
+            }
+
+            if (scrollerDown) {
+                convertView.startAnimation(animation);
+            }
+
+
+            convertView.setTag(holder);
 
             holder.title = (TextView) convertView.findViewById(R.id.title);
             holder.desc = (TextView) convertView.findViewById(desc);
@@ -125,6 +166,34 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         public long getItemId(int id) {
             return id;
         }
+
+        @Override
+        public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+        }
+
+        @Override
+        public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+            Log.e("onScroll", "the firstVisibleItem is " + firstVisibleItem);
+
+            View firstItem = view.getChildAt(0);
+            if (firstItem == null) {
+                return;
+            }
+            int top = Math.abs(firstItem.getTop());
+
+
+            if (firstItemPosition < firstVisibleItem || firstItemTop < top) {
+                scrollerDown = true;
+            } else {
+                scrollerDown = false;
+            }
+
+            firstItemPosition = firstVisibleItem;
+            firstItemTop = top;
+
+        }
+
 
         class Holder {
             TextView title, desc;

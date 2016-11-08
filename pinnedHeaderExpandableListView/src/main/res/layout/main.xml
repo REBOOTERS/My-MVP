@@ -50,8 +50,8 @@
                 android:divider="@color/Grey"
                 android:dividerHeight="1dp"
                 android:groupIndicator="@null"
-                android:scrollbarAlwaysDrawHorizontalTrack="false" >
-            </com.ryg.expandable.ui.PinnedHeaderExpandableListView>
+                android:scrollbarAlwaysDrawHorizontalTrack="false" />
+
         </LinearLayout>
     </com.ryg.expandable.ui.StickyLayout>
 
