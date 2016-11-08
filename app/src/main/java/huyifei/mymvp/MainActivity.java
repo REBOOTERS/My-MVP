@@ -16,6 +16,8 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.ryg.expandable.ExpandableListActivity;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         demos.add(new ItemInfo(R.string.app_name, RxJavaDemoActivity.class));
         demos.add(new ItemInfo(R.string.app_name, RxAndroidActivity.class));
         demos.add(new ItemInfo(R.string.app_name, HttpDemoActivity.class));
+        demos.add(new ItemInfo(R.string.app_name, ExpandableListActivity.class));
 
     }
 
