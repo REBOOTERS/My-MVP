@@ -26,5 +26,4 @@ dependencies {
     compile 'com.android.support:design:23.2.1'
     compile project(':rxandroid')
     compile project(':HttpDemo')
-    compile project(':pinnedHeaderExpandableListView')
 }
