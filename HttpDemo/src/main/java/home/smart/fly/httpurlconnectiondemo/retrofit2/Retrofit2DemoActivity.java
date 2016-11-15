@@ -132,9 +132,9 @@ public class Retrofit2DemoActivity extends AppCompatActivity implements View.OnC
     private void RxRetrofit() {
         GithubService service = GenServiceUtil.createService(GithubService.class);
         final Call<GithubBean> call = service.getUser("mike");
-        final Observable myObserable = Observable.create(new Observable.OnSubscribe<Object>() {
+        final Observable myObserable = Observable.create(new Observable.OnSubscribe<GithubBean>() {
             @Override
-            public void call(Subscriber<? super Object> subscriber) {
+            public void call(Subscriber<? super GithubBean> subscriber) {
                 Response<GithubBean> bean = null;
                 try {
                     bean = call.execute();
@@ -153,7 +153,7 @@ public class Retrofit2DemoActivity extends AppCompatActivity implements View.OnC
         myObserable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<Object>() {
+                .subscribe(new Subscriber<GithubBean>() {
                     @Override
                     public void onCompleted() {
                         loading.setVisibility(View.GONE);
@@ -165,10 +165,9 @@ public class Retrofit2DemoActivity extends AppCompatActivity implements View.OnC
                     }
 
                     @Override
-                    public void onNext(Object o) {
-                        GithubBean bean = (GithubBean) o;
+                    public void onNext(GithubBean o) {
 
-                        Toast.makeText(mContext, "id is " + bean.getId(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, "id is " + o.getId(), Toast.LENGTH_SHORT).show();
                     }
                 });
 
