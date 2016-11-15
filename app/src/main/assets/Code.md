@@ -1,18 +1,4 @@
-package home.smart.fly.rxandroid;
-
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.widget.Toast;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import rx.Observable;
-import rx.Subscriber;
-import rx.functions.Action1;
-import rx.functions.Func1;
-
+```
 public class RxJavaDemoActivity extends AppCompatActivity {
     /**
      * 被观察者，事件源
@@ -33,7 +19,6 @@ public class RxJavaDemoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rx_java);
-
 
 
         InitObserver();
@@ -291,3 +276,4 @@ public class RxJavaDemoActivity extends AppCompatActivity {
         oneActionObserveable = Observable.just("hello world");
     }
 }
+```

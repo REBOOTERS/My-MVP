@@ -10,18 +10,27 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:text="HttpUrlConnectionAcitivity" />
+
     <Button
         android:id="@+id/volley"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:text="volley" />
+
     <Button
         android:id="@+id/okhttp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:text="okhttp3" />
+
+    <Button
+        android:id="@+id/retrofit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="retrofit2.0" />
 
 
 </LinearLayout>

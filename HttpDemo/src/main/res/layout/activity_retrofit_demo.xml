@@ -22,21 +22,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="get" />
+            android:text="Simple" />
 
         <Button
-            android:id="@+id/post"
+            android:id="@+id/get1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="post" />
+            android:text="LazyRetrofit" />
 
         <Button
-            android:id="@+id/downloadFile"
+            android:id="@+id/get2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="downloadFile" />
+            android:text="EasyRetrofit" />
+
+        <Button
+            android:id="@+id/get3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Rx-Retrofit" />
 
         <ScrollView
             android:layout_width="match_parent"

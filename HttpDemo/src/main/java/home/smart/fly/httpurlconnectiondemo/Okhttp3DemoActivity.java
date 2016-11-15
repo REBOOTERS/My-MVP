@@ -11,9 +11,12 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -35,13 +38,14 @@ import okhttp3.Response;
  */
 
 public class Okhttp3DemoActivity extends AppCompatActivity {
-    private final String BASE_URL = "https://www.baidu.com";
-    private final String DOWNLOAD_URL = "https://raw.githubusercontent.com/REBOOTERS/SomeFile/master/App.pdf";
-    private final String DOWNLOAD_URL1 = "http://dl.bizhi.sogou.com/images/2015/06/26/1214911.jpg";
+    private final String BASE_URL = "https://api.github.com/";
+    private final String DOWNLOAD_URL = "http://dl.bizhi.sogou.com/images/2015/06/26/1214911.jpg";
+    private final String FILE_PATH = Environment.getExternalStorageDirectory().getPath() + File.separator + "test.jpg";
     private Context mContext;
 
     private TextView tv;
     private ProgressBar loading;
+    private ImageView imageView;
 
     private OkHttpClient client;
     private Request request;
@@ -57,9 +61,11 @@ public class Okhttp3DemoActivity extends AppCompatActivity {
         mContext = this;
         handler = new MyHandler();
 
+
         setContentView(R.layout.activity_okhttp_three_demo);
         tv = (TextView) findViewById(R.id.editText);
         loading = (ProgressBar) findViewById(R.id.loading);
+        imageView = (ImageView) findViewById(R.id.image);
 
 
         progressDialog = new ProgressDialog(mContext);
@@ -118,7 +124,7 @@ public class Okhttp3DemoActivity extends AppCompatActivity {
                 if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
                     client = new OkHttpClient();
                     request = new Request.Builder()
-                            .url(DOWNLOAD_URL1)
+                            .url(DOWNLOAD_URL)
                             .build();
                     downloadCall = client.newCall(request);
                     downloadCall.enqueue(new DownloadCallback());
@@ -158,8 +164,7 @@ public class Okhttp3DemoActivity extends AppCompatActivity {
 
         @Override
         public void onResponse(Call call, Response response) throws IOException {
-            String path = Environment.getExternalStorageDirectory().getPath();
-            File file = new File(path, "test.jpg");
+            File file = new File(FILE_PATH);
             FileOutputStream fileOutputStream;
             InputStream inputStream;
             inputStream = response.body().byteStream();
@@ -169,7 +174,7 @@ public class Okhttp3DemoActivity extends AppCompatActivity {
             long fileSize = response.body().contentLength();
             long temp = 0;
 
-            int len = 0;
+            int len;
             while ((len = inputStream.read(buffer)) != -1) {
                 fileOutputStream.write(buffer, 0, len);
                 temp = temp + len;
@@ -206,6 +211,7 @@ public class Okhttp3DemoActivity extends AppCompatActivity {
                         progressDialog.setProgress(percent);
                     } else {
                         progressDialog.dismiss();
+                        Glide.with(mContext).load(FILE_PATH).into(imageView);
                     }
                     break;
                 default:

@@ -12,6 +12,7 @@
         <activity android:name=".HttpUrlConnectionAcitivity" />
         <activity android:name=".VolleyDemoActivity" />
         <activity android:name=".Okhttp3DemoActivity" />
+        <activity android:name=".retrofit2.Retrofit2DemoActivity"/>
     </application>
 
 </manifest>
