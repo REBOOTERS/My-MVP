@@ -1,5 +1,10 @@
 package home.smart.fly.httpurlconnectiondemo.retrofit2;
 
+import java.util.List;
+
+import home.smart.fly.httpurlconnectiondemo.retrofit2.bean.GithubUserBean;
+import home.smart.fly.httpurlconnectiondemo.retrofit2.bean.UserFollowerBean;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -11,5 +16,12 @@ import retrofit2.http.Path;
 public interface GithubService {
 
     @GET("users/{user}")
-    Call<GithubBean> getUser(@Path("user") String user);
+    Call<ResponseBody> getUserString(@Path("user") String user);
+
+    @GET("users/{user}")
+    Call<GithubUserBean> getUser(@Path("user") String user);
+
+    @GET("users/{user}/followers")
+    Call<List<UserFollowerBean>> getFollowers(@Path("user") String user);
+
 }
