@@ -1,1 +1,1 @@
-include ':app', ':rxandroid', ':HttpDemo', ':javarunner', ':pinnedHeaderExpandableListView'
+include ':app', ':HttpDemo', ':javarunner'

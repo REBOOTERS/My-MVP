@@ -1,4 +1,4 @@
-package home.smart.fly.rxandroid;
+package home.smart.fly.httpurlconnectiondemo;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

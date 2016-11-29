@@ -1,7 +1,5 @@
 package com.example;
 
-import com.example.util.ReadContent;
-
 public class Runner {
     private static final String DOWNLOAD_URL = "https://raw.githubusercontent.com/REBOOTERS/SomeFile/master/App.pdf";
 
@@ -11,7 +9,12 @@ public class Runner {
 
 //        FileCopy.copy("README.md", "README1.md");
 
-        System.err.println("read content of ch_file.txt ------> " + ReadContent.read("ch_file.txt"));
+//        System.err.println("read content of ch_file.txt ------> " + ReadContent.read("ch_file.txt"));
+
+        int x = 10;
+        double y =  (10 % 1.9);
+
+        System.out.println("the result is " + y);
 
 
     }

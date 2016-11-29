@@ -11,8 +11,6 @@
             <option value="$PROJECT_DIR$/HttpDemo" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/javarunner" />
-            <option value="$PROJECT_DIR$/pinnedHeaderExpandableListView" />
-            <option value="$PROJECT_DIR$/rxandroid" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
