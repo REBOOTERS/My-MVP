@@ -94,7 +94,6 @@ public class Okhttp3DemoActivity extends AppCompatActivity {
                 request = builder.build();
                 Call mCall = client.newCall(request);
                 mCall.enqueue(new MyCallback());
-
             }
         });
 

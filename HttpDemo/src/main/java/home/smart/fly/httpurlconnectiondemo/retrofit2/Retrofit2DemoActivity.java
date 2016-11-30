@@ -3,7 +3,6 @@ package home.smart.fly.httpurlconnectiondemo.retrofit2;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -18,7 +17,6 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Comparator;
@@ -49,8 +47,6 @@ import rx.schedulers.Schedulers;
 public class Retrofit2DemoActivity extends AppCompatActivity implements View.OnClickListener {
     private final String TAG = Retrofit2DemoActivity.class.getSimpleName();
     private final String BASE_URL = "https://api.github.com/";
-    private final String DOWNLOAD_URL = "http://dl.bizhi.sogou.com/images/2015/06/26/1214911.jpg";
-    private final String FILE_PATH = Environment.getExternalStorageDirectory().getPath() + File.separator + "test.jpg";
     private Context mContext;
 
 
@@ -64,8 +60,6 @@ public class Retrofit2DemoActivity extends AppCompatActivity implements View.OnC
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = this;
-
-
         setContentView(R.layout.activity_retrofit_demo);
         viewShell = (LinearLayout) findViewById(R.id.viewShell);
         username = (EditText) findViewById(R.id.username);
@@ -98,7 +92,7 @@ public class Retrofit2DemoActivity extends AppCompatActivity implements View.OnC
                     String result = response.body().string();
                     Gson gson = new Gson();
                     GithubUserBean bean = gson.fromJson(result, GithubUserBean.class);
-                    setUserInfo(bean);
+                    setUserView(bean);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -123,7 +117,7 @@ public class Retrofit2DemoActivity extends AppCompatActivity implements View.OnC
             @Override
             public void onResponse(Call<GithubUserBean> call, Response<GithubUserBean> response) {
                 GithubUserBean bean = response.body();
-                setUserInfo(bean);
+                setUserView(bean);
                 loading.dismiss();
             }
 
@@ -142,7 +136,7 @@ public class Retrofit2DemoActivity extends AppCompatActivity implements View.OnC
             public void onResponse(Call<GithubUserBean> call, Response<GithubUserBean> response) {
                 GithubUserBean bean = response.body();
                 loading.dismiss();
-                setUserInfo(bean);
+                setUserView(bean);
             }
 
             @Override
@@ -198,7 +192,7 @@ public class Retrofit2DemoActivity extends AppCompatActivity implements View.OnC
 
                     @Override
                     public void onNext(GithubUserBean o) {
-                        setUserInfo(o);
+                        setUserView(o);
                     }
                 });
 
@@ -249,7 +243,6 @@ public class Retrofit2DemoActivity extends AppCompatActivity implements View.OnC
                         return userFollowerBean;
                     }
                 })
-                .take(5)
                 .subscribe(new Subscriber<List<UserFollowerBean>>() {
                     @Override
                     public void onCompleted() {
@@ -264,13 +257,13 @@ public class Retrofit2DemoActivity extends AppCompatActivity implements View.OnC
 
                     @Override
                     public void onNext(List<UserFollowerBean> userFollowerBeen) {
-                        setFollowersInfo(userFollowerBeen);
+                        setFollowersView(userFollowerBeen);
                     }
                 });
 
     }
 
-    private void setUserInfo(GithubUserBean user) {
+    private void setUserView(GithubUserBean user) {
         if (user != null) {
             viewShell.removeAllViews();
             View view = LayoutInflater.from(mContext).inflate(R.layout.user_item_layout, null);
@@ -295,7 +288,7 @@ public class Retrofit2DemoActivity extends AppCompatActivity implements View.OnC
         }
     }
 
-    private void setFollowersInfo(List<UserFollowerBean> followers) {
+    private void setFollowersView(List<UserFollowerBean> followers) {
         if (followers != null && followers.size() > 0) {
             for (UserFollowerBean user : followers) {
                 View view = LayoutInflater.from(mContext).inflate(R.layout.user_item_layout, null);

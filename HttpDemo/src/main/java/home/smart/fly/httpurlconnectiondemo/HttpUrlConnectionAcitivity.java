@@ -24,7 +24,7 @@ public class HttpUrlConnectionAcitivity extends AppCompatActivity {
     private TextView tv;
     private Button button;
 
-    private final String BASE_URL = "https://www.baidu.com";
+    private final String BASE_URL = "https://api.github.com/";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -87,12 +87,11 @@ public class HttpUrlConnectionAcitivity extends AppCompatActivity {
             connection.setConnectTimeout(20000);
             connection.setReadTimeout(40000);
             connection.setRequestMethod("GET");
-//            //添加Header
-//            connection.setRequestProperty("Connection", "Keep-Alive");
-//            //接收输入流
-//            connection.setDoInput(true);
-//            //传递参数时需要开启
-//            connection.setDoOutput(true);
+            connection.setRequestProperty("Content-Type", "application/json");
+            connection.setRequestProperty("Accept", "application/json");
+            connection.setRequestProperty("Charset", "utf-8");
+            connection.setRequestProperty("Content-Length", "0");
+
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
