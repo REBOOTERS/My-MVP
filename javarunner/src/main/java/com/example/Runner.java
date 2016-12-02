@@ -11,7 +11,9 @@ public class Runner {
 
 //        FileCopy.copy("README.md", "README1.md");
 
-        System.err.println("read content of ch_file.txt ------> " + ReadContent.read("ch_file.txt"));
+        System.err.println("read content of ch_file.txt ------> " + ReadContent.read("HttpDemo\\src\\main\\java\\home\\smart\\fly\\httpurlconnectiondemo\\RxJavaDemoActivity.java"));
+
+
 
 
     }

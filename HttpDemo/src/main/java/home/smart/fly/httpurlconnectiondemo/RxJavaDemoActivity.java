@@ -1,10 +1,13 @@
-package home.smart.fly.rxandroid;
+package home.smart.fly.httpurlconnectiondemo;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +37,19 @@ public class RxJavaDemoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rx_java);
 
+        TextView textView = (TextView) findViewById(R.id.content);
+
+        try {
+            InputStream inputStream = getAssets().open("code.txt");
+            byte[] buffer = new byte[inputStream.available()];
+            inputStream.read(buffer);
+            inputStream.close();
+            String str = new String(buffer);
+            textView.setText(str);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
         InitObserver();

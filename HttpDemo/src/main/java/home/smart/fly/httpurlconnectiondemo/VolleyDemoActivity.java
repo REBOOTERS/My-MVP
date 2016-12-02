@@ -20,7 +20,7 @@ import com.android.volley.toolbox.Volley;
  */
 
 public class VolleyDemoActivity extends AppCompatActivity {
-    private final String BASE_URL = "https://www.baidu.com";
+    private final String BASE_URL = "https://api.github.com/";
     private Context mContext;
     private RequestQueue queue;
 

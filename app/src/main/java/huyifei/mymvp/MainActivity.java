@@ -21,10 +21,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import home.smart.fly.httpurlconnectiondemo.HttpDemoActivity;
-import home.smart.fly.rxandroid.RxAndroidActivity;
-import home.smart.fly.rxandroid.RxJavaDemoActivity;
+import home.smart.fly.httpurlconnectiondemo.RxJavaDemoActivity;
+import home.smart.fly.httpurlconnectiondemo.retrofit2.Retrofit2DemoActivity;
 import huyifei.mymvp.mvp.LoginActivity;
-import huyifei.mymvp.mvp.SimpleLoginActivity;
 import huyifei.mymvp.util.V;
 
 /**
@@ -48,11 +47,10 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     }
 
     private void setData() {
-        demos.add(new ItemInfo(R.string.app_name, SimpleLoginActivity.class));
-        demos.add(new ItemInfo(R.string.app_name, LoginActivity.class));
         demos.add(new ItemInfo(R.string.app_name, RxJavaDemoActivity.class));
-        demos.add(new ItemInfo(R.string.app_name, RxAndroidActivity.class));
         demos.add(new ItemInfo(R.string.app_name, HttpDemoActivity.class));
+        demos.add(new ItemInfo(R.string.app_name, Retrofit2DemoActivity.class));
+        demos.add(new ItemInfo(R.string.app_name, LoginActivity.class));
 
     }
 

@@ -1,43 +1,43 @@
-package home.smart.fly.httpurlconnectiondemo.retrofit2;
+package home.smart.fly.httpurlconnectiondemo.retrofit2.bean;
 
 /**
  * Created by rookie on 2016/11/15.
  */
 
-public class GithubBean {
+public class GithubUserBean {
 
 
     /**
-     * login : mike
-     * id : 1550195
-     * avatar_url : https://avatars.githubusercontent.com/u/1550195?v=3
+     * login : passsy
+     * id : 1096485
+     * avatar_url : https://avatars.githubusercontent.com/u/1096485?v=3
      * gravatar_id :
-     * url : https://api.github.com/users/mike
-     * html_url : https://github.com/mike
-     * followers_url : https://api.github.com/users/mike/followers
-     * following_url : https://api.github.com/users/mike/following{/other_user}
-     * gists_url : https://api.github.com/users/mike/gists{/gist_id}
-     * starred_url : https://api.github.com/users/mike/starred{/owner}{/repo}
-     * subscriptions_url : https://api.github.com/users/mike/subscriptions
-     * organizations_url : https://api.github.com/users/mike/orgs
-     * repos_url : https://api.github.com/users/mike/repos
-     * events_url : https://api.github.com/users/mike/events{/privacy}
-     * received_events_url : https://api.github.com/users/mike/received_events
+     * url : https://api.github.com/users/passsy
+     * html_url : https://github.com/passsy
+     * followers_url : https://api.github.com/users/passsy/followers
+     * following_url : https://api.github.com/users/passsy/following{/other_user}
+     * gists_url : https://api.github.com/users/passsy/gists{/gist_id}
+     * starred_url : https://api.github.com/users/passsy/starred{/owner}{/repo}
+     * subscriptions_url : https://api.github.com/users/passsy/subscriptions
+     * organizations_url : https://api.github.com/users/passsy/orgs
+     * repos_url : https://api.github.com/users/passsy/repos
+     * events_url : https://api.github.com/users/passsy/events{/privacy}
+     * received_events_url : https://api.github.com/users/passsy/received_events
      * type : User
      * site_admin : false
-     * name : null
-     * company : null
-     * blog : null
-     * location : the earth
+     * name : Pascal Welsch
+     * company : grandcentrix GmbH
+     * blog : http://www.pascalwelsch.com
+     * location : Cologne
      * email : null
      * hireable : null
-     * bio : null
-     * public_repos : 1
-     * public_gists : 0
-     * followers : 16
-     * following : 9
-     * created_at : 2012-03-18T17:00:18Z
-     * updated_at : 2016-07-18T12:08:10Z
+     * bio : Passionate Android Developer and speaker working at @grandcentrix with an eye for pixels and a heart for cats.
+     * public_repos : 38
+     * public_gists : 17
+     * followers : 101
+     * following : 2
+     * created_at : 2011-10-02T13:06:54Z
+     * updated_at : 2016-11-06T17:44:24Z
      */
 
     private String login;
@@ -57,13 +57,13 @@ public class GithubBean {
     private String received_events_url;
     private String type;
     private boolean site_admin;
-    private Object name;
-    private Object company;
-    private Object blog;
+    private String name;
+    private String company;
+    private String blog;
     private String location;
     private Object email;
     private Object hireable;
-    private Object bio;
+    private String bio;
     private int public_repos;
     private int public_gists;
     private int followers;
@@ -139,15 +139,15 @@ public class GithubBean {
         this.site_admin = site_admin;
     }
 
-    public void setName(Object name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public void setCompany(Object company) {
+    public void setCompany(String company) {
         this.company = company;
     }
 
-    public void setBlog(Object blog) {
+    public void setBlog(String blog) {
         this.blog = blog;
     }
 
@@ -163,7 +163,7 @@ public class GithubBean {
         this.hireable = hireable;
     }
 
-    public void setBio(Object bio) {
+    public void setBio(String bio) {
         this.bio = bio;
     }
 
@@ -259,15 +259,15 @@ public class GithubBean {
         return site_admin;
     }
 
-    public Object getName() {
+    public String getName() {
         return name;
     }
 
-    public Object getCompany() {
+    public String getCompany() {
         return company;
     }
 
-    public Object getBlog() {
+    public String getBlog() {
         return blog;
     }
 
@@ -283,7 +283,7 @@ public class GithubBean {
         return hireable;
     }
 
-    public Object getBio() {
+    public String getBio() {
         return bio;
     }
 

@@ -7,8 +7,6 @@
       <module fileurl="file://$PROJECT_DIR$/My-MVP.iml" filepath="$PROJECT_DIR$/My-MVP.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/javarunner/javarunner.iml" filepath="$PROJECT_DIR$/javarunner/javarunner.iml" />
-      <module fileurl="file://$PROJECT_DIR$/pinnedHeaderExpandableListView/pinnedHeaderExpandableListView.iml" filepath="$PROJECT_DIR$/pinnedHeaderExpandableListView/pinnedHeaderExpandableListView.iml" />
-      <module fileurl="file://$PROJECT_DIR$/rxandroid/rxandroid.iml" filepath="$PROJECT_DIR$/rxandroid/rxandroid.iml" />
     </modules>
   </component>
 </project>
