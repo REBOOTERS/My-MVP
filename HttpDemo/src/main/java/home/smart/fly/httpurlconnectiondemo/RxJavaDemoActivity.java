@@ -10,13 +10,17 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import rx.Observable;
 import rx.Subscriber;
 import rx.functions.Action1;
 import rx.functions.Func1;
+import rx.schedulers.Schedulers;
 
 public class RxJavaDemoActivity extends AppCompatActivity {
+
+    private static final String TAG = "RxJavaDemoActivity";
     /**
      * 被观察者，事件源
      */
@@ -262,6 +266,8 @@ public class RxJavaDemoActivity extends AppCompatActivity {
                 });
 
 
+        BackpressureTest();
+
     }
 
     /**
@@ -305,5 +311,31 @@ public class RxJavaDemoActivity extends AppCompatActivity {
          * 只发出一个事件就结束的Observable
          */
         oneActionObserveable = Observable.just("hello world");
+    }
+
+    /**
+     * 背压测试
+     */
+    private void BackpressureTest(){
+        Observable.interval(1, TimeUnit.MILLISECONDS)
+                .observeOn(Schedulers.newThread())
+                .subscribe(new Subscriber<Long>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.e(TAG, "onError: "+e.toString() );
+                    }
+
+                    @Override
+                    public void onNext(Long aLong) {
+                        Log.e(TAG, "onNext: "+aLong );
+                    }
+                });
+
+
     }
 }
