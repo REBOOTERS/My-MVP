@@ -8,6 +8,7 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import rx.Observable;
 
 /**
  * Created by rookie on 2016/11/15.
@@ -21,7 +22,8 @@ public interface GithubService {
     @GET("users/{user}")
     Call<GithubUserBean> getUser(@Path("user") String user);
 
+
     @GET("users/{user}/followers")
-    Call<List<UserFollowerBean>> getFollowers(@Path("user") String user);
+    Observable<List<UserFollowerBean>> followers(@Path("user") String usr);
 
 }

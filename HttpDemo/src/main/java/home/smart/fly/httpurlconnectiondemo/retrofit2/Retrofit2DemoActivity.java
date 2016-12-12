@@ -201,22 +201,7 @@ public class Retrofit2DemoActivity extends AppCompatActivity implements View.OnC
 
     private void RxRetrofitList() {
         GithubService service = GenServiceUtil.createService(GithubService.class);
-        final Call<List<UserFollowerBean>> call = service.getFollowers(name);
-
-        Observable<List<UserFollowerBean>> myObserve = Observable.create(new Observable.OnSubscribe<List<UserFollowerBean>>() {
-            @Override
-            public void call(Subscriber<? super List<UserFollowerBean>> subscriber) {
-                try {
-                    Response<List<UserFollowerBean>> followers = call.execute();
-                    subscriber.onNext(followers.body());
-                    subscriber.onCompleted();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    subscriber.onError(e);
-                }
-            }
-        });
-
+        Observable<List<UserFollowerBean>> myObserve = service.followers(name);
         myObserve
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
