@@ -14,4 +14,10 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+
+    <string name="simpleRxJava">RxJava 使用介绍</string>
+    <string name="AndroidHttp">AndroidHttp请求实现，包括HttpURLConnection \n Volley 和 OKHttp3的简单使用</string>
+    <string name="Retrofit">以循序渐进的方式介绍Retrofit的使用，以及怎样实现和RxJava结合使用</string>
+    <string name="Mvp">Android Mvp 架构demo</string>
+
 </resources>
