@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group>
+    <group android:id="@+id/group1">
         <item
-            android:numericShortcut="1111"
             android:icon="@drawable/ajo"
             android:title="我的消息" />
         <item
@@ -17,7 +16,7 @@
             android:title="在线听歌免流量" />
     </group>
 
-    <group>
+    <group android:id="@+id/group2">
         <item
             android:icon="@drawable/ajk"
             android:title="听歌识曲" />
