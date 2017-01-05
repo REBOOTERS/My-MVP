@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         demos.add(new ItemInfo(R.string.AndroidHttp, HttpDemoActivity.class));
         demos.add(new ItemInfo(R.string.Retrofit, Retrofit2DemoActivity.class));
         demos.add(new ItemInfo(R.string.Mvp, LoginActivity.class));
+        demos.add(new ItemInfo(R.string.AppInfo, InfoActivity.class));
 
     }
 
