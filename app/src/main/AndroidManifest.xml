@@ -31,6 +31,8 @@
         <!-- </activity> -->
         <activity android:name=".InfoActivity">
         </activity>
+        <activity android:name=".GlideActivity">
+        </activity>
     </application>
 
 </manifest>
