@@ -1,1 +1,1 @@
-include ':app', ':HttpDemo', ':javarunner', ':RxJava'
+include ':app', ':HttpDemo', ':javarunner'

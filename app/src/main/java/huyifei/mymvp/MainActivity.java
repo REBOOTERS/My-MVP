@@ -11,11 +11,13 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +25,7 @@ import java.util.List;
 import home.smart.fly.httpurlconnectiondemo.HttpDemoActivity;
 import home.smart.fly.httpurlconnectiondemo.RxJavaDemoActivity;
 import home.smart.fly.httpurlconnectiondemo.retrofit2.Retrofit2DemoActivity;
+import huyifei.mymvp.architecture.mvc.MVCActivity;
 import huyifei.mymvp.mvp.LoginActivity;
 import huyifei.mymvp.util.V;
 
@@ -36,6 +39,8 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     private SwipeRefreshLayout swipeRefreshLayout;
     private List<ItemInfo> demos = new ArrayList<>();
 
+    private Toolbar toolbar;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,18 +49,26 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         setContentView(R.layout.activity_main);
         setData();
         initView();
+
+        Toast.makeText(mContext, "FreeLine is so fast !", Toast.LENGTH_SHORT).show();
     }
 
     private void setData() {
         demos.add(new ItemInfo(R.string.simpleRxJava, RxJavaDemoActivity.class));
         demos.add(new ItemInfo(R.string.AndroidHttp, HttpDemoActivity.class));
         demos.add(new ItemInfo(R.string.Retrofit, Retrofit2DemoActivity.class));
+        demos.add(new ItemInfo(R.string.Mvp, MVCActivity.class));
         demos.add(new ItemInfo(R.string.Mvp, LoginActivity.class));
+        demos.add(new ItemInfo(R.string.AppInfo, InfoActivity.class));
+        demos.add(new ItemInfo(R.string.GlideUse, GlideActivity.class));
 
     }
 
 
     private void initView() {
+        toolbar = V.f(this, R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         swipeRefreshLayout = V.f(this, R.id.swipe);
         swipeRefreshLayout.setOnRefreshListener(this);
         swipeRefreshLayout.setColorSchemeResources(R.color.colorAccent, R.color.colorPrimary);
