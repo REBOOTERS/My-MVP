@@ -33,6 +33,10 @@
         </activity>
         <activity android:name=".GlideActivity">
         </activity>
+        <activity android:name=".architecture.mvc.MVCActivity">
+        </activity>
+        <activity android:name=".architecture.mvp.MVPActivity">
+        </activity>
     </application>
 
 </manifest>

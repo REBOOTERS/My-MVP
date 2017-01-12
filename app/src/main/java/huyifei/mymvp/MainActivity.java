@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,7 @@ import java.util.List;
 import home.smart.fly.httpurlconnectiondemo.HttpDemoActivity;
 import home.smart.fly.httpurlconnectiondemo.RxJavaDemoActivity;
 import home.smart.fly.httpurlconnectiondemo.retrofit2.Retrofit2DemoActivity;
+import huyifei.mymvp.architecture.mvc.MVCActivity;
 import huyifei.mymvp.mvp.LoginActivity;
 import huyifei.mymvp.util.V;
 
@@ -47,12 +49,15 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         setContentView(R.layout.activity_main);
         setData();
         initView();
+
+        Toast.makeText(mContext, "FreeLine is so fast !", Toast.LENGTH_SHORT).show();
     }
 
     private void setData() {
         demos.add(new ItemInfo(R.string.simpleRxJava, RxJavaDemoActivity.class));
         demos.add(new ItemInfo(R.string.AndroidHttp, HttpDemoActivity.class));
         demos.add(new ItemInfo(R.string.Retrofit, Retrofit2DemoActivity.class));
+        demos.add(new ItemInfo(R.string.Mvp, MVCActivity.class));
         demos.add(new ItemInfo(R.string.Mvp, LoginActivity.class));
         demos.add(new ItemInfo(R.string.AppInfo, InfoActivity.class));
         demos.add(new ItemInfo(R.string.GlideUse, GlideActivity.class));

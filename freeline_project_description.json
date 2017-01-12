@@ -1,0 +1,137 @@
+{
+    "android_gradle_plugin_version": "2.2.3",
+    "apk_path": "F:\\As_2016\\MYMVP\\app\\build\\outputs\\apk\\app-debug.apk",
+    "apt": {
+        
+    },
+    "apt_libraries": {
+        "dagger": false,
+        "butterknife": false
+    },
+    "auto_dependency": true,
+    "build_cache_dir": "F:\\As_2016\\MYMVP\\app\\build\\freeline",
+    "build_directory": "F:\\As_2016\\MYMVP\\app\\build",
+    "build_script": "gradlew.bat :app:assembleDebug",
+    "build_script_work_directory": "",
+    "build_tools_directory": "D:\\android-sdk\\build-tools\\23.0.2",
+    "build_tools_version": "23.0.2",
+    "compile_sdk_directory": "D:\\android-sdk\\platforms\\android-23",
+    "compile_sdk_version": "android-23",
+    "databinding": [
+        
+    ],
+    "databinding_compiler_jar": "",
+    "databinding_modules": [
+        
+    ],
+    "debug_package": "huyifei.mymvp",
+    "exclude_dep_res_paths": [
+        
+    ],
+    "extra_dep_res_paths": [
+        
+    ],
+    "freeline_cache_dir": "F:\\As_2016\\MYMVP",
+    "freeline_gradle_plugin_version": "0.8.4",
+    "java_home": "C:\\Program Files\\Java\\jdk1.8.0_31",
+    "launcher": "huyifei.mymvp.MainActivity",
+    "main_assets_directory": [
+        "F:\\As_2016\\MYMVP\\app\\src\\debug\\assets",
+        "F:\\As_2016\\MYMVP\\app\\src\\main\\assets"
+    ],
+    "main_jniLibs_directory": [
+        "F:\\As_2016\\MYMVP\\app\\src\\debug\\jniLibs",
+        "F:\\As_2016\\MYMVP\\app\\src\\main\\jniLibs"
+    ],
+    "main_jni_directory": [
+        "F:\\As_2016\\MYMVP\\app\\src\\debug\\jni",
+        "F:\\As_2016\\MYMVP\\app\\src\\main\\jni"
+    ],
+    "main_manifest_path": "F:\\As_2016\\MYMVP\\app\\src\\main\\AndroidManifest.xml",
+    "main_project_dir": "app",
+    "main_project_name": "app",
+    "main_r_path": "F:\\As_2016\\MYMVP\\app\\build\\generated\\source\\r\\debug\\R.java",
+    "main_res_directory": [
+        "F:\\As_2016\\MYMVP\\app\\src\\debug\\res",
+        "F:\\As_2016\\MYMVP\\app\\src\\main\\res"
+    ],
+    "main_src_directory": [
+        "F:\\As_2016\\MYMVP\\app\\src\\debug\\java",
+        "F:\\As_2016\\MYMVP\\app\\src\\main\\java"
+    ],
+    "module_dependencies": {
+        "HttpDemo": [
+            
+        ],
+        "app": [
+            "HttpDemo"
+        ]
+    },
+    "modules": [
+        {
+            "name": "app",
+            "path": "F:\\As_2016\\MYMVP\\app"
+        },
+        {
+            "name": "HttpDemo",
+            "path": "F:\\As_2016\\MYMVP\\HttpDemo"
+        }
+    ],
+    "package": "huyifei.mymvp",
+    "product_flavor": "",
+    "project_source_sets": {
+        "HttpDemo": {
+            "main_assets_directory": [
+                "F:\\As_2016\\MYMVP\\HttpDemo\\src\\release\\assets",
+                "F:\\As_2016\\MYMVP\\HttpDemo\\src\\main\\assets"
+            ],
+            "main_jniLibs_directory": [
+                "F:\\As_2016\\MYMVP\\HttpDemo\\src\\release\\jniLibs",
+                "F:\\As_2016\\MYMVP\\HttpDemo\\src\\main\\jniLibs"
+            ],
+            "main_jni_directory": [
+                "F:\\As_2016\\MYMVP\\HttpDemo\\src\\release\\jni",
+                "F:\\As_2016\\MYMVP\\HttpDemo\\src\\main\\jni"
+            ],
+            "main_manifest_path": "F:\\As_2016\\MYMVP\\HttpDemo\\src\\main\\AndroidManifest.xml",
+            "main_res_directory": [
+                "F:\\As_2016\\MYMVP\\HttpDemo\\src\\release\\res",
+                "F:\\As_2016\\MYMVP\\HttpDemo\\src\\main\\res"
+            ],
+            "main_src_directory": [
+                "F:\\As_2016\\MYMVP\\HttpDemo\\src\\release\\java",
+                "F:\\As_2016\\MYMVP\\HttpDemo\\src\\main\\java"
+            ]
+        },
+        "app": {
+            "main_assets_directory": [
+                "F:\\As_2016\\MYMVP\\app\\src\\debug\\assets",
+                "F:\\As_2016\\MYMVP\\app\\src\\main\\assets"
+            ],
+            "main_jniLibs_directory": [
+                "F:\\As_2016\\MYMVP\\app\\src\\debug\\jniLibs",
+                "F:\\As_2016\\MYMVP\\app\\src\\main\\jniLibs"
+            ],
+            "main_jni_directory": [
+                "F:\\As_2016\\MYMVP\\app\\src\\debug\\jni",
+                "F:\\As_2016\\MYMVP\\app\\src\\main\\jni"
+            ],
+            "main_manifest_path": "F:\\As_2016\\MYMVP\\app\\src\\main\\AndroidManifest.xml",
+            "main_res_directory": [
+                "F:\\As_2016\\MYMVP\\app\\src\\debug\\res",
+                "F:\\As_2016\\MYMVP\\app\\src\\main\\res"
+            ],
+            "main_src_directory": [
+                "F:\\As_2016\\MYMVP\\app\\src\\debug\\java",
+                "F:\\As_2016\\MYMVP\\app\\src\\main\\java"
+            ]
+        }
+    },
+    "project_type": "gradle",
+    "retrolambda": {
+        
+    },
+    "root_dir": "F:\\As_2016\\MYMVP",
+    "sdk_directory": "D:\\android-sdk",
+    "use_jdk8": true
+}
