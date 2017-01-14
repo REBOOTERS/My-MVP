@@ -50,7 +50,9 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         setData();
         initView();
 
-        Toast.makeText(mContext, "FreeLine is so fast !", Toast.LENGTH_SHORT).show();
+
+
+
     }
 
     private void setData() {
