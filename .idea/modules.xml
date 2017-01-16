@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/HttpDemo/HttpDemo.iml" filepath="$PROJECT_DIR$/HttpDemo/HttpDemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/MYMVP.iml" filepath="$PROJECT_DIR$/MYMVP.iml" />
-      <module fileurl="file://$PROJECT_DIR$/My-MVP.iml" filepath="$PROJECT_DIR$/My-MVP.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/javarunner/javarunner.iml" filepath="$PROJECT_DIR$/javarunner/javarunner.iml" />
     </modules>
