@@ -17,7 +17,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +26,7 @@ import home.smart.fly.httpurlconnectiondemo.RxJavaDemoActivity;
 import home.smart.fly.httpurlconnectiondemo.retrofit2.Retrofit2DemoActivity;
 import huyifei.mymvp.architecture.mvc.MVCActivity;
 import huyifei.mymvp.mvp.LoginActivity;
+import huyifei.mymvp.thread.ATActivity;
 import huyifei.mymvp.util.V;
 
 /**
@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         demos.add(new ItemInfo(R.string.Mvp, LoginActivity.class));
         demos.add(new ItemInfo(R.string.AppInfo, InfoActivity.class));
         demos.add(new ItemInfo(R.string.GlideUse, GlideActivity.class));
+        demos.add(new ItemInfo(R.string.GlideUse, ATActivity.class));
 
     }
 

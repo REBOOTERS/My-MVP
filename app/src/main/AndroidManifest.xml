@@ -37,6 +37,8 @@
         </activity>
         <activity android:name=".architecture.mvp.MVPActivity">
         </activity>
+        <activity android:name=".thread.ATActivity">
+        </activity>
     </application>
 
 </manifest>
