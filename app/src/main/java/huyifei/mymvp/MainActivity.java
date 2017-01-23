@@ -25,6 +25,7 @@ import home.smart.fly.httpurlconnectiondemo.HttpDemoActivity;
 import home.smart.fly.httpurlconnectiondemo.RxJavaDemoActivity;
 import home.smart.fly.httpurlconnectiondemo.retrofit2.Retrofit2DemoActivity;
 import huyifei.mymvp.architecture.mvc.MVCActivity;
+import huyifei.mymvp.architecture.mvp.MVPActivity;
 import huyifei.mymvp.mvp.LoginActivity;
 import huyifei.mymvp.thread.ATActivity;
 import huyifei.mymvp.util.V;
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         demos.add(new ItemInfo(R.string.AndroidHttp, HttpDemoActivity.class));
         demos.add(new ItemInfo(R.string.Retrofit, Retrofit2DemoActivity.class));
         demos.add(new ItemInfo(R.string.Mvp, MVCActivity.class));
+        demos.add(new ItemInfo(R.string.Mvp, MVPActivity.class));
         demos.add(new ItemInfo(R.string.Mvp, LoginActivity.class));
         demos.add(new ItemInfo(R.string.AppInfo, InfoActivity.class));
         demos.add(new ItemInfo(R.string.GlideUse, GlideActivity.class));

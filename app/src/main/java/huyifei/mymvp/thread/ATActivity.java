@@ -27,7 +27,7 @@ public class ATActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.e(TAG, "onClick: " + Runtime.getRuntime().availableProcessors());
-                for (int i = 0; i < 138; i++) {
+                for (int i = 0; i < 137; i++) {
 //                    new MyAsyncTask().execute("Task#" + i);
                     new MyAsyncTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, "AsyncTask#" + i);
                 }
