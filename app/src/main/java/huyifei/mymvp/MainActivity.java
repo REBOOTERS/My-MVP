@@ -52,17 +52,15 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         initView();
 
 
-
-
     }
 
     private void setData() {
         demos.add(new ItemInfo(R.string.simpleRxJava, RxJavaDemoActivity.class));
         demos.add(new ItemInfo(R.string.AndroidHttp, HttpDemoActivity.class));
         demos.add(new ItemInfo(R.string.Retrofit, Retrofit2DemoActivity.class));
-        demos.add(new ItemInfo(R.string.Mvp, MVCActivity.class));
+        demos.add(new ItemInfo(R.string.MVC, MVCActivity.class));
         demos.add(new ItemInfo(R.string.Mvp, MVPActivity.class));
-        demos.add(new ItemInfo(R.string.Mvp, LoginActivity.class));
+        demos.add(new ItemInfo(R.string.MVP_LOGIN, LoginActivity.class));
         demos.add(new ItemInfo(R.string.AppInfo, InfoActivity.class));
         demos.add(new ItemInfo(R.string.GlideUse, GlideActivity.class));
         demos.add(new ItemInfo(R.string.GlideUse, ATActivity.class));
