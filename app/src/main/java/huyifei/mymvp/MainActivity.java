@@ -77,9 +77,9 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         swipeRefreshLayout.setColorSchemeResources(R.color.colorAccent, R.color.colorPrimary);
         swipeRefreshLayout.setProgressBackgroundColorSchemeColor(Color.WHITE);
         recyclerView = V.f(this, R.id.list);
-        MyAdpater myAdpater = new MyAdpater();
+        MyAdapter myAdapter = new MyAdapter();
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
-        recyclerView.setAdapter(myAdpater);
+        recyclerView.setAdapter(myAdapter);
 
 
     }
@@ -95,10 +95,10 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     }
 
 
-    private class MyAdpater extends RecyclerView.Adapter<MyAdpater.MyHolder> {
+    private class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyHolder> {
 
 
-        public MyAdpater() {
+        public MyAdapter() {
 
         }
 
