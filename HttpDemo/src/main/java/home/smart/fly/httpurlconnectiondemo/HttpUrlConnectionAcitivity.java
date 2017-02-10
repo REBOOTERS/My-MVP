@@ -24,7 +24,7 @@ public class HttpUrlConnectionAcitivity extends AppCompatActivity {
     private TextView tv;
     private Button button;
 
-    private final String BASE_URL = "https://api.github.com/";
+    private final String BASE_URL = "https://www.baidu.com";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,30 +45,31 @@ public class HttpUrlConnectionAcitivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... params) {
-            InputStream mInputStream = null;
+            InputStream mInputStream;
             HttpURLConnection connection = getHttpUrlConnection(params[0]);
-            String result = "";
+            StringBuilder result = new StringBuilder();
             try {
-                connection.connect();
                 int statusCode = connection.getResponseCode();
                 String response = connection.getResponseMessage();
                 mInputStream = connection.getInputStream();
                 InputStreamReader inputStreamReader = new InputStreamReader(mInputStream);
                 BufferedReader reader = new BufferedReader(inputStreamReader);
-                StringBuffer sb = new StringBuffer();
+                StringBuilder sb = new StringBuilder();
                 String line;
                 while ((line = reader.readLine()) != null) {
-                    sb.append(line + "\n");
+                    sb.append(line).append("\n");
                 }
+                result.append("StatusCode: ").append(statusCode).append("\n").
+                        append("Response: ").append(response).append("\n").
+                        append(sb.toString());
 
-
-                result = "StatusCode: " + statusCode + "\n"
-                        + "Response" + response + "\n"
-                        + sb.toString();
+//                result = "StatusCode: " + statusCode + "\n"
+//                        + "Response" + response + "\n"
+//                        + sb.toString();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            return result;
+            return result.toString();
         }
 
         @Override
