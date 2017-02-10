@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
     <uses-permission android:name="android.permission.READ_PROFILE"/>
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
 
     <application
         android:name=".MyApplication"
@@ -40,6 +41,19 @@
         </activity>
         <activity android:name=".datastorage.DataStorageActivity">
         </activity>
+        <activity android:name=".broadcastreceiver.BroadcastReceiverActivity">
+        </activity>
+
+        <receiver
+            android:name=".broadcastreceiver.MyReceiver"
+            android:enabled="true"
+            android:exported="true">
+        </receiver>
+        <receiver
+            android:name=".broadcastreceiver.SecondReceiver"
+            android:enabled="true"
+            android:exported="true">
+        </receiver>
     </application>
 
 </manifest>

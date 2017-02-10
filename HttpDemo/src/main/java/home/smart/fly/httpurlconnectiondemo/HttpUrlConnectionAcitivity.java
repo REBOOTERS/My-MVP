@@ -62,10 +62,6 @@ public class HttpUrlConnectionAcitivity extends AppCompatActivity {
                 result.append("StatusCode: ").append(statusCode).append("\n").
                         append("Response: ").append(response).append("\n").
                         append(sb.toString());
-
-//                result = "StatusCode: " + statusCode + "\n"
-//                        + "Response" + response + "\n"
-//                        + sb.toString();
             } catch (IOException e) {
                 e.printStackTrace();
             }

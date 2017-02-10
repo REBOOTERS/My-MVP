@@ -1,16 +1,25 @@
 package huyifei.mymvp.datastorage;
 
+import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.PermissionChecker;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +27,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
@@ -34,6 +44,8 @@ public class DataStorageActivity extends AppCompatActivity {
     private Button write, read;
     private Button insert, getall, delall, get, del;
     private TextView resultTv;
+    private Button getContacts;
+    private ListView mListView;
     //
     private SharedPreferences sp;
     private final String SP_NAME = "only";
@@ -41,7 +53,11 @@ public class DataStorageActivity extends AppCompatActivity {
     private String FILENAME = "ONLY";
     //Sqlite
     private MySqliteHelper sqHelper;
+    //ContentResolver
+    private ContentResolver mContentResolver;
+    private List<String> datas = new ArrayList<>();
 
+    private final String CONTACTS = android.Manifest.permission.READ_CONTACTS;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -207,5 +223,51 @@ public class DataStorageActivity extends AppCompatActivity {
                 }
             }
         });
+
+        mListView = V.f(this, R.id.listView);
+        getContacts = V.f(this, R.id.getContacts);
+
+        getContacts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (PermissionChecker.checkSelfPermission(mContext, CONTACTS) == PermissionChecker.PERMISSION_GRANTED) {
+                    readContacts();
+                } else {
+                    ActivityCompat.requestPermissions(DataStorageActivity.this, new String[]{CONTACTS}, 100);
+                }
+
+
+            }
+        });
+
+
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == 100) {
+            if (grantResults[0] == PermissionChecker.PERMISSION_GRANTED) {
+                readContacts();
+            } else {
+                Toast.makeText(mContext, "Permission denied !", Toast.LENGTH_SHORT).show();
+            }
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    private void readContacts() {
+        mContentResolver = getContentResolver();
+        //联系人URI
+        Uri contactsUri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
+        Cursor cursor = mContentResolver.query(contactsUri, null, null, null, null);
+        while (cursor.moveToNext()) {
+            String name = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+            String phone = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+            datas.add(name + "----" + phone);
+        }
+        cursor.close();
+        ArrayAdapter arrayAdapter = new ArrayAdapter(mContext, android.R.layout.simple_list_item_1, datas);
+        mListView.setAdapter(arrayAdapter);
     }
 }
