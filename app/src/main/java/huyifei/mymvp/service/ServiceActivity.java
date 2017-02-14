@@ -54,5 +54,12 @@ public class ServiceActivity extends AppCompatActivity {
                 unbindService(connection);
             }
         });
+
+        findViewById(R.id.intentService).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MyIntentService.startActionBaz(mContext, "Hello ", "Baz");
+            }
+        });
     }
 }

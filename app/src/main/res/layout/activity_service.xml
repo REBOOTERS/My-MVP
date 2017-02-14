@@ -54,4 +54,10 @@
 
     </LinearLayout>
 
+    <Button
+        android:id="@+id/intentService"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="intentService"/>
+
 </LinearLayout>
