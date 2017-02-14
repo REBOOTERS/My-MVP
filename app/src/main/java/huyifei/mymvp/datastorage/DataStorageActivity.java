@@ -109,8 +109,6 @@ public class DataStorageActivity extends AppCompatActivity {
                         FileOutputStream fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
                         fos.write(content.getBytes());
                         fos.close();
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
