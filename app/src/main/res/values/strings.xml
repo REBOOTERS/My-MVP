@@ -25,6 +25,10 @@
     <string name="GlideUse">Glide 使用</string>
     <string name="DataStorage">Android 数据存储实现</string>
     <string name="BroadcastReceiver">BroadcastReceiver demo</string>
+    <string name="service">Service demo</string>
     <string name="title_activity_mvp">MVPActivity</string>
+
+    <!--note-->
+    <string name="localBroadcast">(1) LocalBroadcastManager 的核心实现实际还是 Handler，只是利用到了 IntentFilter 的 match 功能，至于 BroadcastReceiver 换成其他接口也无所谓，顺便利用了现成的类和概念而已。\n (2) 因为是 Handler 实现的应用内的通信，自然安全性更好，效率更高。</string>
 
 </resources>

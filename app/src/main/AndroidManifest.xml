@@ -54,6 +54,20 @@
             android:enabled="true"
             android:exported="true">
         </receiver>
+        <receiver
+            android:name=".broadcastreceiver.ThirdReceiver"
+            android:enabled="true"
+            android:exported="true">
+        </receiver>
+
+        <activity android:name=".service.ServiceActivity">
+        </activity>
+
+        <service
+            android:name=".service.MyService"
+            android:enabled="true"
+            android:exported="true">
+        </service>
     </application>
 
 </manifest>

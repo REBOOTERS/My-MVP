@@ -24,6 +24,12 @@
         android:layout_height="wrap_content"
         android:text="sendBroadcast-SecondReceiver"/>
 
+    <Button
+        android:id="@+id/sendLocal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="localBroadcast-ThirdReceiver"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -45,5 +51,12 @@
             android:padding="10dp"/>
 
     </LinearLayout>
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/notes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/localBroadcast"/>
 
 </LinearLayout>
