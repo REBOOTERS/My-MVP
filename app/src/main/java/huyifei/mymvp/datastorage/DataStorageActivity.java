@@ -3,6 +3,7 @@ package huyifei.mymvp.datastorage;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
@@ -42,7 +43,7 @@ public class DataStorageActivity extends AppCompatActivity {
     private CheckBox mCheckBox;
     private EditText mEditText;
     private Button write, read;
-    private Button insert, getall, delall, get, del;
+    private Button insert, getall, delall, get, del, greendao;
     private TextView resultTv;
     private Button getContacts;
     private ListView mListView;
@@ -219,6 +220,14 @@ public class DataStorageActivity extends AppCompatActivity {
                         Toast.makeText(mContext, "del fail", Toast.LENGTH_SHORT).show();
                     }
                 }
+            }
+        });
+
+        greendao = V.f(this, R.id.greendao);
+        greendao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mContext, GreenDaoActivity.class));
             }
         });
 

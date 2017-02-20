@@ -60,8 +60,7 @@
             android:exported="true">
         </receiver>
 
-        <activity android:name=".service.ServiceActivity">
-        </activity>
+        <activity android:name=".service.ServiceActivity"/>
 
         <service
             android:name=".service.MyService"
@@ -72,6 +71,9 @@
             android:name=".service.MyIntentService"
             android:exported="false">
         </service>
+
+        <activity android:name=".datastorage.GreenDaoActivity">
+        </activity>
     </application>
 
 </manifest>
