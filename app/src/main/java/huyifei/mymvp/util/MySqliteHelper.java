@@ -89,6 +89,7 @@ public class MySqliteHelper extends SQLiteOpenHelper {
             bean.setContent(cursor.getString(cursor.getColumnIndex("content")));
             cursor.moveToNext();
         }
+        cursor.close();
         return bean;
     }
 

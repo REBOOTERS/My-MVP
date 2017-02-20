@@ -233,8 +233,6 @@ public class DataStorageActivity extends AppCompatActivity {
                 } else {
                     ActivityCompat.requestPermissions(DataStorageActivity.this, new String[]{CONTACTS}, 100);
                 }
-
-
             }
         });
 
@@ -259,9 +257,10 @@ public class DataStorageActivity extends AppCompatActivity {
         //联系人URI
         Uri contactsUri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
         Cursor cursor = mContentResolver.query(contactsUri, null, null, null, null);
+        cursor.moveToFirst();
         while (cursor.moveToNext()) {
             String name = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
-            String phone = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+            String phone = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NORMALIZED_NUMBER));
             datas.add(name + "----" + phone);
         }
         cursor.close();
