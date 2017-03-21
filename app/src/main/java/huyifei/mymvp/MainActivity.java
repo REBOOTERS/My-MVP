@@ -52,8 +52,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         setContentView(R.layout.activity_main);
         setData();
         initView();
-
-
     }
 
     private void setData() {
@@ -74,7 +72,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     private void initView() {
         toolbar = V.f(this, R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         swipeRefreshLayout = V.f(this, R.id.swipe);
         swipeRefreshLayout.setOnRefreshListener(this);
         swipeRefreshLayout.setColorSchemeResources(R.color.colorAccent, R.color.colorPrimary);
@@ -83,8 +80,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         MyAdapter myAdapter = new MyAdapter();
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         recyclerView.setAdapter(myAdapter);
-
-
     }
 
     @Override

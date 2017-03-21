@@ -3,6 +3,7 @@ package huyifei.mymvp;
 import android.app.Application;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.facebook.stetho.Stetho;
 import com.squareup.leakcanary.LeakCanary;
 
 import huyifei.mymvp.greendao.DaoMaster;
@@ -27,6 +28,8 @@ public class MyApplication extends Application {
         }
         LeakCanary.install(this);
         // Normal app init code...
+
+        Stetho.initializeWithDefaults(this);
 
         setupDatabase();
     }
