@@ -184,7 +184,6 @@ public class Okhttp3DemoActivity extends AppCompatActivity {
                 handler.sendMessage(msg);
             }
             fileOutputStream.flush();
-
         }
     }
 

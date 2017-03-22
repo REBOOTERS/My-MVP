@@ -24,6 +24,18 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:text="okhttp3" />
+    <Button
+        android:id="@+id/okhttp1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="okhttp3-downloads" />
+    <Button
+        android:id="@+id/okhttp2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="okhttp3-downloads2" />
 
 
 </LinearLayout>
