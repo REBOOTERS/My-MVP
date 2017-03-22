@@ -133,8 +133,8 @@ public class Okhttp3DownloadsActivity extends AppCompatActivity {
         public void onResponse(Call call, Response response) {
             FileChannel fileChannel = null;
             ResponseBody body = response.body();
-            long total = body.contentLength();
-            long currentLength = 0;
+            int total = (int) body.contentLength();
+            int currentLength = 0;
             InputStream inputStream = body.byteStream();
 
             try {
@@ -148,14 +148,10 @@ public class Okhttp3DownloadsActivity extends AppCompatActivity {
                     mappedByteBuffer.put(buffer, 0, len);
 
                     Message msg = Message.obtain();
-                    FileObj obj = new FileObj();
-                    obj.setCurrentLength(currentLength);
-                    obj.setTotal(total);
-                    msg.obj = obj;
+                    msg.arg1 = total;
+                    msg.arg2 = currentLength;
                     msg.what = 300;
                     handler.sendMessage(msg);
-
-
                 }
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
@@ -187,9 +183,8 @@ public class Okhttp3DownloadsActivity extends AppCompatActivity {
                     Toast.makeText(mContext, e.toString(), Toast.LENGTH_SHORT).show();
                     break;
                 case 300:
-                    FileObj obj = (FileObj) msg.obj;
-                    long total = obj.getTotal();
-                    long current = obj.getCurrentLength();
+                    long total = msg.arg1;
+                    long current = msg.arg2;
 
                     totalValue = current + breakPointValue;
 
@@ -209,26 +204,6 @@ public class Okhttp3DownloadsActivity extends AppCompatActivity {
                 default:
                     break;
             }
-        }
-    }
-
-    private class FileObj {
-        long total, currentLength;
-
-        public long getTotal() {
-            return total;
-        }
-
-        public void setTotal(long total) {
-            this.total = total;
-        }
-
-        public long getCurrentLength() {
-            return currentLength;
-        }
-
-        public void setCurrentLength(long currentLength) {
-            this.currentLength = currentLength;
         }
     }
 
