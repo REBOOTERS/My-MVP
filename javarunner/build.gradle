@@ -5,7 +5,7 @@ dependencies {
 }
 
 tasks.withType(JavaCompile) {
-    options.encoding = "UTF-8"
+    options.encoding = "utf-8"
 }
 
 sourceCompatibility = "1.7"

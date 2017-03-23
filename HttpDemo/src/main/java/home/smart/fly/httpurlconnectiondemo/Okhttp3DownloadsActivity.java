@@ -34,7 +34,6 @@ import okhttp3.ResponseBody;
 /**
  * Created by rookie on 2016/11/3.
  * <p>
- * okhttp 3 异步请求的回调不在UI 线程当中
  */
 
 public class Okhttp3DownloadsActivity extends AppCompatActivity {
@@ -92,6 +91,7 @@ public class Okhttp3DownloadsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 breakPointValue = totalValue;
                 downloadCall.cancel();
+
             }
         });
 
@@ -113,6 +113,7 @@ public class Okhttp3DownloadsActivity extends AppCompatActivity {
 
     private void download(long startPoint) {
         Log.e(TAG, "download: the startPoint is " + startPoint);
+        this.startPoint = startPoint;
         request = new Request.Builder()
                 .url(PACKAGE_URL)
                 .header("RANGE", "bytes=" + startPoint + "-")
@@ -138,8 +139,9 @@ public class Okhttp3DownloadsActivity extends AppCompatActivity {
             InputStream inputStream = body.byteStream();
 
             try {
-                RandomAccessFile randomAccessFile = new RandomAccessFile(FILE_PATH, "rwd");
+                RandomAccessFile randomAccessFile = new RandomAccessFile(FILE_PATH, "rws");
                 fileChannel = randomAccessFile.getChannel();
+                Log.e(TAG, "onResponse: startPoint=" + startPoint + " ,total=" + total);
                 MappedByteBuffer mappedByteBuffer = fileChannel.map(FileChannel.MapMode.READ_WRITE, startPoint, total);
                 int len;
                 byte[] buffer = new byte[1024];
@@ -189,12 +191,10 @@ public class Okhttp3DownloadsActivity extends AppCompatActivity {
                     totalValue = current + breakPointValue;
 
                     int percent = (int) (totalValue * 100f / (total + breakPointValue));
-                    Log.e("llll", "the percent is " + total + "---" + current + "---" + totalValue + "----" + breakPointValue + "..........." + percent);
                     if (percent < 100) {
                         mProgressBar.setProgress(percent);
                         progressValue.setText(String.valueOf(percent));
                     } else {
-//                        Glide.with(mContext).load(FILE_PATH).into(imageView);
                         Intent intent = new Intent(Intent.ACTION_VIEW);
                         intent.setDataAndType(Uri.parse("file://" + FILE_PATH),
                                 "application/vnd.android.package-archive");
