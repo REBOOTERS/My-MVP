@@ -8,65 +8,40 @@
 
     <include layout="@layout/progress_layout"/>
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical">
+        android:padding="10dp">
 
-
-        <Button
-            android:id="@+id/downloadFile"
+        <ImageView
+            android:id="@+id/start"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
             android:layout_weight="1"
-            android:text="downloadFile"/>
+            android:src="@drawable/ic_play_arrow_black_24dp"/>
 
-        <Button
+        <ImageView
             android:id="@+id/pause"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
             android:layout_weight="1"
-            android:text="pause"/>
+            android:src="@drawable/ic_pause_circle_outline_black_24dp"/>
 
-        <Button
-            android:id="@+id/resume"
+        <ImageView
+            android:id="@+id/stop"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
             android:layout_weight="1"
-            android:text="continue"/>
+            android:src="@drawable/ic_stop_black_24dp"/>
 
-        <Button
-            android:id="@+id/cancel"
+        <ImageView
+            android:id="@+id/retry"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
             android:layout_weight="1"
-            android:text="cancel"/>
+            android:src="@drawable/ic_replay_black_24dp"/>
     </LinearLayout>
-
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-
-            <ImageView
-                android:id="@+id/image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_margin="10dp"
-                android:scaleType="fitXY"/>
-        </LinearLayout>
-    </ScrollView>
 
 
 </LinearLayout>

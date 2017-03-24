@@ -38,12 +38,10 @@ import okhttp3.ResponseBody;
 
 public class Okhttp3DownloadsActivity extends AppCompatActivity {
     private static final String TAG = "Okhttp3DownloadsActivit";
-    private final String DOWNLOAD_URL = "http://dl.bizhi.sogou.com/images/2015/06/26/1214911.jpg";
     public static final String PACKAGE_URL = "https://static.dongqiudi.com/app/apk/dongqiudi_website.apk";
     private final String FILE_PATH = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getPath() + File.separator + "dqd.apk";
     private Context mContext;
 
-    private ImageView imageView;
 
     private OkHttpClient client;
     private Request request;
@@ -54,9 +52,12 @@ public class Okhttp3DownloadsActivity extends AppCompatActivity {
     private ProgressBar mProgressBar;
     private TextView progressValue;
 
-    private long startPoint = 0L;
-    private long breakPointValue;
-    private long totalValue;
+    private int startPoint = 0;
+    private int breakPointValue;
+    private int totalValue;
+
+    private ImageView pause;
+    private boolean paused = false;
 
 
     @Override
@@ -67,51 +68,62 @@ public class Okhttp3DownloadsActivity extends AppCompatActivity {
         client = new OkHttpClient();
 
         setContentView(R.layout.activity_okhttp_three_download);
-        imageView = (ImageView) findViewById(R.id.image);
 
 
         mProgressBar = (ProgressBar) findViewById(R.id.mProgressBar);
         progressValue = (TextView) findViewById(R.id.progressValue);
 
 
-        findViewById(R.id.downloadFile).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.start).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                imageView.setImageDrawable(null);
                 if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
-                    breakPointValue = 0L;
-                    totalValue = 0L;
-                    download(0L);
+                    breakPointValue = 0;
+                    totalValue = 0;
+                    download(0);
                 }
             }
         });
 
-        findViewById(R.id.pause).setOnClickListener(new View.OnClickListener() {
+        pause = (ImageView) findViewById(R.id.pause);
+        pause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                breakPointValue = totalValue;
-                downloadCall.cancel();
+
+
+                if (!paused) {
+                    paused = true;
+                    pause.setImageResource(R.drawable.ic_play_circle_outline_black_24dp);
+                    downloadCall.cancel();
+                    breakPointValue = totalValue;
+                } else {
+                    pause.setImageResource(R.drawable.ic_pause_circle_outline_black_24dp);
+                    paused = false;
+                    download(breakPointValue);
+                }
 
             }
         });
 
-        findViewById(R.id.resume).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.retry).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                download(breakPointValue);
+//                download(breakPointValue);
             }
         });
 
-        findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.stop).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 downloadCall.cancel();
+                mProgressBar.setProgress(0);
+                progressValue.setText("0");
             }
         });
 
     }
 
-    private void download(long startPoint) {
+    private void download(int startPoint) {
         Log.e(TAG, "download: the startPoint is " + startPoint);
         this.startPoint = startPoint;
         request = new Request.Builder()
@@ -146,6 +158,7 @@ public class Okhttp3DownloadsActivity extends AppCompatActivity {
                 int len;
                 byte[] buffer = new byte[1024];
                 while ((len = inputStream.read(buffer)) != -1) {
+
                     currentLength = currentLength + len;
                     mappedByteBuffer.put(buffer, 0, len);
 
@@ -185,21 +198,25 @@ public class Okhttp3DownloadsActivity extends AppCompatActivity {
                     Toast.makeText(mContext, e.toString(), Toast.LENGTH_SHORT).show();
                     break;
                 case 300:
-                    long total = msg.arg1;
-                    long current = msg.arg2;
+                    int total = msg.arg1;
+                    int current = msg.arg2;
+                    if (!paused) {
+                        totalValue = current + breakPointValue;
+                        Log.e(TAG, "handleMessage: totalvalue=" + totalValue);
 
-                    totalValue = current + breakPointValue;
-
-                    int percent = (int) (totalValue * 100f / (total + breakPointValue));
-                    if (percent < 100) {
-                        mProgressBar.setProgress(percent);
-                        progressValue.setText(String.valueOf(percent));
-                    } else {
-                        Intent intent = new Intent(Intent.ACTION_VIEW);
-                        intent.setDataAndType(Uri.parse("file://" + FILE_PATH),
-                                "application/vnd.android.package-archive");
-                        mContext.startActivity(intent);
+                        int percent = (int) (totalValue * 100f / (total + breakPointValue));
+                        if (percent < 100) {
+                            mProgressBar.setProgress(percent);
+                            progressValue.setText(String.valueOf(percent));
+                        } else {
+                            Intent intent = new Intent(Intent.ACTION_VIEW);
+                            intent.setDataAndType(Uri.parse("file://" + FILE_PATH),
+                                    "application/vnd.android.package-archive");
+                            mContext.startActivity(intent);
+                        }
                     }
+
+
                     break;
                 default:
                     break;
