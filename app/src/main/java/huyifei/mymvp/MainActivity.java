@@ -25,8 +25,11 @@ import home.smart.fly.httpurlconnectiondemo.HttpDemoActivity;
 import home.smart.fly.httpurlconnectiondemo.RxJavaDemoActivity;
 import home.smart.fly.httpurlconnectiondemo.retrofit2.Retrofit2DemoActivity;
 import huyifei.mymvp.architecture.mvc.MVCActivity;
+import huyifei.mymvp.architecture.mvp.MVPActivity;
+import huyifei.mymvp.broadcastreceiver.BroadcastReceiverActivity;
+import huyifei.mymvp.datastorage.DataStorageActivity;
 import huyifei.mymvp.mvp.LoginActivity;
-import huyifei.mymvp.thread.ATActivity;
+import huyifei.mymvp.service.ServiceActivity;
 import huyifei.mymvp.util.V;
 
 /**
@@ -49,39 +52,34 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         setContentView(R.layout.activity_main);
         setData();
         initView();
-
-
-
-
     }
 
     private void setData() {
         demos.add(new ItemInfo(R.string.simpleRxJava, RxJavaDemoActivity.class));
         demos.add(new ItemInfo(R.string.AndroidHttp, HttpDemoActivity.class));
         demos.add(new ItemInfo(R.string.Retrofit, Retrofit2DemoActivity.class));
-        demos.add(new ItemInfo(R.string.Mvp, MVCActivity.class));
-        demos.add(new ItemInfo(R.string.Mvp, LoginActivity.class));
+        demos.add(new ItemInfo(R.string.MVC, MVCActivity.class));
+        demos.add(new ItemInfo(R.string.Mvp, MVPActivity.class));
+        demos.add(new ItemInfo(R.string.MVP_LOGIN, LoginActivity.class));
         demos.add(new ItemInfo(R.string.AppInfo, InfoActivity.class));
         demos.add(new ItemInfo(R.string.GlideUse, GlideActivity.class));
-        demos.add(new ItemInfo(R.string.GlideUse, ATActivity.class));
-
+        demos.add(new ItemInfo(R.string.DataStorage, DataStorageActivity.class));
+        demos.add(new ItemInfo(R.string.BroadcastReceiver, BroadcastReceiverActivity.class));
+        demos.add(new ItemInfo(R.string.service, ServiceActivity.class));
     }
 
 
     private void initView() {
         toolbar = V.f(this, R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         swipeRefreshLayout = V.f(this, R.id.swipe);
         swipeRefreshLayout.setOnRefreshListener(this);
         swipeRefreshLayout.setColorSchemeResources(R.color.colorAccent, R.color.colorPrimary);
         swipeRefreshLayout.setProgressBackgroundColorSchemeColor(Color.WHITE);
         recyclerView = V.f(this, R.id.list);
-        MyAdpater myAdpater = new MyAdpater();
+        MyAdapter myAdapter = new MyAdapter();
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
-        recyclerView.setAdapter(myAdpater);
-
-
+        recyclerView.setAdapter(myAdapter);
     }
 
     @Override
@@ -95,10 +93,10 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     }
 
 
-    private class MyAdpater extends RecyclerView.Adapter<MyAdpater.MyHolder> {
+    private class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyHolder> {
 
 
-        public MyAdpater() {
+        public MyAdapter() {
 
         }
 

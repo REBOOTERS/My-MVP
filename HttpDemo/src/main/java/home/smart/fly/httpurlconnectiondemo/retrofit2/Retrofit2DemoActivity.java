@@ -258,8 +258,6 @@ public class Retrofit2DemoActivity extends AppCompatActivity implements View.OnC
             TextView updateTime = (TextView) view.findViewById(R.id.updateTime);
             TextView bio = (TextView) view.findViewById(R.id.bio);
             ImageView avatar = (ImageView) view.findViewById(R.id.avatar);
-
-
             title.setText("Name: " + user.getLogin());
             bio.setText("Bio: " + user.getBio());
             id.setText("Id: " + String.valueOf(user.getId()));

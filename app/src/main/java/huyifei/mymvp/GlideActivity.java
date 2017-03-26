@@ -38,11 +38,11 @@ public class GlideActivity extends AppCompatActivity {
         Glide.with(this).load(picUrl).into(imageView);
         findViewById(R.id.loadimg)
                 .setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.large_image);
-                imageView.setImageBitmap(bitmap);
-            }
-        });
+                    @Override
+                    public void onClick(View v) {
+                        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.large_image);
+                        imageView.setImageBitmap(bitmap);
+                    }
+                });
     }
 }

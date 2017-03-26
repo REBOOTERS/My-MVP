@@ -1,4 +1,4 @@
-package huyifei.mymvp.architecture.mvc;
+package huyifei.mymvp.architecture.common;
 
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
