@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">MYMVP</string>
+    <string name="title_activity_login">Sign in</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+
+    <string name="simpleRxJava">RxJava 使用介绍</string>
+    <string name="AndroidHttp">AndroidHttp请求实现，包括HttpURLConnection \n Volley 和 OKHttp3的简单使用</string>
+    <string name="Retrofit">以循序渐进的方式介绍Retrofit的使用，以及怎样实现和RxJava结合使用</string>
+    <string name="MVC">mvc 简单实现</string>
+    <string name="Mvp">Android Mvp 简单实现</string>
+    <string name="MVP_LOGIN">Android Mvp 登录实现</string>
+    <string name="AppInfo">Android 应用信息</string>
+    <string name="GlideUse">Glide 使用</string>
+    <string name="DataStorage">Android 数据存储实现</string>
+    <string name="BroadcastReceiver">BroadcastReceiver demo</string>
+    <string name="service">Service demo</string>
+    <string name="title_activity_mvp">MVPActivity</string>
+
+    <!--note-->
+    <string name="localBroadcast">(1) LocalBroadcastManager 的核心实现实际还是 Handler，只是利用到了 IntentFilter 的 match 功能，至于 BroadcastReceiver 换成其他接口也无所谓，顺便利用了现成的类和概念而已。\n (2) 因为是 Handler 实现的应用内的通信，自然安全性更好，效率更高。</string>
+
+</resources>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:id="@+id/group1">
+        <item
+            android:icon="@drawable/ajo"
+            android:title="我的消息" />
+        <item
+            android:icon="@drawable/ajx"
+            android:title="会员中心" />
+        <item
+            android:icon="@drawable/aju"
+            android:title="积分商城" />
+        <item
+            android:icon="@drawable/ajj"
+            android:title="在线听歌免流量" />
+    </group>
+
+    <group android:id="@+id/group2">
+        <item
+            android:icon="@drawable/ajk"
+            android:title="听歌识曲" />
+        <item
+            android:icon="@drawable/ajt"
+            android:title="主题换肤" />
+        <item
+            android:icon="@drawable/ajq"
+            android:title="夜间模式" />
+        <item
+            android:icon="@drawable/ajv"
+            android:title="定时停止播放" />
+        <item
+            android:icon="@drawable/ajr"
+            android:title="扫一扫" />
+        <item
+            android:icon="@drawable/ajh"
+            android:title="我的音乐云盘" />
+        <item
+            android:icon="@drawable/ajg"
+            android:title="音乐闹钟" />
+        <item
+            android:icon="@drawable/ajw"
+            android:title="驾驶模式" />
+    </group>
+
+</menu>
