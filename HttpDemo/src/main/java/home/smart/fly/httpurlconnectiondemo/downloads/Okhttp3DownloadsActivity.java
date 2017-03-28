@@ -105,9 +105,11 @@ public class Okhttp3DownloadsActivity extends AppCompatActivity {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             switch (msg.what) {
+                case 400:
+                    Toast.makeText(mContext, "不支持断点续传", Toast.LENGTH_SHORT).show();
+                    break;
                 case 100:
-                    Object e = msg.obj;
-                    Toast.makeText(mContext, e.toString(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "fail", Toast.LENGTH_SHORT).show();
                     break;
                 case 300:
                     int total = msg.arg1;

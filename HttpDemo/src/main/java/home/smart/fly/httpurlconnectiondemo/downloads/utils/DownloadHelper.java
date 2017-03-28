@@ -17,8 +17,13 @@ public class DownloadHelper {
 
     private static Call mCall;
 
-    public static OkHttpClient getInstance() {
-        return mClient;
+    public static void startDownload(int startPoint, int endPoint, Handler mHandler) {
+        Request request = new Request.Builder()
+                .url(Constants.PACKAGE_URL)
+                .header("RANGE", "bytes=" + startPoint + "-" + endPoint)
+                .build();
+        mCall = mClient.newCall(request);
+        mCall.enqueue(new OkHttpCallback(startPoint, mHandler));
     }
 
     public static void startDownload(int startPoint, Handler mHandler) {
@@ -27,7 +32,7 @@ public class DownloadHelper {
                 .header("RANGE", "bytes=" + startPoint + "-")
                 .build();
         mCall = mClient.newCall(request);
-        mCall.enqueue(new OkHttpCallback(startPoint,mHandler));
+        mCall.enqueue(new OkHttpCallback(startPoint, mHandler));
     }
 
     public static void cancelDownload() {

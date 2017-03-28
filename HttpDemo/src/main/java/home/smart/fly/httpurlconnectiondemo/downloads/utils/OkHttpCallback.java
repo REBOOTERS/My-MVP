@@ -4,10 +4,10 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.RandomAccessFile;
+import java.net.HttpURLConnection;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 
@@ -24,9 +24,9 @@ import static com.android.volley.VolleyLog.TAG;
 
 public class OkHttpCallback implements Callback {
 
-    public Handler mHandler;
+    private Handler mHandler;
 
-    int startPoint;
+    private int startPoint;
 
     public OkHttpCallback(int startPoint, Handler mHandler) {
         this.startPoint = startPoint;
@@ -36,11 +36,19 @@ public class OkHttpCallback implements Callback {
 
     @Override
     public void onFailure(Call call, IOException e) {
-//        Toast.makeText(mContext, "error", Toast.LENGTH_SHORT).show();
+        mHandler.sendEmptyMessage(100);
     }
 
     @Override
     public void onResponse(Call call, Response response) {
+
+        if (response.code() != HttpURLConnection.HTTP_PARTIAL) {
+            //返回code非206 ，不支持断点续传
+            mHandler.sendEmptyMessage(400);
+            return;
+        }
+
+
         FileChannel fileChannel = null;
         ResponseBody body = response.body();
         int total = (int) body.contentLength();
@@ -65,8 +73,6 @@ public class OkHttpCallback implements Callback {
                 msg.what = 300;
                 mHandler.sendMessage(msg);
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {

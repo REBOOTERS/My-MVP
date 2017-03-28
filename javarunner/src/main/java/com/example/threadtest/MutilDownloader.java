@@ -5,8 +5,6 @@ import java.io.InputStream;
 import java.io.RandomAccessFile;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.nio.MappedByteBuffer;
-import java.nio.channels.FileChannel;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -60,16 +58,13 @@ public class MutilDownloader {
                 System.out.println("----threadId---" + threadId
                         + "--startIndex--" + startIndex + "--endIndex--"
                         + endIndex);
-//                // 开启每一个线程
-//                new DownloadThread(path, threadId, startIndex, endIndex)
-//                        .start();
-
                 mExecutorService.execute(new DownloadThread(path, threadId, startIndex, endIndex));
 
 
             }
 
             mCountDownLatch.await();
+            System.out.println("finish");
 
         }
 
@@ -117,15 +112,10 @@ public class MutilDownloader {
                 RandomAccessFile raf = new RandomAccessFile("dongqiudi_website.apk", "rwd");
                 // 随机写文件的时候从哪个位置开始写
                 raf.seek(startIndex);// 定位文件
-
-                FileChannel fileChannel=raf.getChannel();
-                MappedByteBuffer mappedByteBuffer = fileChannel.map(FileChannel.MapMode.READ_WRITE, startIndex, endIndex - startIndex);
-
                 int len = 0;
                 byte[] buffer = new byte[1024];
                 while ((len = is.read(buffer)) != -1) {
-//                    raf.write(buffer, 0, len);
-                    mappedByteBuffer.put(buffer, 0, len);
+                    raf.write(buffer, 0, len);
                 }
                 is.close();
                 raf.close();
