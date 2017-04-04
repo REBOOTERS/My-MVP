@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.io.RandomAccessFile;
+
 import huyifei.mymvp.views.MyView;
 import huyifei.mymvp.views.MyViewGroup;
 
@@ -22,6 +24,8 @@ public class AppIndexActivity extends AppCompatActivity {
 
         viewEvent();
         viewGroupEvent();
+
+        RandomAccessFile file;
     }
 
     /**
