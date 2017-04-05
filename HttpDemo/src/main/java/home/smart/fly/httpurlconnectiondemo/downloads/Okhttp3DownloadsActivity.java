@@ -57,14 +57,13 @@ public class Okhttp3DownloadsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (isPause) {
                     pause.setImageResource(R.drawable.ic_pause_circle_outline_black_24dp);
-                    isPause = false;
                     DownloadHelper.startDownload(breakPointValue, mMyHandler);
                 } else {
-                    isPause = true;
                     pause.setImageResource(R.drawable.ic_play_circle_outline_black_24dp);
                     DownloadHelper.cancelDownload();
                     breakPointValue = totalValue;
                 }
+                isPause = !isPause;
 
             }
         });

@@ -14,7 +14,7 @@ public class RandomIoDemo {
     private static int len;
 
     public static void main(String[] args) throws Exception {
-        // 预分配文件所占的磁盘空间，磁盘中会创建一个指定大小的文件
+        // 在磁盘中预先创建一个文件，分配预定的空间
         RandomAccessFile raf = new RandomAccessFile("result.txt", "rwd");
         raf.setLength(1024); // 预分配 1kb 的文件空间
         raf.close();
@@ -43,6 +43,11 @@ public class RandomIoDemo {
         private int skip;
         private byte[] content;
 
+        /**
+         *
+         * @param skip 写入文件需要跳过的字节数
+         * @param content 写入到文件的内容
+         */
         private FileWriteThread(int skip, byte[] content) {
             this.skip = skip;
             this.content = content;
