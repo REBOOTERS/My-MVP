@@ -20,6 +20,8 @@ public class AppIndexActivity extends AppCompatActivity {
         setContentView(R.layout.activity_app_index);
 
 
+        TAG.compareTo("1.2.3");
+
         viewEvent();
         viewGroupEvent();
     }

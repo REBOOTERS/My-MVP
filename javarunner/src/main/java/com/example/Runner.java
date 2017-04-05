@@ -17,8 +17,6 @@ public class Runner {
         int result = appVersion.compareTo(uuid);
 
         System.out.println("the result is " + result);
-
-
     }
 
 
