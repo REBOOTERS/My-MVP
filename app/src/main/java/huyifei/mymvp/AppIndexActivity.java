@@ -28,6 +28,7 @@ public class AppIndexActivity extends AppCompatActivity {
         viewGroupEvent();
 
         RandomAccessFile file;
+
     }
 
     /**
