@@ -6,4 +6,5 @@ package home.times.designpatterns.singleton;
 
 public enum  EnumSingleton {
     INSTANCE;
+
 }

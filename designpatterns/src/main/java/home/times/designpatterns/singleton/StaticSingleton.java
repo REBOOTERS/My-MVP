@@ -20,4 +20,5 @@ public class StaticSingleton {
     private static class SingletonHolder{
         private static final StaticSingleton mInstance=new StaticSingleton();
     }
+
 }

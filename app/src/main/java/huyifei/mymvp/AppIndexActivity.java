@@ -1,5 +1,6 @@
 package huyifei.mymvp;
 
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -28,6 +29,8 @@ public class AppIndexActivity extends AppCompatActivity {
         viewGroupEvent();
 
         RandomAccessFile file;
+
+        BitmapFactory f;
 
     }
 
