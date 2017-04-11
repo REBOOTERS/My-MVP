@@ -21,6 +21,7 @@
     <string name="MVC">mvc 简单实现</string>
     <string name="Mvp">Android Mvp 简单实现</string>
     <string name="MVP_LOGIN">Android Mvp 登录实现</string>
+    <string name="design">Design Pattern Demo</string>
     <string name="AppInfo">Android 应用信息</string>
     <string name="GlideUse">Glide 使用</string>
     <string name="DataStorage">Android 数据存储实现</string>

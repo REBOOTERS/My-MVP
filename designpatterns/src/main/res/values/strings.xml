@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">designpatterns</string>
+    <string name="factory">factory pattern</string>
 </resources>

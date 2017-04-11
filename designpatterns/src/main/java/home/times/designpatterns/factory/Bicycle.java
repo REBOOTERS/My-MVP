@@ -12,10 +12,10 @@ public interface Bicycle {
     /**
      * 单车生产方式
      */
-    void manufacture();
+    String manufacture();
 
     /**
      * 单车计费方式
      */
-    void billing();
+    String billing();
 }

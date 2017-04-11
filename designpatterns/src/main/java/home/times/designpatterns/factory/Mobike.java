@@ -6,12 +6,14 @@ package home.times.designpatterns.factory;
 
 public class Mobike implements Bicycle {
     @Override
-    public void manufacture() {
+    public String manufacture() {
         System.out.print("摩拜单车---橙色");
+        return "摩拜单车---橙色";
     }
 
     @Override
-    public void billing() {
+    public String billing() {
         System.out.print("Mobike每30分钟收费1元");
+        return "Mobike每30分钟收费1元";
     }
 }
