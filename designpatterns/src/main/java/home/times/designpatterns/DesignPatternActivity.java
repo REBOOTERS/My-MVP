@@ -19,6 +19,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import home.times.designpatterns.factory.FactoryPatternActivity;
+
 
 public class DesignPatternActivity extends AppCompatActivity {
 
@@ -42,7 +44,7 @@ public class DesignPatternActivity extends AppCompatActivity {
     }
 
     private void setData() {
-//        demos.add(new ItemInfo(R.string.simpleRxJava, RxJavaDemoActivity.class));
+        demos.add(new ItemInfo(R.string.factory, FactoryPatternActivity.class));
 
     }
 

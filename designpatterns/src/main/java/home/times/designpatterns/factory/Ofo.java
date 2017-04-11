@@ -6,12 +6,14 @@ package home.times.designpatterns.factory;
 
 public class Ofo implements Bicycle {
     @Override
-    public void manufacture() {
-        System.out.print("摩拜单车---橙色");
+    public String manufacture() {
+        System.out.print("ofo单车---黄色");
+        return "ofo单车---黄色";
     }
 
     @Override
-    public void billing() {
-        System.out.print("Mobike每30分钟收费1元");
+    public String billing() {
+        System.out.print("ofo单车: 师生认证用户0.5元/小时，非师生用户1元/小时");
+        return "ofo单车: 师生认证用户0.5元/小时，非师生用户1元/小时";
     }
 }

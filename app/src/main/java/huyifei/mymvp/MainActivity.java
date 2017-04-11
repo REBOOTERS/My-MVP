@@ -24,6 +24,7 @@ import java.util.List;
 import home.smart.fly.httpurlconnectiondemo.HttpDemoActivity;
 import home.smart.fly.httpurlconnectiondemo.RxJavaDemoActivity;
 import home.smart.fly.httpurlconnectiondemo.retrofit2.Retrofit2DemoActivity;
+import home.times.designpatterns.DesignPatternActivity;
 import huyifei.mymvp.architecture.mvc.MVCActivity;
 import huyifei.mymvp.architecture.mvp.MVPActivity;
 import huyifei.mymvp.broadcastreceiver.BroadcastReceiverActivity;
@@ -61,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         demos.add(new ItemInfo(R.string.MVC, MVCActivity.class));
         demos.add(new ItemInfo(R.string.Mvp, MVPActivity.class));
         demos.add(new ItemInfo(R.string.MVP_LOGIN, LoginActivity.class));
+        demos.add(new ItemInfo(R.string.design, DesignPatternActivity.class));
         demos.add(new ItemInfo(R.string.AppInfo, InfoActivity.class));
         demos.add(new ItemInfo(R.string.GlideUse, GlideActivity.class));
         demos.add(new ItemInfo(R.string.DataStorage, DataStorageActivity.class));
