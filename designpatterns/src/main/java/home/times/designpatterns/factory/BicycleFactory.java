@@ -5,7 +5,7 @@ package home.times.designpatterns.factory;
  */
 
 /**
- * Bicycle 抽象工厂
+ * Bicycle 抽象单车生产工厂
  */
 
 public interface BicycleFactory {
