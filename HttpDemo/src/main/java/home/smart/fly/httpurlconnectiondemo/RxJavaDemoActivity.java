@@ -139,7 +139,7 @@ public class RxJavaDemoActivity extends AppCompatActivity {
 //                .subscribe(new Action1<Integer>() {
 //                    @Override
 //                    public void call(Integer Integer) {
-////                        Log.e(MainActivity.class.getSimpleName(), "call---->" + Integer);
+//                        Log.e(MainActivity.class.getSimpleName(), "call---->" + Integer);
 //                    }
 //                });
 

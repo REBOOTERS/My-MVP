@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="home.times.designpatterns">
+          package="home.times.designpatterns">
 
     <application
         android:allowBackup="true"
@@ -8,6 +8,8 @@
         android:supportsRtl="true">
         <activity android:name=".DesignPatternActivity"/>
         <activity android:name=".factory.FactoryPatternActivity"/>
+        <activity android:name=".builder.BuilderPatternActivity">
+        </activity>
     </application>
 
 </manifest>
