@@ -1,5 +1,6 @@
 package home.times.designpatterns.factory;
 
+import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +13,8 @@ public class FactoryPatternActivity extends AppCompatActivity {
     private TextView bike_result;
     private BicycleFactory factory;
     private Bicycle mBicycle;
+
+    BitmapFactory ll;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
