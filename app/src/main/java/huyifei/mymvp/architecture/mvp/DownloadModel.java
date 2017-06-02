@@ -1,6 +1,7 @@
 package huyifei.mymvp.architecture.mvp;
 
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 
 import huyifei.mymvp.architecture.common.Constants;
@@ -15,19 +16,8 @@ public class DownloadModel implements IDownloadModel {
     private IDowndownPresenter mIDowndownPresenter;
 
 
-    private MyHandler mMyHandler = new MyHandler();
 
-
-    public DownloadModel(IDowndownPresenter IDowndownPresenter) {
-        mIDowndownPresenter = IDowndownPresenter;
-    }
-
-    @Override
-    public void download(String url) {
-        HttpUtil.HttpGet(url, new DownloadCallback(mMyHandler));
-    }
-
-    class MyHandler extends Handler {
+    final Handler mHandler = new Handler(Looper.getMainLooper()) {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
@@ -47,5 +37,16 @@ public class DownloadModel implements IDownloadModel {
                     break;
             }
         }
+    };
+
+
+    public DownloadModel(IDowndownPresenter IDowndownPresenter) {
+        mIDowndownPresenter = IDowndownPresenter;
     }
+
+    @Override
+    public void download(String url) {
+        HttpUtil.HttpGet(url, new DownloadCallback(mHandler));
+    }
+
 }

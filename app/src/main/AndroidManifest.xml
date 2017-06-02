@@ -66,5 +66,8 @@
 
         <activity android:name=".datastorage.GreenDaoActivity">
         </activity>
+        <activity android:name=".MemoryLeakActivity">
+        </activity>
     </application>
+
 </manifest>

@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     }
 
     private void setData() {
+        demos.add(new ItemInfo(R.string.service, MemoryLeakActivity.class));
         demos.add(new ItemInfo(R.string.simpleRxJava, RxJavaDemoActivity.class));
         demos.add(new ItemInfo(R.string.AndroidHttp, HttpDemoActivity.class));
         demos.add(new ItemInfo(R.string.Retrofit, Retrofit2DemoActivity.class));
