@@ -16,8 +16,7 @@ public class FutureTaskTest {
 
         while (!mTasks.isDone()) {
             try {
-                System.out.println("看长工做完了没..." + mTasks.get());
-                Thread.sleep(1000);
+                System.out.println("计时: " + mTasks.get());
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -25,7 +24,7 @@ public class FutureTaskTest {
         int amount;
         try {
             amount = mTasks.get();
-            System.out.println("工作做完了,上交了" + amount);
+            System.out.println("finish: " + amount);
         } catch (InterruptedException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

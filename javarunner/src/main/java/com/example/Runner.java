@@ -19,20 +19,10 @@ public class Runner {
         System.out.println("the result is " + result);
 
 
-        int a = 1 << 0;
-        int c = 1;
-        int b = 1 << 1;
+        int[] temp = {1, 13, -2, 1, 65, 12, 0, -10};
 
-        System.out.println("a = " + a);
-        System.out.println("~a = " + ~a);
-        System.out.println("~c = " + ~c);
-//        System.out.println("a = " + (a | b));
-//        System.out.println("a = " + (c | b));
-//        System.out.println("a = " + (a & b));
-//        System.out.println("a = " + (c & b));
-//
-//        System.out.println("a = c" + String.valueOf(a == c));
-//        System.out.println("b = " + b);
+
+
     }
 
 

@@ -4,8 +4,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class MemoryLeakActivity extends AppCompatActivity {
 
@@ -18,6 +21,9 @@ public class MemoryLeakActivity extends AppCompatActivity {
 
         mLeakyHandler.postDelayed(new Job(), 10 * 1000);
         finish();
+
+        ArrayList<String> datas = new ArrayList<>();
+        LinkedList<String> links = new LinkedList<>();
     }
 
     private static class Job implements Runnable{
@@ -42,7 +48,7 @@ public class MemoryLeakActivity extends AppCompatActivity {
         public void handleMessage(Message msg) {
             MemoryLeakActivity activity = mActivity.get();
             if (activity != null) {
-                // ...
+                Log.e("handleMessage", "0");
             }
         }
     }
