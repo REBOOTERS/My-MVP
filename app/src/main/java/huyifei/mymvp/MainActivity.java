@@ -12,17 +12,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import org.json.JSONArray;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import home.smart.fly.httpurlconnectiondemo.HttpDemoActivity;
@@ -58,26 +54,10 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         setData();
         initView();
 
-        testMethod();
 
     }
 
-    private void testMethod() {
-        List<String> list = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            list.add(String.valueOf(i));
-        }
 
-        int size = list.size();
-        String[] arr = (String[]) list.toArray(new String[size]);
-        String callback = Arrays.toString(arr);
-
-        JSONArray mJSONArray = new JSONArray(list);
-
-        Log.e("1111", "arr is " + callback);
-        Log.e("1111---", "mJSONArray is " + mJSONArray);
-
-    }
 
     private void setData() {
         demos.add(new ItemInfo(R.string.service, MemoryLeakActivity.class));
