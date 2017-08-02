@@ -101,8 +101,6 @@ public class MyIntentService extends IntentService {
                 e.printStackTrace();
             }
         }
-
-
         Log.e("handleActionBaz", param1 + "-------" + param2);
     }
 
