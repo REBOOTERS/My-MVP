@@ -29,9 +29,6 @@ public class MyService extends Service {
         super.onCreate();
 
 
-//        Notification.Builder notification = new Notification(R.mipmap.ic_launcher,
-//                "有通知到来", System.currentTimeMillis());
-
         Notification.Builder builer = new Notification.Builder(getApplicationContext());
 
         builer.setSmallIcon(R.mipmap.ic_launcher)

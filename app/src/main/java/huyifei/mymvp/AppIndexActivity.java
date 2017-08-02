@@ -2,6 +2,9 @@ package huyifei.mymvp;
 
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.HandlerThread;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -10,12 +13,27 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.io.RandomAccessFile;
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.Stack;
 
 import huyifei.mymvp.views.MyView;
 import huyifei.mymvp.views.MyViewGroup;
 
 public class AppIndexActivity extends AppCompatActivity {
     private static final String TAG = "AppIndexActivity";
+
+    Stack mStack;
+
+    Arrays mArrays;
+    Array mArray;
+
+    Handler mHandler;
+
+    HandlerThread mHandlerThread = new HandlerThread("a");
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +50,22 @@ public class AppIndexActivity extends AppCompatActivity {
 
         BitmapFactory f;
 
+
+
     }
+
+
+
+
+    private class MyCallBack implements Handler.Callback{
+
+        @Override
+        public boolean handleMessage(Message msg) {
+            return false;
+        }
+    }
+
+
 
     /**
      * ViewGroup 分发测试

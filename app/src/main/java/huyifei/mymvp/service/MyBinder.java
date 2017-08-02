@@ -23,8 +23,6 @@ public class MyBinder extends Binder {
                     }
                     Log.e("TAG", "startDownload() executed");
                 }
-
-
             }
         }).start();
     }
