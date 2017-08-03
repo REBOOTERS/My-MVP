@@ -17,6 +17,12 @@ public class Runner {
         int result = appVersion.compareTo(uuid);
 
         System.out.println("the result is " + result);
+
+
+        int[] temp = {1, 13, -2, 1, 65, 12, 0, -10};
+
+
+
     }
 
 

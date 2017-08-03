@@ -4,13 +4,17 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+
+import java.io.IOException;
 
 public class GlideActivity extends AppCompatActivity {
     private String picUrl = "http://img1.3lian.com/img013/v4/96/d/45.jpg";
@@ -45,6 +49,13 @@ public class GlideActivity extends AppCompatActivity {
                     }
                 });
 
-        imageView.equals()
+        Handler mHandler;
+        AsyncTask m;
+
+        try {
+            Runtime.getRuntime().exec("adb logcat");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

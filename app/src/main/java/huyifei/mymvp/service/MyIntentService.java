@@ -87,6 +87,28 @@ public class MyIntentService extends IntentService {
      */
     private void handleActionBaz(String param1, String param2) {
         // TODO: Handle action Baz
+        boolean running = true;
+        int count = 0;
+        while (running) {
+            try {
+                Thread.sleep(1000);
+                count++;
+                Log.e("handleActionBaz", "=== " + count);
+                if (count >= 30) {
+                    running = false;
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+
         Log.e("handleActionBaz", param1 + "-------" + param2);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.e("onDestroy", "MyIntentService is destoryed");
     }
 }
