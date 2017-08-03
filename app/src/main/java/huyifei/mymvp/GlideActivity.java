@@ -44,5 +44,7 @@ public class GlideActivity extends AppCompatActivity {
                         imageView.setImageBitmap(bitmap);
                     }
                 });
+
+        imageView.equals()
     }
 }
