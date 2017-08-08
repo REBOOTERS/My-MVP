@@ -14,16 +14,24 @@ import android.widget.TextView;
 
 import java.io.RandomAccessFile;
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Stack;
 
 import huyifei.mymvp.views.MyView;
 import huyifei.mymvp.views.MyViewGroup;
+import rx.internal.util.LinkedArrayList;
 
 public class AppIndexActivity extends AppCompatActivity {
     private static final String TAG = "AppIndexActivity";
 
     Stack mStack;
+    ArrayList mArrayList;
+    LinkedList mLinkedList;
+    LinkedArrayList mLinkedArrayList;
+    HashMap<String,String> mStringStringHashMap;
 
     Arrays mArrays;
     Array mArray;
@@ -31,8 +39,6 @@ public class AppIndexActivity extends AppCompatActivity {
     Handler mHandler;
 
     HandlerThread mHandlerThread = new HandlerThread("a");
-
-
 
 
     @Override
@@ -51,20 +57,16 @@ public class AppIndexActivity extends AppCompatActivity {
         BitmapFactory f;
 
 
-
     }
 
 
-
-
-    private class MyCallBack implements Handler.Callback{
+    private class MyCallBack implements Handler.Callback {
 
         @Override
         public boolean handleMessage(Message msg) {
             return false;
         }
     }
-
 
 
     /**
