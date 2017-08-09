@@ -33,6 +33,9 @@ public class AppIndexActivity extends AppCompatActivity {
     LinkedArrayList mLinkedArrayList;
     HashMap<String,String> mStringStringHashMap;
 
+
+    ClassLoader mClassLoader;
+
     Arrays mArrays;
     Array mArray;
 
