@@ -19,6 +19,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Stack;
+import java.util.Vector;
 
 import huyifei.mymvp.views.MyView;
 import huyifei.mymvp.views.MyViewGroup;
@@ -29,9 +30,12 @@ public class AppIndexActivity extends AppCompatActivity {
 
     Stack mStack;
     ArrayList mArrayList;
+    Vector mVector;
     LinkedList mLinkedList;
     LinkedArrayList mLinkedArrayList;
-    HashMap<String,String> mStringStringHashMap;
+    HashMap<String, String> mStringStringHashMap;
+
+
 
 
     ClassLoader mClassLoader;
@@ -42,6 +46,9 @@ public class AppIndexActivity extends AppCompatActivity {
     Handler mHandler;
 
     HandlerThread mHandlerThread = new HandlerThread("a");
+
+    long a=System.nanoTime();
+
 
 
     @Override

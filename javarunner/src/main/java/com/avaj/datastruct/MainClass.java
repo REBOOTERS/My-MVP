@@ -36,7 +36,7 @@ public class MainClass {
 
 
     private static void testDoubleLink() {
-        DoubleLink<String> lists = new DoubleLink<>();
+        DoubleLoopLink<String> lists = new DoubleLoopLink<>();
 
         lists.insert(0, "a");
         lists.insert(1, "b");

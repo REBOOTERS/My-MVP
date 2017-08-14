@@ -1,7 +1,8 @@
 package com.avaj.datastruct;
 
 /**
- * Created by Rookie on 2017/7/31.
+ *
+ * 结点对象
  */
 
 class DNode<T> {
