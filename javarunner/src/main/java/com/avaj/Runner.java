@@ -11,7 +11,6 @@ public class Runner {
 
 //        System.err.println("read content of ch_file.txt ------> " + ReadContent.read("HttpDemo\\src\\main\\java\\home\\smart\\fly\\httpurlconnectiondemo\\RxJavaDemoActivity.java"));
 
-
         String content = "<div data-note-content=\"\" class=\"show-content\"> \n" +
                 " <div class=\"image-package\"> \n" +
                 "  <img src=\"http://upload-images.jianshu.io/upload_images/1115031-cd84121ead151fe6.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240\" data-original-src=\"http://upload-images.jianshu.io/upload_images/1115031-cd84121ead151fe6.jpg?imageMogr2/auto-orient/strip%7CimageView2/2\" style=\"max-width:100%;height:auto;\" />\n" +
