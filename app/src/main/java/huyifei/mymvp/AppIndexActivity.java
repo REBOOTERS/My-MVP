@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Stack;
 import java.util.Vector;
 
@@ -58,6 +59,8 @@ public class AppIndexActivity extends AppCompatActivity {
 
 
         TAG.compareTo("1.2.3");
+
+        List<String> datas = Arrays.asList("5", "6", "7", "8");
 
         viewEvent();
         viewGroupEvent();
