@@ -3,7 +3,6 @@ package huyifei.mymvp;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.HandlerThread;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -13,42 +12,14 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.io.RandomAccessFile;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Stack;
-import java.util.Vector;
 
 import huyifei.mymvp.views.MyView;
 import huyifei.mymvp.views.MyViewGroup;
-import rx.internal.util.LinkedArrayList;
 
 public class AppIndexActivity extends AppCompatActivity {
     private static final String TAG = "AppIndexActivity";
-
-    Stack mStack;
-    ArrayList mArrayList;
-    Vector mVector;
-    LinkedList mLinkedList;
-    LinkedArrayList mLinkedArrayList;
-    HashMap<String, String> mStringStringHashMap;
-
-
-
-
-    ClassLoader mClassLoader;
-
-    Arrays mArrays;
-    Array mArray;
-
-    Handler mHandler;
-
-    HandlerThread mHandlerThread = new HandlerThread("a");
-
-    long a=System.nanoTime();
 
 
 
