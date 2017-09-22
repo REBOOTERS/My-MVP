@@ -28,9 +28,9 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile project(':HttpDemo')
+    compile project(':HttpClient-RxJava1-X')
     //greendao
-    compile project(':designpatterns')
+    compile project(':DesignPatterns')
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:design:25.3.1'
     compile 'org.greenrobot:greendao:3.2.0'
