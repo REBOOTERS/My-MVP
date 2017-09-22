@@ -5,4 +5,3 @@ Android mvp
 
 ***
 
-![main_activity](https://raw.githubusercontent.com/REBOOTERS/My-MVP/master/screen/IMG_20161213_082347.jpg)
