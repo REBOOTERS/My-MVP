@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/DesignPatterns/designpatterns.iml" filepath="$PROJECT_DIR$/DesignPatterns/designpatterns.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DesignPatterns/DesignPatterns.iml" filepath="$PROJECT_DIR$/DesignPatterns/DesignPatterns.iml" />
       <module fileurl="file://$PROJECT_DIR$/HttpClient-RxJava1-X/HttpClient-RxJava1-X.iml" filepath="$PROJECT_DIR$/HttpClient-RxJava1-X/HttpClient-RxJava1-X.iml" />
       <module fileurl="file://$PROJECT_DIR$/JavaExecutor/JavaExecutor.iml" filepath="$PROJECT_DIR$/JavaExecutor/JavaExecutor.iml" />
       <module fileurl="file://$PROJECT_DIR$/My-MVP.iml" filepath="$PROJECT_DIR$/My-MVP.iml" />

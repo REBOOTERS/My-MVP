@@ -8,4 +8,6 @@
 /build
 /captures
 
+*.class
+
 
