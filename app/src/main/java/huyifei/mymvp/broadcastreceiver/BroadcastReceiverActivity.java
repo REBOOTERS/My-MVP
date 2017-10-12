@@ -107,6 +107,11 @@ public class BroadcastReceiverActivity extends AppCompatActivity {
         super.onDestroy();
         unregisterReceiver(mMyReceiver);
         unregisterReceiver(mSecondReceiver);
-        mLocalBroadcastManager.unregisterReceiver(mThirdReceiver);
+
+
+        if (mLocalBroadcastManager != null) {
+            mLocalBroadcastManager.unregisterReceiver(mThirdReceiver);
+        }
+
     }
 }

@@ -13,6 +13,7 @@ buildscript {
         // in the individual module build.gradle files
         classpath 'org.greenrobot:greendao-gradle-plugin:3.2.1'
         //for greenDao
+        classpath 'com.networkbench.newlens.agent.android:agent-gradle-plugin:2.7.0'
     }
 }
 

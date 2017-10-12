@@ -18,10 +18,14 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.networkbench.agent.impl.NBSAppAgent;
+
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Vector;
 
 import home.smart.fly.httpurlconnectiondemo.HttpDemoActivity;
 import home.smart.fly.httpurlconnectiondemo.RxJavaDemoActivity;
@@ -50,6 +54,12 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     InvocationHandler m;
     Proxy mProxy;
 
+
+    ArrayList mArrayList;
+    Vector mVector;
+    LinkedList mLinkedList;
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +68,10 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         setData();
         initView();
 
-
+        NBSAppAgent
+                .setLicenseKey("52d5f19f17d849d1b7cf04dc686969dd")
+                .withLocationServiceEnabled(true)
+                .start(this.getApplicationContext());
     }
 
 
