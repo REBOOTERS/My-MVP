@@ -1,21 +1,16 @@
 package com.avaj.datastruct;
 
-/**
- * Created by Rookie on 2017/8/1.
- * <p>
- * Java : 数组实现的栈，能存储任意类型的数据
- *
- * @author skywang
- * @date 2013/11/07
- */
 
 import java.lang.reflect.Array;
+import java.util.Stack;
 
 public class GeneralArrayStack<T> {
 
     private static final int DEFAULT_SIZE = 12;
     private T[] mArray;
     private int count;
+
+    private Stack mStack;
 
     public GeneralArrayStack(Class<T> type) {
         this(type, DEFAULT_SIZE);

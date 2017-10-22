@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -23,8 +24,10 @@ import com.networkbench.agent.impl.NBSAppAgent;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Stack;
 import java.util.Vector;
 
 import home.smart.fly.httpurlconnectiondemo.HttpDemoActivity;
@@ -50,12 +53,14 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     private Toolbar toolbar;
 
-
+    AsyncTask mAsyncTask;
     InvocationHandler m;
     Proxy mProxy;
 
 
     ArrayList mArrayList;
+    Deque mDeque;
+    Stack mStack;
     Vector mVector;
     LinkedList mLinkedList;
 
