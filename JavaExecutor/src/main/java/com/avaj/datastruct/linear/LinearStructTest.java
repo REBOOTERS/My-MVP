@@ -1,4 +1,4 @@
-package com.avaj.datastruct;
+package com.avaj.datastruct.linear;
 
 /**
  * Created by engineer on 2017/8/12.

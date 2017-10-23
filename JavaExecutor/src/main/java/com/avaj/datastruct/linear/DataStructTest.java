@@ -1,4 +1,4 @@
-package com.avaj.datastruct;
+package com.avaj.datastruct.linear;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
