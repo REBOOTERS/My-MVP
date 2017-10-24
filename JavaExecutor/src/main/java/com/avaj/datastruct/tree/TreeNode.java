@@ -2,16 +2,27 @@ package com.avaj.datastruct.tree;
 
 /**
  * Created by engineer on 2017/10/23.
+ * <p>
+ * 二叉树结点定义
  */
 
-public class TreeNode<E> {
-    private E data;
-    private TreeNode<E> leftChild;
-    private TreeNode<E> rightChild;
+public class TreeNode<T> {
 
-    public TreeNode(E data, TreeNode<E> leftChild, TreeNode<E> rightChild) {
-        this.data = data;
+    // 数据域
+    private T data;
+    // 左子树
+    private TreeNode<T> leftChild;
+    // 右子树
+    private TreeNode<T> rightChild;
+
+
+    public TreeNode(T data) {
+        this(null, data, null);
+    }
+
+    public TreeNode(TreeNode<T> leftChild, T data, TreeNode<T> rightChild) {
         this.leftChild = leftChild;
+        this.data = data;
         this.rightChild = rightChild;
     }
 }

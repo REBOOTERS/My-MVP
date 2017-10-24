@@ -8,10 +8,22 @@ package com.avaj.datastruct.tree;
 
 public class BinaryTree {
     //根节点
-    private TreeNode root;
+    private TreeNode<String> root;
 
-    private TreeNode left;
-    private TreeNode right;
+
+    private TreeNode CreateTree() {
+        TreeNode<String> nodeH = new TreeNode<>("H");
+        TreeNode<String> nodeG = new TreeNode<>("G");
+
+        TreeNode<String> nodeF = new TreeNode<String>(nodeH, "F", null);
+        TreeNode<String> nodeE = new TreeNode<String>(nodeG, "E", null);
+        TreeNode<String> nodeD = new TreeNode<>("D");
+
+        TreeNode<String> nodeC = new TreeNode<String>(null, "C", nodeF);
+        TreeNode<String> nodeB = new TreeNode<String>(nodeD, "B", nodeE);
+        TreeNode<String> nodeA = new TreeNode<String>(nodeB, "A", nodeC);
+        return nodeA;
+    }
 
 
 }
