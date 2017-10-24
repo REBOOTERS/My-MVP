@@ -16,6 +16,8 @@ public class TreeNode<T> {
     private TreeNode<T> rightChild;
 
 
+
+
     public TreeNode(T data) {
         this(null, data, null);
     }
@@ -24,5 +26,17 @@ public class TreeNode<T> {
         this.leftChild = leftChild;
         this.data = data;
         this.rightChild = rightChild;
+    }
+
+    public T getData() {
+        return data;
+    }
+
+    public TreeNode<T> getLeftChild() {
+        return leftChild;
+    }
+
+    public TreeNode<T> getRightChild() {
+        return rightChild;
     }
 }
