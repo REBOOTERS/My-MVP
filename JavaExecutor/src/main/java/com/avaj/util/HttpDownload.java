@@ -32,7 +32,7 @@ public class HttpDownload extends Thread {
             connection.connect();
 
             InputStream inputStream = connection.getInputStream();
-            FileNameMap map = connection.getFileNameMap();
+            FileNameMap map = HttpURLConnection.getFileNameMap();
 
             System.err.println("the map is " + map.toString());
 

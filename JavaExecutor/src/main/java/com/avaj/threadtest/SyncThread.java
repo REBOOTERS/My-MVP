@@ -11,6 +11,7 @@ public class SyncThread implements Runnable {
         count = 0;
     }
 
+    @Override
     public void run() {
         synchronized (this)
         {

@@ -39,16 +39,17 @@ public class ShareStack<T> {
      */
     public boolean push(int i , Object o){
 
-        if(top1 == top2 - 1)
+        if(top1 == top2 - 1) {
             throw new RuntimeException("栈满！");
-        else if(i == 1){
+        } else if(i == 1){
             top1++;
             element[top1] = o;
         }else if(i == 2){
             top2--;
             element[top2] = o;
-        }else
+        }else {
             throw new RuntimeException("输入错误！");
+        }
 
         return true;
     }

@@ -9,10 +9,10 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/DesignPatterns" />
             <option value="$PROJECT_DIR$/HttpClient-RxJava1-X" />
             <option value="$PROJECT_DIR$/JavaExecutor" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/designpatterns" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
