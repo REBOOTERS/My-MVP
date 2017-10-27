@@ -8,7 +8,7 @@ package com.avaj.datastruct.tree.bst;
 
 public class BinarySearchTreeTest {
 
-    private static Integer[] arrays = new Integer[]{8, 9, 2, 10, 4, 12, 10, 5, 7, 1, 17};
+    private static Integer[] arrays = new Integer[]{10, 8, 3, 12, 9, 4, 5, 7, 1,11, 17};
 
     public static void main(String[] args) {
         BinarySearchTree<Integer> mSearchTree = new BinarySearchTree<>();
@@ -29,14 +29,15 @@ public class BinarySearchTreeTest {
         System.out.println("\nfind the max value in mSearchTree = " + mSearchTree.findMax());
         System.out.println("find the min value in mSearchTree = " + mSearchTree.findMin());
 
-
+        // 删除只带一个子树的结点
         mSearchTree.delete(4);
         mSearchTree.printTree();
         System.out.println();
-        mSearchTree.delete(177);
+        // 删除带左右子树的根节点
+        mSearchTree.delete(10);
         mSearchTree.printTree();
 
-        System.out.println("\n Tree's height =" + mSearchTree.getTreeHeight());
+        System.out.println("\n\nTree's height =" + mSearchTree.getTreeHeight());
 
     }
 }

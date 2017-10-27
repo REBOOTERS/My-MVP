@@ -15,9 +15,6 @@ public class BinarySearchTree<T extends Comparable<T>> {
         root = null;
     }
 
-    private int compare(TreeNode<T> node, T value) {
-        return value.compareTo(node.getData());
-    }
 
     /**
      * 树中插入元素
@@ -33,11 +30,12 @@ public class BinarySearchTree<T extends Comparable<T>> {
 
     private TreeNode<T> insert(TreeNode<T> node, T value) {
         if (node == null) {
+            // 树为空,则创建根节点
             return new TreeNode<>(value);
         } else {
-            if (compare(node, value) < 0) {
+            if (compare(node, value) < 0) { // 插入值比根节点小，在左子树继续创建搜索二叉树
                 node.leftChild = insert(node.getLeftChild(), value);
-            } else if (compare(node, value) > 0) {
+            } else if (compare(node, value) > 0) { // 插入值比根节点大，在右子树继续创建二叉树
                 node.rightChild = insert(node.getRightChild(), value);
             }
         }
@@ -45,6 +43,9 @@ public class BinarySearchTree<T extends Comparable<T>> {
         return node;
     }
 
+    private int compare(TreeNode<T> node, T value) {
+        return value.compareTo(node.getData());
+    }
 
     private boolean isEmpty() {
         return root == null;
@@ -65,12 +66,22 @@ public class BinarySearchTree<T extends Comparable<T>> {
     }
 
     private TreeNode<T> find(TreeNode<T> node, T value) {
+        if (node == null) {
+            // 当查找一个不在树中元素时，抛出异常
+            throw new RuntimeException("the value must not in the tree");
+        }
+
         if (compare(node, value) < 0) {
+            // 小于根节点时，从去左子树找
             return find(node.getLeftChild(), value);
         } else if (compare(node, value) > 0) {
+            // 大于根节点时，从右子树找
             return find(node.getRightChild(), value);
         } else {
+            // 刚好等于，找到了
             return node;
+
+            // 剩下还有一种情况，就是不等于，也就是所查找的元素不在树中
         }
     }
 
@@ -91,6 +102,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
                 return current;
             }
         }
+        // current为null,说明所查找的元素不在tree里
         return null;
     }
 
@@ -159,20 +171,21 @@ public class BinarySearchTree<T extends Comparable<T>> {
 
     private TreeNode<T> delete(TreeNode<T> node, T value) {
 
+        // 结点为空，要出删除的元素不在树中
         if (node == null) {
             return node;
         }
 
-        if (compare(node, value) < 0) {
+        if (compare(node, value) < 0) { // 去左子树删除
             node.leftChild = delete(node.getLeftChild(), value);
-        } else if (compare(node, value) > 0) {
+        } else if (compare(node, value) > 0) { // 去右子树删除
             node.rightChild = delete(node.getRightChild(), value);
-        } else {
-            if (node.getLeftChild() != null && node.getRightChild() != null) {
-                T temp = findMin(node.getRightChild());
-                node.setData(temp);
-                node.rightChild = delete(node, temp);
-            } else {
+        } else { // 要删除的就是当前结点
+            if (node.getLeftChild() != null && node.getRightChild() != null) {// 被删除的结点，包含左右子树
+                T temp = findMin(node.getRightChild()); // 得到右子树的最小值
+                node.setData(temp); //右子树最小值替换当前结点
+                node.rightChild = delete(node.getRightChild(), temp); // 从右子树删除这个最小值的结点
+            } else {// 被删除的结点，包含一个子树或没有子树
                 if (node.getLeftChild() != null) {
                     node = node.getLeftChild();
                 } else {
@@ -186,6 +199,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
 
     public int getTreeHeight() {
         if (isEmpty()) {
+            // 空树度为0
             return 0;
         }
 
@@ -199,8 +213,9 @@ public class BinarySearchTree<T extends Comparable<T>> {
         }
         int leftHeight = getTreeHeight(node.getLeftChild());
         int rightHeight = getTreeHeight(node.getRightChild());
-        int max = leftHeight > rightHeight ? leftHeight : rightHeight;
-        return max + 1;
+        int max = leftHeight > rightHeight ? leftHeight + 1 : rightHeight + 1;
+        // 得到左右子树中较大的返回.
+        return max;
     }
 
 
