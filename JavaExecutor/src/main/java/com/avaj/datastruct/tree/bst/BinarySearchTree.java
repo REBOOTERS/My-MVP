@@ -9,8 +9,15 @@ package com.avaj.datastruct.tree.bst;
 public class BinarySearchTree<T extends Comparable<T>> {
 
     //根结点
-    private TreeNode<T> root = null;
+    private TreeNode<T> root;
 
+    public BinarySearchTree() {
+        root = null;
+    }
+
+    private int compare(TreeNode<T> node, T value) {
+        return value.compareTo(node.getData());
+    }
 
     /**
      * 树中插入元素
@@ -26,17 +33,18 @@ public class BinarySearchTree<T extends Comparable<T>> {
 
     private TreeNode<T> insert(TreeNode<T> node, T value) {
         if (node == null) {
-            return new TreeNode<>(null, value, null);
+            return new TreeNode<>(value);
         } else {
-            if (value.compareTo(node.getData()) < 0) {
-                node.setLeftChild(insert(node.getLeftChild(), value));
-            } else if (value.compareTo(node.getData()) > 0) {
-                node.setRightChild(insert(node.getRightChild(), value));
+            if (compare(node, value) < 0) {
+                node.leftChild = insert(node.getLeftChild(), value);
+            } else if (compare(node, value) > 0) {
+                node.rightChild = insert(node.getRightChild(), value);
             }
         }
 
         return node;
     }
+
 
     private boolean isEmpty() {
         return root == null;
@@ -57,9 +65,9 @@ public class BinarySearchTree<T extends Comparable<T>> {
     }
 
     private TreeNode<T> find(TreeNode<T> node, T value) {
-        if (value.compareTo(node.getData()) < 0) {
+        if (compare(node, value) < 0) {
             return find(node.getLeftChild(), value);
-        } else if (value.compareTo(node.getData()) > 0) {
+        } else if (compare(node, value) > 0) {
             return find(node.getRightChild(), value);
         } else {
             return node;
@@ -75,9 +83,9 @@ public class BinarySearchTree<T extends Comparable<T>> {
     public TreeNode<T> findIter(T value) {
         TreeNode<T> current = root;
         while (current != null) {
-            if (value.compareTo(current.getData()) < 0) {
+            if (compare(current, value) < 0) {
                 current = current.getLeftChild();
-            } else if (value.compareTo(current.getData()) > 0) {
+            } else if (compare(current, value) > 0) {
                 current = current.getRightChild();
             } else {
                 return current;
@@ -93,32 +101,107 @@ public class BinarySearchTree<T extends Comparable<T>> {
      */
     public T findMax() {
         if (isEmpty()) return null;
+        return findMax(root);
+    }
 
-        TreeNode<T> temp = root;
+    /**
+     * 从特定结点开始寻找最大值
+     *
+     * @param node
+     * @return
+     */
+    private T findMax(TreeNode<T> node) {
+        TreeNode<T> temp = node;
         while (temp.getRightChild() != null) {
             temp = temp.getRightChild();
         }
-
         return temp.getData();
     }
 
 
     /**
      * 查找最小值
+     *
      * @return
      */
     public T findMin() {
         if (isEmpty()) return null;
+        return findMin(root);
+    }
 
-        TreeNode<T> temp = root;
+    /**
+     * 从特定结点开始寻找最小值
+     *
+     * @param node
+     * @return
+     */
+    private T findMin(TreeNode<T> node) {
+        TreeNode<T> temp = node;
         while (temp.getLeftChild() != null) {
             temp = temp.getLeftChild();
         }
-
         return temp.getData();
     }
 
+    /**
+     * 从树中删除值为value 的特定结点
+     *
+     * @param value
+     */
+    public void delete(T value) {
+        if (value == null || isEmpty()) {
+            return;
+        }
 
+        root = delete(root, value);
+    }
+
+
+    private TreeNode<T> delete(TreeNode<T> node, T value) {
+
+        if (node == null) {
+            return node;
+        }
+
+        if (compare(node, value) < 0) {
+            node.leftChild = delete(node.getLeftChild(), value);
+        } else if (compare(node, value) > 0) {
+            node.rightChild = delete(node.getRightChild(), value);
+        } else {
+            if (node.getLeftChild() != null && node.getRightChild() != null) {
+                T temp = findMin(node.getRightChild());
+                node.setData(temp);
+                node.rightChild = delete(node, temp);
+            } else {
+                if (node.getLeftChild() != null) {
+                    node = node.getLeftChild();
+                } else {
+                    node = node.getRightChild();
+                }
+            }
+        }
+
+        return node;
+    }
+
+    public int getTreeHeight() {
+        if (isEmpty()) {
+            return 0;
+        }
+
+        return getTreeHeight(root);
+
+    }
+
+    private int getTreeHeight(TreeNode<T> node) {
+        if (node == null) {
+            return 0;
+        }
+        int leftHeight = getTreeHeight(node.getLeftChild());
+        int rightHeight = getTreeHeight(node.getRightChild());
+        int max = leftHeight > rightHeight ? leftHeight : rightHeight;
+        return max + 1;
+    }
 
 
     /**
@@ -131,7 +214,6 @@ public class BinarySearchTree<T extends Comparable<T>> {
         traversal(root);
         System.out.print("\n后序遍历：");
         postTraversal(root);
-
     }
 
 

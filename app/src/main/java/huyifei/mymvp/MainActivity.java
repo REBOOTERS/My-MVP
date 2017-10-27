@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     Stack mStack;
     Vector mVector;
     LinkedList mLinkedList;
+    Comparable mComparable;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

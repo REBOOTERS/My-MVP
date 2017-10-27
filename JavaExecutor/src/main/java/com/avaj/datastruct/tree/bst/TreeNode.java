@@ -6,16 +6,14 @@ package com.avaj.datastruct.tree.bst;
  * 二叉搜索树树结点定义
  */
 
-public class TreeNode<T  extends Comparable<T>> {
+public class TreeNode<T extends Comparable<T>> {
 
     // 数据域
     private T data;
     // 左子树
-    private TreeNode<T> leftChild;
+    public TreeNode<T> leftChild;
     // 右子树
-    private TreeNode<T> rightChild;
-
-
+    public TreeNode<T> rightChild;
 
 
     public TreeNode(T data) {
@@ -44,11 +42,4 @@ public class TreeNode<T  extends Comparable<T>> {
         this.data = data;
     }
 
-    public void setLeftChild(TreeNode<T> leftChild) {
-        this.leftChild = leftChild;
-    }
-
-    public void setRightChild(TreeNode<T> rightChild) {
-        this.rightChild = rightChild;
-    }
 }
