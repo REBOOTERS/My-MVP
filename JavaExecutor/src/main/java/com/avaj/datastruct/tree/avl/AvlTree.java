@@ -85,10 +85,11 @@ public class AvlTree<T extends Comparable<T>> {
 
     /**
      * 插入结点
-     * @param key
+     *
+     * @param value
      */
-    public void insert(T key) {
-        root = insert(root, key);
+    public void insert(T value) {
+        root = insert(root, value);
     }
 
     private TreeNode<T> insert(TreeNode<T> node, T value) {
@@ -101,7 +102,7 @@ public class AvlTree<T extends Comparable<T>> {
         } else {
             int cmp = value.compareTo(node.getData());
 
-            if (cmp < 0) {    // 应该将key插入到"tree的左子树"的情况
+            if (cmp < 0) {    // 应该将value插入到"tree的左子树"的情况
                 node.leftChild = insert(node.leftChild, value);
                 // 插入节点后，若AVL树失去平衡，则进行相应的调节。
                 if (height(node.leftChild) - height(node.rightChild) == 2) {
@@ -110,7 +111,7 @@ public class AvlTree<T extends Comparable<T>> {
                     else
                         node = leftRightRotate(node);
                 }
-            } else if (cmp > 0) {    // 应该将key插入到"tree的右子树"的情况
+            } else if (cmp > 0) {    // 应该将value插入到"tree的右子树"的情况
                 node.rightChild = insert(node.rightChild, value);
                 // 插入节点后，若AVL树失去平衡，则进行相应的调节。
                 if (height(node.rightChild) - height(node.leftChild) == 2) {
@@ -130,5 +131,67 @@ public class AvlTree<T extends Comparable<T>> {
     }
 
 
+    /**********************************Tree print************************************/
 
+    /**
+     * 以三种遍历方式打印树
+     */
+    void printTree() {
+        System.out.print("\n前序遍历：");
+        preTraversal(root);
+        System.out.print("\n中序遍历：");
+        traversal(root);
+        System.out.print("\n后序遍历：");
+        postTraversal(root);
+    }
+
+
+    /**
+     * 访问每个结点
+     *
+     * @param node
+     */
+    private void visitNode(TreeNode node) {
+        System.out.print(node.getData().toString());
+        System.out.print(" ");
+    }
+
+    /**
+     * 前序遍历-递归实现
+     *
+     * @param node
+     */
+    void preTraversal(TreeNode node) {
+        if (node != null) {
+            visitNode(node);
+            preTraversal(node.getLeftChild());
+            preTraversal(node.getRightChild());
+        }
+    }
+
+    /**
+     * 中序遍历-递归实现
+     *
+     * @param node
+     */
+    void traversal(TreeNode node) {
+        if (node != null) {
+            traversal(node.getLeftChild());
+            visitNode(node);
+            traversal(node.getRightChild());
+        }
+    }
+
+    /**
+     * 后序遍历-递归实现
+     *
+     * @param node
+     */
+    void postTraversal(TreeNode node) {
+        if (node != null) {
+            postTraversal(node.getLeftChild());
+            postTraversal(node.getRightChild());
+            visitNode(node);
+        }
+    }
 }

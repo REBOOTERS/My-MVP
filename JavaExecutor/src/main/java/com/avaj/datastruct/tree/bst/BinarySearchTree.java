@@ -171,7 +171,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
 
     private TreeNode<T> delete(TreeNode<T> node, T value) {
 
-        // 结点为空，要出删除的元素不在树中
+        // 结点为空，要删除的元素不在树中
         if (node == null) {
             return node;
         }
