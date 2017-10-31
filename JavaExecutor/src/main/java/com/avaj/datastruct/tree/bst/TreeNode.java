@@ -9,7 +9,7 @@ package com.avaj.datastruct.tree.bst;
 public class TreeNode<T extends Comparable<T>> {
 
     // 数据域
-    private T data;
+    public T data;
     // 左子树
     public TreeNode<T> leftChild;
     // 右子树
