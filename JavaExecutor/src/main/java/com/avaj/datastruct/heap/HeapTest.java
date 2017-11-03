@@ -10,7 +10,7 @@ public class HeapTest {
     public static void main(String[] args) {
         MaxHeapTest();
 
-        MinHeapTest();
+//        MinHeapTest();
 
     }
 
@@ -21,11 +21,11 @@ public class HeapTest {
         }
         mMinHeap.printHeap();
 
-        System.out.printf("remove value %d from minHeap isSuccess=%b \n", 17, mMinHeap.remove(17));
+        System.out.printf("delete value %d from minHeap isSuccess=%b \n", 17, mMinHeap.remove(17));
         mMinHeap.printHeap();
-        System.out.printf("remove value %d from minHeap isSuccess=%b \n", 1, mMinHeap.remove(1));
+        System.out.printf("delete value %d from minHeap isSuccess=%b \n", 1, mMinHeap.remove(1));
         mMinHeap.printHeap();
-        System.out.printf("remove value %d from minHeap isSuccess=%b \n", 12, mMinHeap.remove(12));
+        System.out.printf("delete value %d from minHeap isSuccess=%b \n", 12, mMinHeap.remove(12));
         mMinHeap.printHeap();
         System.out.printf("insert value %d to minHeap \n", 16);
         mMinHeap.insert(16);
@@ -39,11 +39,11 @@ public class HeapTest {
         }
 
         mMaxHeap.printHeap();
-        System.out.printf("remove value %d from maxHeap isSuccess=%b \n", 17, mMaxHeap.remove(17));
+        System.out.printf("delete value %d from maxHeap isSuccess=%b \n", 17, mMaxHeap.delete(17));
         mMaxHeap.printHeap();
-        System.out.printf("remove value %d from maxHeap isSuccess=%b \n", 1, mMaxHeap.remove(1));
+        System.out.printf("delete value %d from maxHeap isSuccess=%b \n", 1, mMaxHeap.delete(1));
         mMaxHeap.printHeap();
-        System.out.printf("remove value %d from maxHeap isSuccess=%b \n", 12, mMaxHeap.remove(12));
+        System.out.printf("delete value %d from maxHeap isSuccess=%b \n", 12, mMaxHeap.delete(12));
         mMaxHeap.printHeap();
         System.out.printf("insert value %d to maxHeap \n", 16);
         mMaxHeap.insert(16);

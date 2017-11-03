@@ -10,8 +10,6 @@ import java.util.List;
 public class MaxHeap<T extends Comparable<T>> {
 
     private List<T> mHeap;
-    //堆内当前元素个数
-    public int size;
 
     public MaxHeap() {
         mHeap = new ArrayList<>();
@@ -20,6 +18,10 @@ public class MaxHeap<T extends Comparable<T>> {
         mHeap.add(0, null);
     }
 
+    /**
+     * 堆的插入操作
+     * @param value
+     */
     public void insert(T value) {
         //新插入的元素首先放在数组最后，保持完全二叉树的特性
         mHeap.add(value);
@@ -50,8 +52,12 @@ public class MaxHeap<T extends Comparable<T>> {
 
     }
 
-
-    public boolean remove(T value) {
+    /**
+     * 堆的任意值的删除操作
+     * @param value
+     * @return
+     */
+    public boolean delete(T value) {
         if (mHeap.isEmpty()) {
             return false;
         }
@@ -98,6 +104,12 @@ public class MaxHeap<T extends Comparable<T>> {
 
     }
 
+    /**
+     *
+     * @param a
+     * @param b
+     * @return a>b 返回值大于0，反之小于0
+     */
     private int compare(T a, T b) {
         return a.compareTo(b);
     }
