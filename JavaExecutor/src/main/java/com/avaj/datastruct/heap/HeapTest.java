@@ -33,13 +33,12 @@ public class HeapTest {
     }
 
     private static void MaxHeapTest() {
-        MaxHeap mMaxHeap = new MaxHeap();
+        MaxHeap<Integer> mMaxHeap = new MaxHeap<>();
         for (int i = 0; i < arrays.length; i++) {
             mMaxHeap.insert(arrays[i]);
         }
 
         mMaxHeap.printHeap();
-
         System.out.printf("remove value %d from maxHeap isSuccess=%b \n", 17, mMaxHeap.remove(17));
         mMaxHeap.printHeap();
         System.out.printf("remove value %d from maxHeap isSuccess=%b \n", 1, mMaxHeap.remove(1));
