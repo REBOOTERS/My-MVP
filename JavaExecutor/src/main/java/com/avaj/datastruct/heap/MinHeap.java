@@ -4,16 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by engineer on 2017/11/1.
+ * Created by engineer on 2017/11/3.
  */
 
-public class MaxHeap<T extends Comparable<T>> {
-
+public class MinHeap<T extends Comparable<T>> {
     private List<T> mHeap;
     //堆内当前元素个数
     public int size;
 
-    public MaxHeap() {
+    public MinHeap() {
         mHeap = new ArrayList<>();
         // 为了方便，数组下标为0 的位置，放置一个空元素，使得数组从下标为1的位置开始
         // 这样，完全二叉树中，如果结点值为n,那么其左子树则为2n,右子树为2n+1
@@ -30,13 +29,13 @@ public class MaxHeap<T extends Comparable<T>> {
 
 
 
-        //在数组范围内，比较这个插入值和其父结点的大小关系，大于父结点则用父结点替换当前值，index位置上升为父结点
+        //在数组范围内，比较这个插入值和其父结点的大小关系，小于父结点则用父结点替换当前值，index位置上升为父结点
         while (index > 1) {
-            // 插入结点小于等于其父结点，则不用调整
-            if (compare(value, mHeap.get(pIndex)) <= 0) {
+            // 插入结点大于等于其父结点，则不用调整
+            if (compare(value, mHeap.get(pIndex)) >= 0) {
                 break;
             } else {
-                // 依次把父结点较小的值“将”下来,把大的值升上去
+                // 依次把父结点较大的值“将”下来,把小的值升上去
                 mHeap.set(index, mHeap.get(pIndex));
                 // 向上升一层
                 index = pIndex;
@@ -74,13 +73,13 @@ public class MaxHeap<T extends Comparable<T>> {
             //当前结点左子树下标
             index = parent * 2;
             // 左子树下标不等于数组长度，因此必然有右子树 ,则左右子树比较大小
-            if (index != mHeap.size()-1 && compare(mHeap.get(index), mHeap.get(index + 1))<0) {
-                // 如果右子树大，则下标指向右子树
+            if (index != mHeap.size()-1 && compare(mHeap.get(index), mHeap.get(index + 1))>0) {
+                // 如果右子树小，则下标指向右子树
                 index=index+1;
             }
 
-            if (compare(temp, mHeap.get(index)) > 0) {
-                //当前结点大于其左右子树，则不用调整，直接退出
+            if (compare(temp, mHeap.get(index)) < 0) {
+                //当前结点小于其左右子树，则不用调整，直接退出
                 break;
             }else {
                 // 子树上移，替换当前结点
@@ -110,5 +109,4 @@ public class MaxHeap<T extends Comparable<T>> {
 
         System.out.println(sb.toString());
     }
-
 }
