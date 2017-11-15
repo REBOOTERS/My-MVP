@@ -37,6 +37,7 @@ import home.times.designpatterns.DesignPatternActivity;
 import huyifei.mymvp.architecture.mvc.MVCActivity;
 import huyifei.mymvp.architecture.mvp.MVPActivity;
 import huyifei.mymvp.broadcastreceiver.BroadcastReceiverActivity;
+import huyifei.mymvp.classloader.ClassLoaderActivity;
 import huyifei.mymvp.datastorage.DataStorageActivity;
 import huyifei.mymvp.service.ServiceActivity;
 import huyifei.mymvp.util.V;
@@ -65,6 +66,9 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     LinkedList mLinkedList;
     Comparable mComparable;
 
+    ClassLoader mClassLoader;
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,6 +85,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
 
     private void setData() {
+        demos.add(new ItemInfo(R.string.classloader, ClassLoaderActivity.class));
         demos.add(new ItemInfo(R.string.service, MemoryLeakActivity.class));
         demos.add(new ItemInfo(R.string.simpleRxJava, RxJavaDemoActivity.class));
         demos.add(new ItemInfo(R.string.AndroidHttp, HttpDemoActivity.class));
