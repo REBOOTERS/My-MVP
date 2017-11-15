@@ -5,11 +5,17 @@
     android:orientation="vertical">
 
     <Button
-        android:id="@+id/volley"
+        android:id="@+id/volley_github"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:text="volley" />
+        android:text="volley-github" />
+    <Button
+        android:id="@+id/volley_test"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="volley-test" />
 
     <TextView
         android:id="@+id/editText"

@@ -20,15 +20,9 @@ public class ClassLoaderTest {
                 Method mMethod = c.getDeclaredMethod("say", null);
                 mMethod.invoke(object, null);
             }
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
+        } catch (ClassNotFoundException | IllegalAccessException
+                | InstantiationException | NoSuchMethodException
+                | InvocationTargetException e) {
             e.printStackTrace();
         }
     }
