@@ -12,6 +12,7 @@
             <option value="$PROJECT_DIR$/DesignPatterns" />
             <option value="$PROJECT_DIR$/HttpClient-RxJava1-X" />
             <option value="$PROJECT_DIR$/JavaExecutor" />
+            <option value="$PROJECT_DIR$/RxJava2-Retorfit2" />
             <option value="$PROJECT_DIR$/app" />
           </set>
         </option>

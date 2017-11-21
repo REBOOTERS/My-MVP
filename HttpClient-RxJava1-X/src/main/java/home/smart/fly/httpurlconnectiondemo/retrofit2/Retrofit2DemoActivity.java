@@ -69,6 +69,7 @@ public class Retrofit2DemoActivity extends AppCompatActivity implements View.OnC
         findViewById(R.id.get3).setOnClickListener(this);
         findViewById(R.id.get4).setOnClickListener(this);
 
+
         loading = new ProgressDialog(mContext);
         loading.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         loading.setIndeterminate(true);
@@ -248,6 +249,7 @@ public class Retrofit2DemoActivity extends AppCompatActivity implements View.OnC
 
     }
 
+
     private void setUserView(GithubUserBean user) {
         if (user != null) {
             viewShell.removeAllViews();
@@ -295,6 +297,9 @@ public class Retrofit2DemoActivity extends AppCompatActivity implements View.OnC
     }
 
 
+
+
+
     @Override
     public void onClick(View v) {
         viewShell.removeAllViews();
@@ -316,5 +321,6 @@ public class Retrofit2DemoActivity extends AppCompatActivity implements View.OnC
             RxRetrofitList();
         }
     }
+
 
 }

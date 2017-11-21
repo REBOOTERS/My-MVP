@@ -30,6 +30,7 @@ import java.util.List;
 import java.util.Stack;
 import java.util.Vector;
 
+import home.smart.fly.http.RxJava2MainActivity;
 import home.smart.fly.httpurlconnectiondemo.HttpDemoActivity;
 import home.smart.fly.httpurlconnectiondemo.RxJavaDemoActivity;
 import home.smart.fly.httpurlconnectiondemo.retrofit2.Retrofit2DemoActivity;
@@ -90,6 +91,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         demos.add(new ItemInfo(R.string.simpleRxJava, RxJavaDemoActivity.class));
         demos.add(new ItemInfo(R.string.AndroidHttp, HttpDemoActivity.class));
         demos.add(new ItemInfo(R.string.Retrofit, Retrofit2DemoActivity.class));
+        demos.add(new ItemInfo(R.string.RxJava2, RxJava2MainActivity.class));
         demos.add(new ItemInfo(R.string.MVC, MVCActivity.class));
         demos.add(new ItemInfo(R.string.Mvp, MVPActivity.class));
         demos.add(new ItemInfo(R.string.design, DesignPatternActivity.class));

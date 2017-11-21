@@ -1,1 +1,1 @@
-include ':app', ':HttpClient-RxJava1-X', ':JavaExecutor', ':DesignPatterns'
+include ':app', ':HttpClient-RxJava1-X', ':JavaExecutor', ':DesignPatterns', ':RxJava2-Retorfit2'

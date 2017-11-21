@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="home.smart.fly.http">
+
+    <application>
+        <activity
+            android:name=".RxJava2MainActivity"
+            android:label="@string/title_activity_rx_java2_main"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity android:name=".OkHttpCache.OkHttpCacheActivity">
+        </activity>
+    </application>
+
+</manifest>

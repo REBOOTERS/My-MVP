@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/HttpClient-RxJava1-X/HttpClient-RxJava1-X.iml" filepath="$PROJECT_DIR$/HttpClient-RxJava1-X/HttpClient-RxJava1-X.iml" />
       <module fileurl="file://$PROJECT_DIR$/JavaExecutor/JavaExecutor.iml" filepath="$PROJECT_DIR$/JavaExecutor/JavaExecutor.iml" />
       <module fileurl="file://$PROJECT_DIR$/My-MVP.iml" filepath="$PROJECT_DIR$/My-MVP.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RxJava2-Retorfit2/RxJava2-Retorfit2.iml" filepath="$PROJECT_DIR$/RxJava2-Retorfit2/RxJava2-Retorfit2.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

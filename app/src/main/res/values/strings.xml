@@ -18,6 +18,7 @@
     <string name="simpleRxJava">RxJava 使用介绍</string>
     <string name="AndroidHttp">AndroidHttp请求实现，包括HttpURLConnection \n Volley 和 OKHttp3的简单使用</string>
     <string name="Retrofit">以循序渐进的方式介绍Retrofit的使用，以及怎样实现和RxJava结合使用</string>
+    <string name="RxJava2">RxJava2 + Retrofit2 笔记</string>
     <string name="MVC">mvc 简单实现</string>
     <string name="Mvp">Android Mvp 简单实现</string>
     <string name="MVP_LOGIN">Android Mvp 登录实现</string>
