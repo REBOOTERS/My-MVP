@@ -50,6 +50,7 @@ public class RxJava2MainActivity extends AppCompatActivity {
 
 
         demos.add(new ItemInfo(R.string.app_name, OkHttpCacheActivity.class));
+        demos.add(new ItemInfo(R.string.app_name, RxJavaBaseActivity.class));
         MyAdapter myAdapter = new MyAdapter(demos);
         list.setLayoutManager(new LinearLayoutManager(mContext));
         list.setAdapter(myAdapter);

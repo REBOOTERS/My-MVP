@@ -10,6 +10,8 @@
         </activity>
         <activity android:name=".OkHttpCache.OkHttpCacheActivity">
         </activity>
+        <activity android:name=".RxJavaBaseActivity">
+        </activity>
     </application>
 
 </manifest>
