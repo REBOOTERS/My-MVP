@@ -4,7 +4,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
@@ -13,22 +17,28 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
-public class RxJavaBaseActivity extends AppCompatActivity implements View.OnClickListener {
+public class RxJavaBaseActivity extends AppCompatActivity {
     private static final String TAG = "RxJavaBaseActivity";
+    @BindView(R2.id.basic1)
+    Button mBasic1;
+    @BindView(R2.id.basic2)
+    Button mBasic2;
+    @BindView(R2.id.basic3)
+    Button mBasic3;
+    @BindView(R2.id.basic4)
+    Button mBasic4;
+    @BindView(R2.id.basic5)
+    Button mBasic5;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rx_java_base);
-        findViewById(R.id.basic1).setOnClickListener(this);
-        findViewById(R.id.basic2).setOnClickListener(this);
-        findViewById(R.id.basic3).setOnClickListener(this);
-        findViewById(R.id.basic4).setOnClickListener(this);
-        findViewById(R.id.basic5).setOnClickListener(this);
+        ButterKnife.bind(this);
     }
 
-    @Override
+    @OnClick({R2.id.basic1,R2.id.basic2,R2.id.basic3,R2.id.basic4,R2.id.basic5})
     public void onClick(View v) {
         if (v.getId() == R.id.basic1) {
             basicRxjava2();
@@ -43,6 +53,8 @@ public class RxJavaBaseActivity extends AppCompatActivity implements View.OnClic
         }
     }
 
+
+
     private void MultiThread() {
         Observable.create(new ObservableOnSubscribe<String>() {
             @Override
@@ -51,12 +63,12 @@ public class RxJavaBaseActivity extends AppCompatActivity implements View.OnClic
             }
         }).subscribeOn(Schedulers.newThread())
                 .subscribe(new Consumer<String>() {
-            @Override
-            public void accept(String s) throws Exception {
-                Log.e(TAG, "accept: s= " + s);
-                Log.e(TAG, "accept: currentThreadName==" + Thread.currentThread().getName());
-            }
-        });
+                    @Override
+                    public void accept(String s) throws Exception {
+                        Log.e(TAG, "accept: s= " + s);
+                        Log.e(TAG, "accept: currentThreadName==" + Thread.currentThread().getName());
+                    }
+                });
     }
 
     private void Thread() {
