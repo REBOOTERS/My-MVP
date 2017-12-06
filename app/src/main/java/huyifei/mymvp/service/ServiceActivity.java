@@ -14,6 +14,11 @@ public class ServiceActivity extends AppCompatActivity {
     //
     private MyServiceConnectin connection;
 
+    /**
+     *  [Service 生命周期]("http://www.jianshu.com/p/8d0cde35eb10")
+     * @param savedInstanceState
+     */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
