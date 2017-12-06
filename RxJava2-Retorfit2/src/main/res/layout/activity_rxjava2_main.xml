@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="home.smart.fly.http.RxJava2MainActivity">
+    tools:context="home.smart.fly.http.activity.RxJava2MainActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"

@@ -49,81 +49,23 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:background="#63d175"
-                android:text="RxJavaBasic"
+                android:text="RxJava_Operator_Map"
                 android:textColor="#fff"
-
                 />
-
             <Button
                 android:id="@+id/basic2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:background="#63d175"
-                android:text="RxJava-Chain"
+                android:text="RxJava_Operator_FlatMap"
                 android:textColor="#fff"
+
                 />
 
-            <Button
-                android:id="@+id/basic3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:background="#63d175"
-                android:text="consumer"
-                android:textColor="#fff"
-                />
-
-            <Button
-                android:id="@+id/basic4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:background="#63d175"
-                android:text="Thread"
-                android:textColor="#fff"
-                />
-
-            <Button
-                android:id="@+id/basic5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:background="#63d175"
-                android:text="MultiThread"
-                android:textColor="#fff"
-                />
-
-            <Button
-                android:id="@+id/basic6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:background="#63d175"
-                android:text="RxJava2+Retrofit2"
-                android:textColor="#fff"
-                />
-            <Button
-                android:id="@+id/basic7"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:background="#63d175"
-                android:text="RxJava2+Retrofit2+GsonConverter"
-                android:textColor="#fff"
-                />
 
         </LinearLayout>
 
@@ -132,3 +74,4 @@
 
 
 </LinearLayout>
+

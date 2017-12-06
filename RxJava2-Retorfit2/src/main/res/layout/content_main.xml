@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="home.smart.fly.http.RxJava2MainActivity"
+    tools:context="home.smart.fly.http.activity.RxJava2MainActivity"
     tools:showIn="@layout/activity_rxjava2_main">
 
     <android.support.v7.widget.RecyclerView

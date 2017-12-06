@@ -1,4 +1,4 @@
-package home.smart.fly.http;
+package home.smart.fly.http.activity;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -16,9 +16,18 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import home.smart.fly.http.OkHttpCache.OkHttpCacheActivity;
+import home.smart.fly.http.R;
+import home.smart.fly.http.R2;
 import home.smart.fly.http.adapter.ItemInfo;
 import home.smart.fly.http.adapter.MyAdapter;
 
+/**
+ * author : Rookie
+ * e-mail : yingkongshi11@gmail.com
+ * time   : 2017/12/06
+ * desc   :
+ * version: 1.0
+ */
 public class RxJava2MainActivity extends AppCompatActivity {
     @BindView(R2.id.toolbar)
     Toolbar toolbar;
@@ -50,7 +59,8 @@ public class RxJava2MainActivity extends AppCompatActivity {
 
 
         demos.add(new ItemInfo(R.string.app_name, OkHttpCacheActivity.class));
-        demos.add(new ItemInfo(R.string.app_name, RxJavaBaseActivity.class));
+        demos.add(new ItemInfo(R.string.rx_basic, RxJavaBaseActivity.class));
+        demos.add(new ItemInfo(R.string.rx_operator, RxJavaOperatorActivity.class));
         MyAdapter myAdapter = new MyAdapter(demos);
         list.setLayoutManager(new LinearLayoutManager(mContext));
         list.setAdapter(myAdapter);

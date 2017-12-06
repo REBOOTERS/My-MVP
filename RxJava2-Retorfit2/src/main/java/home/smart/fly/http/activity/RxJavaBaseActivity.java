@@ -1,4 +1,4 @@
-package home.smart.fly.http;
+package home.smart.fly.http.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -7,11 +7,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import home.smart.fly.http.model.GankAndroid;
+import home.smart.fly.http.model.GankApi;
+import home.smart.fly.http.R;
+import home.smart.fly.http.R2;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
@@ -26,6 +32,7 @@ import okhttp3.ResponseBody;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * @author co-mall
@@ -59,7 +66,7 @@ public class RxJavaBaseActivity extends AppCompatActivity {
 
     @OnClick({R2.id.basic1, R2.id.basic2,
             R2.id.basic3, R2.id.basic4,
-            R2.id.basic5, R2.id.basic6})
+            R2.id.basic5, R2.id.basic6, R2.id.basic7})
     public void onClick(View v) {
         if (sb != null) {
             sb = null;
@@ -79,7 +86,49 @@ public class RxJavaBaseActivity extends AppCompatActivity {
             multiThread();
         } else if (v.getId() == R.id.basic6) {
             withRetrofit2();
+        } else if (v.getId() == R.id.basic7) {
+            withRetrofit2AndGson();
         }
+    }
+
+    private void withRetrofit2AndGson() {
+        final OkHttpClient mClient = new OkHttpClient.Builder()
+                .readTimeout(10, TimeUnit.SECONDS)
+                .connectTimeout(30, TimeUnit.SECONDS)
+                .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                .build();
+
+        final Retrofit mRetrofit = new Retrofit.Builder()
+                .client(mClient)
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .build();
+
+        GankApi mGankApi = mRetrofit.create(GankApi.class);
+        Observable<GankAndroid> mAndroidObservable = mGankApi.getData("10/1");
+        mAndroidObservable
+                .subscribeOn(Schedulers.io())
+                .map(new Function<GankAndroid, GankAndroid.ResultsEntity>() {
+                    @Override
+                    public GankAndroid.ResultsEntity apply(GankAndroid gankAndroid) throws Exception {
+                        return gankAndroid.getResults().get(0);
+                    }
+                })
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<GankAndroid.ResultsEntity>() {
+                    @Override
+                    public void accept(GankAndroid.ResultsEntity resultsEntity) throws Exception {
+                        sb.append(resultsEntity.getCreatedAt()).append("\n")
+                                .append(resultsEntity.getType()).append("\n")
+                                .append(resultsEntity.getDesc()).append("\n")
+                                .append(resultsEntity.getUrl()).append("\n")
+                                .append(resultsEntity.getWho());
+
+                        logContent.setText(sb.toString());
+                    }
+                });
+
     }
 
     private void withRetrofit2() {
