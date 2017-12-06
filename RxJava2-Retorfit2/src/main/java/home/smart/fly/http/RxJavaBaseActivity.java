@@ -27,6 +27,9 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 
+/**
+ * @author co-mall
+ */
 public class RxJavaBaseActivity extends AppCompatActivity {
     private static final String BASE_URL = "http://gank.io/api/";
 
@@ -69,17 +72,17 @@ public class RxJavaBaseActivity extends AppCompatActivity {
         } else if (v.getId() == R.id.basic2) {
             basicRxjava2Chian();
         } else if (v.getId() == R.id.basic3) {
-            Consumer();
+            consumer();
         } else if (v.getId() == R.id.basic4) {
-            Thread();
+            thread();
         } else if (v.getId() == R.id.basic5) {
-            MultiThread();
+            multiThread();
         } else if (v.getId() == R.id.basic6) {
-            WithRetrofit2();
+            withRetrofit2();
         }
     }
 
-    private void WithRetrofit2() {
+    private void withRetrofit2() {
         OkHttpClient.Builder mBuilder = new OkHttpClient.Builder();
         mBuilder.readTimeout(10, TimeUnit.SECONDS);
         mBuilder.connectTimeout(30, TimeUnit.SECONDS);
@@ -145,7 +148,7 @@ public class RxJavaBaseActivity extends AppCompatActivity {
     }
 
 
-    private void MultiThread() {
+    private void multiThread() {
         Observable.create(new ObservableOnSubscribe<String>() {
             @Override
             public void subscribe(ObservableEmitter<String> e) throws Exception {
@@ -171,7 +174,7 @@ public class RxJavaBaseActivity extends AppCompatActivity {
                 });
     }
 
-    private void Thread() {
+    private void thread() {
         Observable mObservable = Observable.create(new ObservableOnSubscribe() {
             @Override
             public void subscribe(ObservableEmitter e) throws Exception {
@@ -197,7 +200,7 @@ public class RxJavaBaseActivity extends AppCompatActivity {
         mObservable.subscribe(mObserver);
     }
 
-    private void Consumer() {
+    private void consumer() {
         Observable.create(new ObservableOnSubscribe<String>() {
             @Override
             public void subscribe(ObservableEmitter<String> e) throws Exception {

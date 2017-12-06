@@ -21,6 +21,7 @@ import java.util.List;
 
 import home.times.designpatterns.builder.BuilderPatternActivity;
 import home.times.designpatterns.factory.FactoryPatternActivity;
+import home.times.designpatterns.proxy.normal.StaticProxyActivity;
 
 
 public class DesignPatternActivity extends AppCompatActivity {
@@ -47,6 +48,7 @@ public class DesignPatternActivity extends AppCompatActivity {
     private void setData() {
         demos.add(new ItemInfo(R.string.factory, FactoryPatternActivity.class));
         demos.add(new ItemInfo(R.string.factory, BuilderPatternActivity.class));
+        demos.add(new ItemInfo(R.string.factory, StaticProxyActivity.class));
 
     }
 
