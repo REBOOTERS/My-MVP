@@ -1,4 +1,4 @@
-package home.smart.fly.http;
+package home.smart.fly.http.model;
 
 import java.util.List;
 

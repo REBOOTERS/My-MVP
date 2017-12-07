@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">RxJava2-Retorfit2</string>
+    <string name="rx_basic">RxJava2-基础+Retrofit2 结合使用</string>
+    <string name="rx_operator">RxJava2-操作符</string>
     <string name="title_activity_rx_java2_main">RxJava2MainActivity</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_main">RxJava2MainActivity</string>

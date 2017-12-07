@@ -30,7 +30,7 @@ import java.util.List;
 import java.util.Stack;
 import java.util.Vector;
 
-import home.smart.fly.http.RxJava2MainActivity;
+import home.smart.fly.http.activity.RxJava2MainActivity;
 import home.smart.fly.httpurlconnectiondemo.HttpDemoActivity;
 import home.smart.fly.httpurlconnectiondemo.RxJavaDemoActivity;
 import home.smart.fly.httpurlconnectiondemo.retrofit2.Retrofit2DemoActivity;
