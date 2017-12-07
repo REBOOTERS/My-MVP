@@ -62,6 +62,14 @@ public class MyService extends Service {
     @Override
     public IBinder onBind(Intent intent) {
         // TODO: Return the communication channel to the service.
+        Log.e(TAG, "onBind: ");
         return myBinder;
     }
+
+    @Override
+    public boolean onUnbind(Intent intent) {
+        Log.e(TAG, "onUnbind: ");
+        return super.onUnbind(intent);
+    }
+
 }

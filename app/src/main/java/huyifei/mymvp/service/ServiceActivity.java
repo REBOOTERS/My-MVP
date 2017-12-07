@@ -12,10 +12,11 @@ public class ServiceActivity extends AppCompatActivity {
     private Context mContext;
     private Intent mIntent;
     //
-    private MyServiceConnectin connection;
+    private MyServiceConnection connection;
 
     /**
-     *  [Service 生命周期]("http://www.jianshu.com/p/8d0cde35eb10")
+     * [Service 生命周期]("http://www.jianshu.com/p/8d0cde35eb10")
+     *
      * @param savedInstanceState
      */
 
@@ -26,7 +27,7 @@ public class ServiceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_service);
         mIntent = new Intent(mContext, MyService.class);
         //
-        connection = new MyServiceConnectin();
+        connection = new MyServiceConnection();
         actionView();
 
 
@@ -60,11 +61,18 @@ public class ServiceActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * http://www.jianshu.com/p/8a3c44a9173a Android多线程全面解析：IntentService用法&源码
+         */
         findViewById(R.id.intentService).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 MyIntentService.startActionBaz(mContext, "Hello ", "Baz");
+                MyIntentService.startActionFoo(mContext, "Hello", "Foo");
             }
         });
     }
+
 }
