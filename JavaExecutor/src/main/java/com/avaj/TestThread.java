@@ -2,7 +2,7 @@ package com.avaj;
 
 /**
  * Created by Rookie on 2017/11/3.
- *
+ * <p>
  * <a href="https://juejin.im/post/59f9804851882554b836dd8b">problem</a>
  */
 
@@ -27,6 +27,14 @@ public class TestThread implements Runnable {
 //
         tt.m2(); //3
         System.out.println("main thread b=" + tt.b); //4
+
+
+        String size = "middle";
+
+        String result = size.equals("large") ? "100" : size.equals("middle") ? "50" : size.equals("samll") ? "20" : size;
+
+        System.out.println("the result is " + result);
+
     }
 
     @Override
