@@ -63,6 +63,18 @@
                 android:background="#63d175"
                 android:text="RxJava_Operator_FlatMap"
                 android:textColor="#fff"
+                />
+            <Button
+                android:id="@+id/basic3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:background="#63d175"
+                android:text="RxJava_Operator_ZIP"
+                android:textColor="#fff"
 
                 />
 

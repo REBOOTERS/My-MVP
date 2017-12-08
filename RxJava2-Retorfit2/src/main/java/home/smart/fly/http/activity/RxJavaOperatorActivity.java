@@ -21,6 +21,7 @@ import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.ObservableSource;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.BiFunction;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
@@ -49,7 +50,7 @@ public class RxJavaOperatorActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R2.id.basic1, R2.id.basic2})
+    @OnClick({R2.id.basic1, R2.id.basic2, R2.id.basic3})
     public void OnClick(View v) {
         if (sb != null) {
             sb = null;
@@ -61,7 +62,62 @@ public class RxJavaOperatorActivity extends AppCompatActivity {
             mapOperator();
         } else if (v.getId() == R.id.basic2) {
             flatMapOperator();
+        } else if (v.getId() == R.id.basic3) {
+            zipOperator();
         }
+    }
+
+    /**
+     * http://www.jianshu.com/p/bb58571cdb64
+     * <p>
+     * Zip通过一个函数将多个Observable发送的事件结合到一起，
+     * 然后发送这些组合到一起的事件. 它按照严格的顺序应用这个函数。
+     * 它只发射与发射数据项最少的那个Observable一样多的数据。
+     */
+    private void zipOperator() {
+        Observable<Integer> mIntegerObservable = Observable.create(new ObservableOnSubscribe<Integer>() {
+            @Override
+            public void subscribe(ObservableEmitter<Integer> e) throws Exception {
+                e.onNext(100);
+                e.onNext(101);
+                e.onNext(102);
+                e.onNext(103);
+                e.onNext(104);
+                e.onComplete();
+            }
+        }).subscribeOn(Schedulers.io());
+
+
+        Observable<String> mStringObservable = Observable
+                .create(new ObservableOnSubscribe<String>() {
+                    @Override
+                    public void subscribe(ObservableEmitter<String> e) throws Exception {
+                        e.onNext("Monday");
+                        e.onNext("Tuesday");
+                        e.onNext("Wednesday");
+                        e.onNext("Thursday");
+                        e.onNext("Friday");
+                        e.onComplete();
+                    }
+                })
+                .subscribeOn(Schedulers.io());
+
+        Observable
+                .zip(mIntegerObservable, mStringObservable, new BiFunction<Integer, String, String>() {
+                    @Override
+                    public String apply(Integer integer, String s) throws Exception {
+                        return s + "<---------->" + integer;
+                    }
+                })
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<String>() {
+                    @Override
+                    public void accept(String s) throws Exception {
+                        sb.append(s + "\n");
+                        logContent.setText(sb.toString());
+                        Log.e(TAG, "accept: " + s);
+                    }
+                });
     }
 
     /**
@@ -134,6 +190,7 @@ public class RxJavaOperatorActivity extends AppCompatActivity {
             @Override
             public void subscribe(ObservableEmitter<Integer> e) throws Exception {
                 sb.append("e: 1,2,3\n");
+                sb.append("通过Map, 可以将上游发来的事件转换为任意的类型, 可以是一个Object, 也可以是一个集合");
                 e.onNext(1);
                 e.onNext(2);
                 e.onNext(3);
@@ -151,7 +208,6 @@ public class RxJavaOperatorActivity extends AppCompatActivity {
             public void accept(Integer integer) throws Exception {
                 Log.e(TAG, "accept: interger=" + integer);
                 sb.append("result=" + integer).append("\n");
-                sb.append("通过Map, 可以将上游发来的事件转换为任意的类型, 可以是一个Object, 也可以是一个集合");
                 logContent.setText(sb.toString());
 
             }
