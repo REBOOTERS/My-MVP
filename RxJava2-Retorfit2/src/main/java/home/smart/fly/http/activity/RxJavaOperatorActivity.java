@@ -7,6 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import org.reactivestreams.Subscriber;
+import org.reactivestreams.Subscription;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -16,6 +19,10 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import home.smart.fly.http.R;
 import home.smart.fly.http.R2;
+import io.reactivex.BackpressureStrategy;
+import io.reactivex.Flowable;
+import io.reactivex.FlowableEmitter;
+import io.reactivex.FlowableOnSubscribe;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
@@ -43,6 +50,8 @@ public class RxJavaOperatorActivity extends AppCompatActivity {
 
     private StringBuilder sb;
 
+    private Subscription mSubscription;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +59,8 @@ public class RxJavaOperatorActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R2.id.basic1, R2.id.basic2, R2.id.basic3})
+    @OnClick({R2.id.basic1, R2.id.basic2,
+            R2.id.basic3, R2.id.basic4, R2.id.basic5, R2.id.basic6, R2.id.basic7})
     public void OnClick(View v) {
         if (sb != null) {
             sb = null;
@@ -64,7 +74,191 @@ public class RxJavaOperatorActivity extends AppCompatActivity {
             flatMapOperator();
         } else if (v.getId() == R.id.basic3) {
             zipOperator();
+        } else if (v.getId() == R.id.basic4) {
+            sampleOperator();
+        } else if (v.getId() == R.id.basic5) {
+            flowableOperator();
+        } else if (v.getId() == R.id.basic6) {
+            flowableOperatorPro();
+        } else if (v.getId() == R.id.basic7) {
+            flowableOperatorBackpressure();
         }
+    }
+
+    /**
+     * http://www.jianshu.com/p/36e0f7f43a51
+     */
+    private void flowableOperatorBackpressure() {
+        Flowable.interval(1, TimeUnit.SECONDS)
+                .onBackpressureDrop()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<Long>() {
+                    @Override
+                    public void onSubscribe(Subscription s) {
+                        mSubscription = s;
+                        s.request(Integer.MAX_VALUE);
+                    }
+
+                    @Override
+                    public void onNext(Long aLong) {
+                        Log.e(TAG, "onNext: aLong=" + aLong);
+                        logContent.setText("aLong=" + String.valueOf(aLong));
+                    }
+
+                    @Override
+                    public void onError(Throwable t) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    private void flowableOperatorPro() {
+        Flowable<Integer> mIntegerFlowable = Flowable.create(new FlowableOnSubscribe<Integer>() {
+            @Override
+            public void subscribe(FlowableEmitter<Integer> e) throws Exception {
+                for (int i = 0; i < 1000; i++) {
+                    e.onNext(i);
+                    Log.e(TAG, "subscribe: " + i);
+                    sb.append("e----> " + i + "\n");
+                }
+            }
+        }, BackpressureStrategy.BUFFER)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+
+        Subscriber<Integer> mIntegerSubscriber = new Subscriber<Integer>() {
+            @Override
+            public void onSubscribe(Subscription s) {
+                mSubscription = s;
+                Log.e(TAG, "onSubscribe: s=" + s);
+                s.request(Integer.MAX_VALUE);
+            }
+
+            @Override
+            public void onNext(Integer integer) {
+                Log.e(TAG, "onNext: integer=" + integer);
+
+                sb.append(integer + "\n");
+                logContent.setText(sb.toString());
+            }
+
+            @Override
+            public void onError(Throwable t) {
+                Log.e(TAG, "onError: t=" + t);
+            }
+
+            @Override
+            public void onComplete() {
+                Log.e(TAG, "onComplete: ");
+            }
+        };
+
+        mIntegerFlowable.subscribe(mIntegerSubscriber);
+
+
+    }
+
+    /**
+     * http://www.jianshu.com/p/9b1304435564
+     * <p>
+     * Flowable在设计的时候采用了一种新的思路也就是响应式拉取的方式来更好的解决上下游流速不均衡的问题
+     * <p>
+     * 我们把request当做是一种能力, 当成下游处理事件的能力, 下游能处理几个就告诉上游我要几个,
+     * 这样只要上游根据下游的处理能力来决定发送多少事件, 就不会造成一窝蜂的发出一堆事件来, 从而导致OOM.
+     */
+    private void flowableOperator() {
+        Flowable<Integer> mIntegerFlowable = Flowable.create(new FlowableOnSubscribe<Integer>() {
+            @Override
+            public void subscribe(FlowableEmitter<Integer> e) throws Exception {
+                e.onNext(1);
+                e.onNext(2);
+                e.onNext(3);
+                e.onNext(4);
+                e.onNext(5);
+            }
+        }, BackpressureStrategy.ERROR);
+
+        Subscriber<Integer> mIntegerSubscriber = new Subscriber<Integer>() {
+            @Override
+            public void onSubscribe(Subscription s) {
+                mSubscription = s;
+                Log.e(TAG, "onSubscribe: s=" + s);
+                s.request(Integer.MAX_VALUE);
+            }
+
+            @Override
+            public void onNext(Integer integer) {
+                Log.e(TAG, "onNext: integer=" + integer);
+                sb.append(integer + "\n");
+
+                logContent.setText(sb.toString());
+            }
+
+            @Override
+            public void onError(Throwable t) {
+                Log.e(TAG, "onError: ");
+            }
+
+            @Override
+            public void onComplete() {
+                Log.e(TAG, "onComplete: ");
+            }
+        };
+
+        mIntegerFlowable.subscribe(mIntegerSubscriber);
+
+    }
+
+    /**
+     * 解决上游主题发送事件过快，导致异步线程OOM 的问题
+     */
+    private void sampleOperator() {
+        Observable<Integer> mIntegerObservable = Observable.create(new ObservableOnSubscribe<Integer>() {
+            @Override
+            public void subscribe(ObservableEmitter<Integer> e) throws Exception {
+                for (int i = 0; ; i++) {
+                    e.onNext(i);
+                }
+            }
+        })
+                .subscribeOn(Schedulers.io())
+                .sample(2, TimeUnit.SECONDS);
+
+        Observable<String> mStringObservable = Observable.create(new ObservableOnSubscribe<String>() {
+            @Override
+            public void subscribe(ObservableEmitter<String> e) throws Exception {
+                e.onNext("Message");
+            }
+        })
+                .subscribeOn(Schedulers.io());
+
+
+        Observable.zip(mIntegerObservable, mStringObservable, new BiFunction<Integer, String, String>() {
+            @Override
+            public String apply(Integer integer, String s) throws Exception {
+                return integer + " & " + s;
+            }
+        })
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<String>() {
+                    @Override
+                    public void accept(String s) throws Exception {
+                        Log.e(TAG, "accept: s=" + s);
+                        sb.append(s + "\n");
+                        logContent.setText(sb.toString());
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        Log.e(TAG, "accept: trowable=" + throwable);
+                    }
+                });
     }
 
     /**
@@ -78,11 +272,17 @@ public class RxJavaOperatorActivity extends AppCompatActivity {
         Observable<Integer> mIntegerObservable = Observable.create(new ObservableOnSubscribe<Integer>() {
             @Override
             public void subscribe(ObservableEmitter<Integer> e) throws Exception {
+
+                sb.append("Zip通过一个函数将多个Observable发送的事件结合到一起，\n" +
+                        " 然后发送这些组合到一起的事件. 它按照严格的顺序应用这个函数。\n" +
+                        " 它只发射与发射数据项最少的那个Observable一样多的数据。\n");
+
                 e.onNext(100);
                 e.onNext(101);
                 e.onNext(102);
                 e.onNext(103);
                 e.onNext(104);
+                e.onNext(105);
                 e.onComplete();
             }
         }).subscribeOn(Schedulers.io());
@@ -195,8 +395,6 @@ public class RxJavaOperatorActivity extends AppCompatActivity {
                 e.onNext(2);
                 e.onNext(3);
                 e.onComplete();
-
-
             }
         }).map(new Function<Integer, Integer>() {
             @Override
@@ -212,5 +410,11 @@ public class RxJavaOperatorActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mSubscription.cancel();
     }
 }
