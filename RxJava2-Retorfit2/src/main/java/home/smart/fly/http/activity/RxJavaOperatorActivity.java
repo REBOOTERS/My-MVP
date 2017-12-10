@@ -324,28 +324,14 @@ public class RxJavaOperatorActivity extends AppCompatActivity {
      * http://www.jianshu.com/p/128e662906af
      */
     private void flatMapOperator() {
-        Observable
-                .create(new ObservableOnSubscribe<Object>() {
-                    @Override
-                    public void subscribe(ObservableEmitter<Object> e) throws Exception {
-                        sb.append("FlatMap将一个发送事件的上游Observable变换为多个发送事件的Observables，然后将它们发射的事件合并后放进一个单独的Observable里");
-                        sb.append("\n");
 
-                        sb.append("e---> ");
-                    }
-                })
-                .subscribe(new Consumer<Object>() {
-                    @Override
-                    public void accept(Object o) throws Exception {
-                        logContent.setText(sb.toString());
-                    }
-                });
 
         Observable
                 .create(new ObservableOnSubscribe<Integer>() {
                     @Override
                     public void subscribe(ObservableEmitter<Integer> e) throws Exception {
-                        sb.append("FlatMap将一个发送事件的上游Observable变换为多个发送事件的Observables，然后将它们发射的事件合并后放进一个单独的Observable里");
+                        sb.append("FlatMap将一个发送事件的上游Observable变换为多个发送事件的Observables，" +
+                                "然后将它们发射的事件合并后放进一个单独的Observable里");
                         sb.append("\n");
                         sb.append(" flatMap并不保证事件的顺序\n");
 

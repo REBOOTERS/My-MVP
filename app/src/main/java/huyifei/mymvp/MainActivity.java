@@ -59,6 +59,8 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     InvocationHandler m;
     Proxy mProxy;
 
+    Handler mHandler;
+
 
     ArrayList mArrayList;
     Deque mDeque;

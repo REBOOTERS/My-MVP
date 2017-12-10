@@ -35,7 +35,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * @author co-mall
+ * @author Rookie
  */
 public class RxJavaBaseActivity extends AppCompatActivity {
     private static final String BASE_URL = "http://gank.io/api/";
@@ -66,7 +66,8 @@ public class RxJavaBaseActivity extends AppCompatActivity {
 
     @OnClick({R2.id.basic1, R2.id.basic2,
             R2.id.basic3, R2.id.basic4,
-            R2.id.basic5, R2.id.basic6, R2.id.basic7})
+            R2.id.basic5, R2.id.basic6,
+            R2.id.basic7})
     public void onClick(View v) {
         if (sb != null) {
             sb = null;
@@ -289,7 +290,6 @@ public class RxJavaBaseActivity extends AppCompatActivity {
             public void onSubscribe(Disposable d) {
                 Log.e(TAG, "onSubscribe: d=" + d);
                 sb.append("\nonSubcribe: d=" + d);
-
             }
 
             @Override
