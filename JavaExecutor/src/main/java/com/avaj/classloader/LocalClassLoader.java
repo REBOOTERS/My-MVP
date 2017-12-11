@@ -50,6 +50,8 @@ public class LocalClassLoader extends ClassLoader {
         } catch (IOException e) {
             e.printStackTrace();
         }finally {
+
+
             try {
                 mInputStream.close();
             } catch (IOException e) {

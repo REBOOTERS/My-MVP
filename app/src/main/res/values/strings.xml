@@ -29,6 +29,7 @@
     <string name="BroadcastReceiver">BroadcastReceiver demo</string>
     <string name="service">Service demo</string>
     <string name="classloader">ClassLoader 相关</string>
+    <string name="hotfix">Android 热修复简单实现相关</string>
     <string name="title_activity_mvp">MVPActivity</string>
 
     <!--note-->

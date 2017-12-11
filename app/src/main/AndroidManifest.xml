@@ -77,6 +77,8 @@
             android:label="@string/title_activity_class_loader"
             android:theme="@style/AppTheme">
         </activity>
+        <activity android:name=".classloader.SimpleHotFixActivity">
+        </activity>
     </application>
 
 </manifest>
