@@ -79,6 +79,8 @@
         </activity>
         <activity android:name=".classloader.SimpleHotFixActivity">
         </activity>
+        <activity android:name=".test.HashMapActivity">
+        </activity>
     </application>
 
 </manifest>

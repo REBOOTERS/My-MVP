@@ -42,6 +42,7 @@ import huyifei.mymvp.classloader.ClassLoaderActivity;
 import huyifei.mymvp.classloader.SimpleHotFixActivity;
 import huyifei.mymvp.datastorage.DataStorageActivity;
 import huyifei.mymvp.service.ServiceActivity;
+import huyifei.mymvp.test.HashMapActivity;
 import huyifei.mymvp.util.V;
 
 /**
@@ -103,6 +104,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         demos.add(new ItemInfo(R.string.DataStorage, DataStorageActivity.class));
         demos.add(new ItemInfo(R.string.BroadcastReceiver, BroadcastReceiverActivity.class));
         demos.add(new ItemInfo(R.string.service, ServiceActivity.class));
+        demos.add(new ItemInfo(R.string.service, HashMapActivity.class));
     }
 
 
