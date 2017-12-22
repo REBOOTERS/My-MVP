@@ -8,22 +8,34 @@ import android.util.Log;
  */
 
 public class MyBinder extends Binder {
-    public void startDownload() {
 
+    private boolean run = true;
+
+    public void startDownload() {
+        run = true;
         // 执行具体的下载任务
 
         new Thread(new Runnable() {
             @Override
             public void run() {
-                while (true) {
+                int x = 1;
+                while (run) {
                     try {
                         Thread.sleep(1000);
+                        x++;
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    Log.e("TAG", "startDownload() executed");
+                    Log.e("TAG", "startDownload() executed x=" + x);
                 }
+                Log.e("TAG", "service stoped !");
+
             }
         }).start();
+    }
+
+    public void stopDownload() {
+        run = false;
+        Log.e("TAG", "try to stop service");
     }
 }

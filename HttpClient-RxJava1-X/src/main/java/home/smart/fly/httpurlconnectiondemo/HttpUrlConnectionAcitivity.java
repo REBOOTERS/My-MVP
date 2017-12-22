@@ -26,6 +26,8 @@ public class HttpUrlConnectionAcitivity extends AppCompatActivity {
 
     private final String BASE_URL = "https://www.baidu.com";
 
+    private final String BASE_URL_TEST = "http://cybershop4-dev-restapi.dev.co-mall/products/search";
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +37,7 @@ public class HttpUrlConnectionAcitivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new MyTask().execute(BASE_URL);
+                new MyTask().execute(BASE_URL_TEST);
             }
         });
     }

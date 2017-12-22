@@ -9,8 +9,8 @@ import android.util.Log;
  * Created by rookie on 2017/2/14.
  */
 
-public class MyServiceConnectin implements ServiceConnection {
-    private static final String TAG = "MyServiceConnectin";
+public class MyServiceConnection implements ServiceConnection {
+    private static final String TAG = "MyServiceConnection";
     private MyBinder mMyBinder;
 
     @Override
@@ -25,5 +25,6 @@ public class MyServiceConnectin implements ServiceConnection {
     @Override
     public void onServiceDisconnected(ComponentName name) {
         Log.e(TAG, "onServiceDisconnected: ComponentName=" + name);
+        mMyBinder.stopDownload();
     }
 }
