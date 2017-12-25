@@ -81,6 +81,8 @@
         </activity>
         <activity android:name=".test.HashMapActivity">
         </activity>
+        <activity android:name=".LifeCycleActivity">
+        </activity>
     </application>
 
 </manifest>
