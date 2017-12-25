@@ -1,9 +1,11 @@
 package huyifei.mymvp;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
@@ -18,11 +20,38 @@ public class LifeCycleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_life_cycle);
         Log.e(TAG, "onCreate: ");
 
+        findViewById(R.id.button4).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LifeCycleActivity.this, GlideActivity.class));
+            }
+        });
+
+        findViewById(R.id.button3).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(LifeCycleActivity.this);
                 mBuilder.setTitle("dialog on activity");
+                mBuilder.setMessage("some content on dialog");
+                mBuilder.setPositiveButton("sure", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                mBuilder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
                 mBuilder.show();
             }
         });

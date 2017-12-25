@@ -11,6 +11,35 @@ public class JavaSort {
     private static final float BASE = 1000000.0f;
     private static int[] array = {19, 89, 588, 193, 1, 11, 543, 111, 7, 10};
 
+
+    /**
+     * 选择排序
+     */
+    private static void selectSort() {
+        long startTime = System.nanoTime();    //获取开始时间
+        int temp;
+        for (int i = 0; i < array.length - 1; i++) {
+            int k = i;
+            for (int j = i + 1; j < array.length; j++) {
+                if (array[j] < array[k]) {
+                    k = j;
+                }
+            }
+            if (k != i) {
+                temp = array[i];
+                array[i] = array[k];
+                array[k] = temp;
+            }
+        }
+
+        long endTime = System.nanoTime();    //获取结束时间
+        System.out.println("程序运行时间：" + (endTime - startTime) / BASE + "ms");    //输出程序运行时间
+    }
+
+
+    /**
+     * 快速直接插入排序
+     */
     private static void QuickInsertSort() {
         long startTime = System.nanoTime();    //获取开始时间
         int temp;
@@ -29,6 +58,7 @@ public class JavaSort {
         System.out.println("程序运行时间：" + (endTime - startTime) / BASE + "ms");    //输出程序运行时间
     }
 
+
     private static void BubbleSort() {
         long startTime = System.nanoTime();    //获取开始时间
         for (int i = array.length - 1; i > 0; i--) {
@@ -46,6 +76,31 @@ public class JavaSort {
         long endTime = System.nanoTime();    //获取结束时间
         System.out.println("程序运行时间：" + (endTime - startTime) / BASE + "ms");    //输出程序运行时间
     }
+
+    private static void BubbleSort2() {
+        long startTime = System.nanoTime();    //获取开始时间
+        int temp;
+        int flag = array.length - 1;
+        while (flag > 0) {
+            int n = flag - 1;
+            flag = 0;
+            for (int i = 0; i <= n; i++) {
+                if (array[i] > array[i + 1]) {
+                    temp = array[i];
+                    array[i] = array[i + 1];
+                    array[i + 1] = temp;
+                    flag = i;
+                }
+                System.out.format("when i=%d ,flag=%d     ", i, flag);
+                System.out.println(Arrays.toString(array));
+            }
+        }
+
+
+        long endTime = System.nanoTime();    //获取结束时间
+        System.out.println("程序运行时间：" + (endTime - startTime) / BASE + "ms");    //输出程序运行时间
+    }
+
 
     private static int BinarySearch(int[] array, int element) {
         int pos = -1;
@@ -86,7 +141,8 @@ public class JavaSort {
         System.out.println("The Original data is :");
         System.out.println(Arrays.toString(array));
 //        QuickInsertSort();
-        BubbleSort();
+        BubbleSort2();
+//        selectSort();
         System.out.print("\nAfter Sort data is : ");
         System.out.println(Arrays.toString(array));
 
