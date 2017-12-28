@@ -1,5 +1,6 @@
 package com.avaj.sort;
 
+
 import java.util.Arrays;
 
 /**
@@ -9,7 +10,10 @@ import java.util.Arrays;
 public class JavaSort {
 
     private static final float BASE = 1000000.0f;
-    private static int[] array = {19, 89, 588, 193, 1, 11, 543, 111, 7, 10};
+
+    private static final int SIZE = 100 ;
+
+    private static int[] array = new int[SIZE];
 
 
     /**
@@ -51,8 +55,8 @@ public class JavaSort {
             }
             array[j + 1] = temp;
 
-            System.out.print("when i=" + i + " array is ");
-            System.out.println(Arrays.toString(array));
+//            System.out.print("when i=" + i + " array is ");
+//            System.out.println(Arrays.toString(array));
         }
         long endTime = System.nanoTime();    //获取结束时间
         System.out.println("程序运行时间：" + (endTime - startTime) / BASE + "ms");    //输出程序运行时间
@@ -138,10 +142,16 @@ public class JavaSort {
 //
 //        System.out.println("list size is " + mList.size());
 
+
+        for (int i = 0; i < SIZE; i++) {
+            array[i] = (int) (Math.random() * SIZE);
+        }
+
+
         System.out.println("The Original data is :");
         System.out.println(Arrays.toString(array));
-//        QuickInsertSort();
-        BubbleSort2();
+        QuickInsertSort();
+//        BubbleSort2();
 //        selectSort();
         System.out.print("\nAfter Sort data is : ");
         System.out.println(Arrays.toString(array));
