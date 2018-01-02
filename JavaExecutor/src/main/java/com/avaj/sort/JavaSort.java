@@ -4,7 +4,11 @@ package com.avaj.sort;
 import java.util.Arrays;
 
 /**
- * Created by rookie on 2017/1/16.
+ * author : rookie
+ * e-mail : yingkongshi11@gmail.com
+ * time   : 2017/1/16
+ * desc   :
+ * version: 1.0
  */
 
 public class JavaSort {

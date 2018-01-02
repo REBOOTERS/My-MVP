@@ -1,8 +1,13 @@
 package com.avaj.proxy;
 
 /**
- * Created by Rookie on 2017/9/28.
+ * author : Rookie
+ * e-mail : yingkongshi11@gmail.com
+ * time   : 2017/9/28
+ * desc   :
+ * version: 1.0
  */
+
 
 public interface Subject {
     void doSomething();
