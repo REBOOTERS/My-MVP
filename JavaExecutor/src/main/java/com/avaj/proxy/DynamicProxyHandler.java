@@ -7,11 +7,11 @@ import java.lang.reflect.Method;
  * Created by Rookie on 2017/9/28.
  */
 
-public class ProxyHandler implements InvocationHandler {
+public class DynamicProxyHandler implements InvocationHandler {
     private Object mObject;
 
 
-    public ProxyHandler(Object object) {
+    public DynamicProxyHandler(Object object) {
         mObject = object;
     }
 

@@ -1,6 +1,8 @@
 package huyifei.mymvp;
 
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -8,6 +10,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -72,6 +75,10 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     Comparable mComparable;
 
     ClassLoader mClassLoader;
+
+    NotificationManager mNotificationManager;
+    Notification m;
+    NotificationCompat  mNotificationCompat;
 
 
     @Override

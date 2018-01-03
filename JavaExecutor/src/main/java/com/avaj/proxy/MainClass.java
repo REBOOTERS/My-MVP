@@ -11,14 +11,18 @@ import sun.misc.ProxyGenerator;
 
 public class MainClass {
     public static void main(String[] args) {
-        RealSubject mRealSubject = new RealSubject();
-        Subject proxySubject = (Subject) Proxy.newProxyInstance(Subject.class.getClassLoader(),
-                new Class[]{Subject.class},
-                new ProxyHandler(mRealSubject));
+        // 委托类
+        Subject mRealSubject = new RealSubject();
+        // 委托类classLoader
+        ClassLoader mClassLoader = mRealSubject.getClass().getClassLoader();
+        // 委托类对应的ProxyHandler
+        DynamicProxyHandler mProxyHandler = new DynamicProxyHandler(mRealSubject);
+        Class[] mClasses = new Class[]{Subject.class};
+        // 代理类
+        Subject proxySubject = (Subject) Proxy.newProxyInstance(mClassLoader, mClasses, mProxyHandler);
+        // 代理类调用方法
         proxySubject.doSomething();
 
-        //
-        createProxyClassFile();
     }
 
 
