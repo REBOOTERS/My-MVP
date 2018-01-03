@@ -17,6 +17,8 @@
         <activity android:name=".downloads.Okhttp3DownloadsActivity"/>
         <activity android:name=".downloads.Okhttp3DownloadsThreadActivity"/>
         <activity android:name=".retrofit2.Retrofit2DemoActivity"/>
+        <activity android:name=".ListDataActivity">
+        </activity>
     </application>
 
 </manifest>

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -68,6 +69,7 @@ public class Retrofit2DemoActivity extends AppCompatActivity implements View.OnC
         findViewById(R.id.get2).setOnClickListener(this);
         findViewById(R.id.get3).setOnClickListener(this);
         findViewById(R.id.get4).setOnClickListener(this);
+        findViewById(R.id.get5).setOnClickListener(this);
 
 
         loading = new ProgressDialog(mContext);
@@ -83,7 +85,7 @@ public class Retrofit2DemoActivity extends AppCompatActivity implements View.OnC
         Retrofit.Builder builder = new Retrofit.Builder()
                 .baseUrl(BASE_URL);
         Retrofit retrofit = builder.client(httpClient.build()).build();
-        GithubService simpleService = retrofit.create(GithubService.class);
+        ApiService simpleService = retrofit.create(ApiService.class);
         Call<ResponseBody> call = simpleService.getUserString(name);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -112,7 +114,7 @@ public class Retrofit2DemoActivity extends AppCompatActivity implements View.OnC
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create());
         Retrofit retrofit = builder.client(httpClient.build()).build();
-        GithubService service = retrofit.create(GithubService.class);
+        ApiService service = retrofit.create(ApiService.class);
         Call<GithubUserBean> call = service.getUser(name);
         call.enqueue(new Callback<GithubUserBean>() {
             @Override
@@ -130,7 +132,7 @@ public class Retrofit2DemoActivity extends AppCompatActivity implements View.OnC
     }
 
     private void EasyRetrofit() {
-        GithubService service = GenServiceUtil.createService(GithubService.class);
+        ApiService service = GenServiceUtil.createService(ApiService.class);
         Call<GithubUserBean> call = service.getUser(name);
         call.enqueue(new Callback<GithubUserBean>() {
             @Override
@@ -148,7 +150,7 @@ public class Retrofit2DemoActivity extends AppCompatActivity implements View.OnC
     }
 
     private void RxRetrofit() {
-        GithubService service = GenServiceUtil.createService(GithubService.class);
+        ApiService service = GenServiceUtil.createService(ApiService.class);
         final Call<GithubUserBean> call = service.getUser(name);
         final Observable myObserable = Observable.create(new Observable.OnSubscribe<GithubUserBean>() {
             @Override
@@ -201,7 +203,7 @@ public class Retrofit2DemoActivity extends AppCompatActivity implements View.OnC
 
 
     private void RxRetrofitList() {
-        GithubService service = GenServiceUtil.createService(GithubService.class);
+        ApiService service = GenServiceUtil.createService(ApiService.class);
         Observable<List<UserFollowerBean>> myObserve = service.followers(name);
         myObserve
                 .subscribeOn(Schedulers.io())
@@ -297,9 +299,6 @@ public class Retrofit2DemoActivity extends AppCompatActivity implements View.OnC
     }
 
 
-
-
-
     @Override
     public void onClick(View v) {
         viewShell.removeAllViews();
@@ -319,7 +318,30 @@ public class Retrofit2DemoActivity extends AppCompatActivity implements View.OnC
             RxRetrofit();
         } else if (i == R.id.get4) {
             RxRetrofitList();
+        } else if (i == R.id.get5) {
+            RxRetrofitPost();
         }
+    }
+
+    private void RxRetrofitPost() {
+        OkHttpClient mOkHttpClient = new OkHttpClient.Builder().build();
+        Retrofit.Builder mBuilder = new Retrofit.Builder()
+                .baseUrl("http://cybershop4-dev-restapi.dev.co-mall/api/");
+        Retrofit mRetrofit = mBuilder.client(mOkHttpClient).build();
+        ApiService mApiService = mRetrofit.create(ApiService.class);
+        Call<ResponseBody> mBodyCall = mApiService.login("15101180298", "123456", "1234");
+        mBodyCall.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                Log.e(TAG, "onResponse: response=" + response);
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.e(TAG, "onFailure: t=" + t.toString());
+            }
+        });
     }
 
 

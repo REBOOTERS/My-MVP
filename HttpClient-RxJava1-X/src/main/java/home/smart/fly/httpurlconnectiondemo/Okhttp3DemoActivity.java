@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -38,6 +39,8 @@ import okhttp3.Response;
  */
 
 public class Okhttp3DemoActivity extends AppCompatActivity {
+    private static final String TAG = "Okhttp3DemoActivity";
+
     private final String BASE_URL = "https://api.github.com/";
     private final String DOWNLOAD_URL = "http://dl.bizhi.sogou.com/images/2015/06/26/1214911.jpg";
     private final String FILE_PATH = Environment.getExternalStorageDirectory().getPath() + File.separator + "test.jpg";
@@ -116,6 +119,87 @@ public class Okhttp3DemoActivity extends AppCompatActivity {
             }
         });
 
+
+        findViewById(R.id.post1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tv.setText("");
+                loading.setVisibility(View.VISIBLE);
+
+                client = new OkHttpClient();
+                RequestBody formBody = new FormBody.Builder()
+                        .add("login_name", "15101180298")
+                        .add("image_verifty_code", "1236")
+                        .add("password", "123456")
+                        .build();
+                request = new Request.Builder()
+                        .url("http://cybershop4-dev-restapi.dev.co-mall/api/session")
+                        .addHeader("channel", "2")
+                        .addHeader("os","android")
+                        .addHeader("unique","11112")
+                        .post(formBody)
+                        .build();
+                Call mCall = client.newCall(request);
+                mCall.enqueue(new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        Log.e(TAG, "onFailure: e=" + e.toString());
+                    }
+
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        Log.e(TAG, "onResponse: response=" + response);
+                        if (response.code() == 201) {
+//                            Log.e(TAG, "onResponse: body==" + response.body().string());
+
+                            Message msg = new Message();
+                            msg.what = 200;
+                            msg.obj = response.body().string();
+                            handler.sendMessage(msg);
+                        }
+                    }
+                });
+            }
+        });
+
+        /**
+         * http://cybershop4-dev-restapi.dev.co-mall/api/members/members_created_by_mobile
+         * ?phone_number=15101180298&password=123456&sms_verify_code=1234&captcha=1234
+         */
+
+        findViewById(R.id.post2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                client = new OkHttpClient();
+
+
+                FormBody mFormBody = new FormBody.Builder()
+                        .add("phone_number", "15101180298")
+                        .add("password", "123456")
+                        .add("sms_verify_code", "1234")
+                        .add("captcha", "1234")
+                        .build();
+
+                request = new Request.Builder()
+                        .url("http://cybershop4-dev-restapi.dev.co-mall/api/members/members_created_by_mobile")
+                        .post(mFormBody)
+                        .build();
+
+                Call mCall = client.newCall(request);
+                mCall.enqueue(new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        Log.e(TAG, "onFailure: e=" + e.toString());
+                    }
+
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        Log.e(TAG, "onResponse: response=" + response);
+                    }
+                });
+            }
+        });
+
         findViewById(R.id.downloadFile).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -138,7 +222,7 @@ public class Okhttp3DemoActivity extends AppCompatActivity {
     private class MyCallback implements Callback {
 
         @Override
-        public void onFailure(Call call, IOException e) {
+        public void onFailure(@NonNull Call call, IOException e) {
             Message msg = new Message();
             msg.what = 100;
             msg.obj = e;

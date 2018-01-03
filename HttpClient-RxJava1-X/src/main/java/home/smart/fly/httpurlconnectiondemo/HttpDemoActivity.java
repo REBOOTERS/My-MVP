@@ -23,6 +23,8 @@ public class HttpDemoActivity extends AppCompatActivity implements View.OnClickL
         findViewById(R.id.okhttp).setOnClickListener(this);
         findViewById(R.id.okhttp1).setOnClickListener(this);
         findViewById(R.id.okhttp2).setOnClickListener(this);
+        findViewById(R.id.okhttp3).setOnClickListener(this);
+
 
 
     }
@@ -43,6 +45,8 @@ public class HttpDemoActivity extends AppCompatActivity implements View.OnClickL
             intent = new Intent(HttpDemoActivity.this, Okhttp3DownloadsActivity.class);
         } else if (i == R.id.okhttp2) {
             intent = new Intent(HttpDemoActivity.this, Okhttp3DownloadsThreadActivity.class);
+        } else if (i == R.id.okhttp3) {
+            intent = new Intent(HttpDemoActivity.this, ListDataActivity.class);
         }
         if (intent != null) {
             startActivity(intent);
