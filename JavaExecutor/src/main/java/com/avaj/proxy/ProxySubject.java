@@ -9,14 +9,14 @@ package com.avaj.proxy;
  */
 public class ProxySubject implements Subject {
 
-    private RealSubject mRealSubject;
-
-    public ProxySubject(RealSubject realSubject) {
-        mRealSubject = realSubject;
+    private Subject mSubject;
+    // 代理类持有委托类的引用
+    public ProxySubject(Subject realSubject) {
+        mSubject = realSubject;
     }
 
     @Override
     public void doSomething() {
-        mRealSubject.doSomething();
+        mSubject.doSomething();
     }
 }
