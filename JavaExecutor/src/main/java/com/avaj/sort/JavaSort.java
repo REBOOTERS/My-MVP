@@ -15,9 +15,13 @@ public class JavaSort {
 
     private static final float BASE = 1000000.0f;
 
-    private static final int SIZE = 100 ;
+    private static final int SIZE = 100;
 
-    private static int[] array = new int[SIZE];
+    private static int[] array = new int[]{63, 38, 83, 73, 34, 50, 27, 59, 46, 16, 49, 52, 36, 23,
+            41, 41, 87, 31, 69, 18, 5, 24, 48, 88, 75, 26, 61, 10, 13, 67, 29, 59, 44, 7, 97, 70,
+            69, 49, 52, 96, 11, 30, 42, 5, 89, 39, 90, 71, 13, 2, 20, 0, 29, 55, 52, 32, 63, 50,
+            94, 57, 35, 65, 87, 98, 92, 32, 23, 88, 64, 47, 68, 75, 47, 20, 36, 93, 94, 92, 87,
+            13, 60, 68, 18, 86, 3, 30, 88, 6, 8, 29, 28, 65, 4, 14, 39, 5, 29, 16, 60, 42};
 
 
     /**
@@ -66,20 +70,21 @@ public class JavaSort {
         System.out.println("程序运行时间：" + (endTime - startTime) / BASE + "ms");    //输出程序运行时间
     }
 
-    private static void ShellSort(){
+    private static void ShellSort() {
         long startTime = System.nanoTime();    //获取开始时间
-        double flag=array.length;
+        double flag = array.length;
         int temp;
         while (true) {
             flag = Math.ceil(flag / 2);
-            int step= (int) flag;
-            for(int i=0;i<flag;i++) {
-                for(int x=i+step;x<array.length;x+=step){
-                    temp=array[x];
-                    for(int j=x-step;j>=0&&temp<array[j];j--) {
-                        array[j+step]=array[j];
+            int step = (int) flag;
+            for (int i = 0; i < flag; i++) {
+                for (int x = i + step; x < array.length; x += step) {
+                    int j = x - step;
+                    temp = array[x];
+                    for (; j >= 0 && temp < array[j]; j = j - step) {
+                        array[j + step] = array[j];
                     }
-                    array[x+step]=temp;
+                    array[j + step] = temp;
                 }
             }
             if (step == 1) {
@@ -169,11 +174,6 @@ public class JavaSort {
 //        List<Integer> mList = IntStream.of(array).boxed().collect(Collectors.toList());
 //
 //        System.out.println("list size is " + mList.size());
-
-
-        for (int i = 0; i < SIZE; i++) {
-            array[i] = (int) (Math.random() * SIZE);
-        }
 
 
         System.out.println("The Original data is :");
