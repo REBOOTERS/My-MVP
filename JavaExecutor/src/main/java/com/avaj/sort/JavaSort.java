@@ -66,6 +66,30 @@ public class JavaSort {
         System.out.println("程序运行时间：" + (endTime - startTime) / BASE + "ms");    //输出程序运行时间
     }
 
+    private static void ShellSort(){
+        long startTime = System.nanoTime();    //获取开始时间
+        double flag=array.length;
+        int temp;
+        while (true) {
+            flag = Math.ceil(flag / 2);
+            int step= (int) flag;
+            for(int i=0;i<flag;i++) {
+                for(int x=i+step;x<array.length;x+=step){
+                    temp=array[x];
+                    for(int j=x-step;j>=0&&temp<array[j];j--) {
+                        array[j+step]=array[j];
+                    }
+                    array[x+step]=temp;
+                }
+            }
+            if (step == 1) {
+                break;
+            }
+        }
+        long endTime = System.nanoTime();    //获取结束时间
+        System.out.println("程序运行时间：" + (endTime - startTime) / BASE + "ms");    //输出程序运行时间
+    }
+
 
     private static void BubbleSort() {
         long startTime = System.nanoTime();    //获取开始时间
@@ -154,7 +178,8 @@ public class JavaSort {
 
         System.out.println("The Original data is :");
         System.out.println(Arrays.toString(array));
-        QuickInsertSort();
+//        QuickInsertSort();
+        ShellSort();
 //        BubbleSort2();
 //        selectSort();
         System.out.print("\nAfter Sort data is : ");
