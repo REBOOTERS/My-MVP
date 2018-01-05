@@ -1,7 +1,6 @@
 package huyifei.mymvp;
 
 import android.app.Activity;
-import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
@@ -65,8 +64,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     Proxy mProxy;
 
     Handler mHandler;
-
-
+    HashMapActivity map;
     ArrayList mArrayList;
     Deque mDeque;
     Stack mStack;
@@ -77,7 +75,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     ClassLoader mClassLoader;
 
     NotificationManager mNotificationManager;
-    Notification m;
     NotificationCompat  mNotificationCompat;
 
 

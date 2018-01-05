@@ -1,7 +1,11 @@
 package com.avaj;
 
+import java.util.HashMap;
+
 public class Runner {
     private static final String DOWNLOAD_URL = "https://raw.githubusercontent.com/REBOOTERS/SomeFile/master/App.pdf";
+
+    HashMap mHashMap;
 
     public static void main(String[] args) {
 //        System.err.println("File Download ----->");
