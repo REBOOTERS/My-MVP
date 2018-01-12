@@ -42,6 +42,12 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:text="post-sign-up" />
+        <Button
+            android:id="@+id/post3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="add-to-ShopCart" />
 
         <Button
             android:id="@+id/downloadFile"

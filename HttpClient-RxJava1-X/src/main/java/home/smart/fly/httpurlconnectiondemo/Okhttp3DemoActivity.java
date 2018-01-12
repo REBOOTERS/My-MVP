@@ -151,10 +151,11 @@ public class Okhttp3DemoActivity extends AppCompatActivity {
                         Log.e(TAG, "onResponse: response=" + response);
                         if (response.code() == 201) {
 //                            Log.e(TAG, "onResponse: body==" + response.body().string());
-
+                            String body=response.body().string();
+                            Log.e(TAG, "onResponse: body="+body );
                             Message msg = new Message();
                             msg.what = 200;
-                            msg.obj = response.body().string();
+                            msg.obj = body;
                             handler.sendMessage(msg);
                         }
                     }
@@ -197,6 +198,42 @@ public class Okhttp3DemoActivity extends AppCompatActivity {
                         Log.e(TAG, "onResponse: response=" + response);
                     }
                 });
+            }
+        });
+
+
+        findViewById(R.id.post3).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                client=new OkHttpClient();
+
+                FormBody mFormBody=new FormBody.Builder()
+                        .add("quantity","1")
+                        .build();
+
+                request=new Request.Builder()
+                        .url("http://cybershop4-dev-restapi.dev.co-mall/api/carts/mine/baskets/items?goods_id=30055")
+                        .addHeader("channel", "2")
+                        .addHeader("os","android")
+                        .addHeader("unique","11112")
+                        .addHeader("userSession","72D212F46592CC833B55A94D6A683E5D")
+                        .post(mFormBody)
+                        .build();
+
+                Call mCall = client.newCall(request);
+                mCall.enqueue(new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        Log.e(TAG, "onFailure: e=" + e.toString());
+                    }
+
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        Log.e(TAG, "onResponse: response=" + response);
+                    }
+                });
+
+
             }
         });
 
