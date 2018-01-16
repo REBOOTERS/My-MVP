@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     ClassLoader mClassLoader;
 
     NotificationManager mNotificationManager;
-    NotificationCompat  mNotificationCompat;
+    NotificationCompat mNotificationCompat;
 
 
     @Override
@@ -90,6 +90,22 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                 .setLicenseKey("52d5f19f17d849d1b7cf04dc686969dd")
                 .withLocationServiceEnabled(true)
                 .start(this.getApplicationContext());
+
+        testCopy();
+    }
+
+    private void testCopy() {
+        int[] a = new int[]{1, 2, 3, 4, 5, 6, 7, 8};
+        int[] b = new int[a.length * 2];
+        b[0] = 12;
+        b[1] = 13;
+        b[2] = 14;
+
+        System.arraycopy(a, 0, b, 3, a.length);
+
+        for (int i = 0; i < b.length; i++) {
+            System.out.printf("a[%d]=%d\n", i, b[i]);
+        }
     }
 
 
@@ -156,8 +172,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             LayoutInflater inflater = getLayoutInflater();
             View view = inflater.inflate(R.layout.demo_info_item, null);
-            MyHolder holder = new MyHolder(view);
-            return holder;
+            return new MyHolder(view);
         }
 
         @Override
