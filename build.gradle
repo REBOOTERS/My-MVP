@@ -1,6 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
+    ext.kotlin_version = '1.2.10'
     repositories {
         jcenter()
         //for greenDao
@@ -20,6 +21,7 @@ buildscript {
         classpath 'com.networkbench.newlens.agent.android:agent-gradle-plugin:2.7.0'
         //for butterknife
         classpath 'com.jakewharton:butterknife-gradle-plugin:8.4.0'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
 

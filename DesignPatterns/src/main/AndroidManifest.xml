@@ -12,6 +12,8 @@
         </activity>
         <activity android:name=".proxy.normal.StaticProxyActivity">
         </activity>
+        <activity android:name=".adapter.AdapterActivity">
+        </activity>
     </application>
 
 </manifest>

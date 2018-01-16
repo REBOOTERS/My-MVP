@@ -19,6 +19,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import home.times.designpatterns.adapter.AdapterActivity;
 import home.times.designpatterns.builder.BuilderPatternActivity;
 import home.times.designpatterns.factory.FactoryPatternActivity;
 import home.times.designpatterns.proxy.normal.StaticProxyActivity;
@@ -47,8 +48,9 @@ public class DesignPatternActivity extends AppCompatActivity {
 
     private void setData() {
         demos.add(new ItemInfo(R.string.factory, FactoryPatternActivity.class));
-        demos.add(new ItemInfo(R.string.factory, BuilderPatternActivity.class));
-        demos.add(new ItemInfo(R.string.factory, StaticProxyActivity.class));
+        demos.add(new ItemInfo(R.string.builder, BuilderPatternActivity.class));
+        demos.add(new ItemInfo(R.string.static_proxy, StaticProxyActivity.class));
+        demos.add(new ItemInfo(R.string.adapter, AdapterActivity.class));
 
     }
 

@@ -17,11 +17,15 @@ public class JavaSort {
 
     private static final int SIZE = 100;
 
-    private static int[] array = new int[]{63, 38, 83, 73, 34, 50, 27, 59, 46, 16, 49, 52, 36, 23,
-            41, 41, 87, 31, 69, 18, 5, 24, 48, 88, 75, 26, 61, 10, 13, 67, 29, 59, 44, 7, 97, 70,
-            69, 49, 52, 96, 11, 30, 42, 5, 89, 39, 90, 71, 13, 2, 20, 0, 29, 55, 52, 32, 63, 50,
-            94, 57, 35, 65, 87, 98, 92, 32, 23, 88, 64, 47, 68, 75, 47, 20, 36, 93, 94, 92, 87,
-            13, 60, 68, 18, 86, 3, 30, 88, 6, 8, 29, 28, 65, 4, 14, 39, 5, 29, 16, 60, 42};
+    //    private static int[] array = new int[]{63, 38, 83, 73, 34, 50, 27, 59, 46, 16, 49, 52, 36, 23,
+//            41, 41, 87, 31, 69, 18, 5, 24, 48, 88, 75, 26, 61, 10, 13, 67, 29, 59, 44, 7, 97, 70,
+//            69, 49, 52, 96, 11, 30, 42, 5, 89, 39, 90, 71, 13, 2, 20, 0, 29, 55, 52, 32, 63, 50,
+//            94, 57, 35, 65, 87, 98, 92, 32, 23, 88, 64, 47, 68, 75, 47, 20, 36, 93, 94, 92, 87,
+//            13, 60, 68, 18, 86, 3, 30, 88, 6, 8, 29, 28, 65, 4, 14, 39, 5, 29, 16, 60, 42};
+    private static int[] array = new int[]{63, 38, 83, 73, 34, 50, 27, 59, 46, 16, 49, 52,
+            36, 23, 41, 87, 31, 69, 18, 5, 24, 48, 88, 75, 26, 61, 10, 13, 67, 29, 44, 7,
+            97, 70, 96, 11, 30, 42, 89, 39, 90, 71, 2, 20, 0, 55, 32, 94, 57, 35, 65, 98,
+            92, 64, 47, 68, 93, 60, 86, 3, 6, 8, 28, 4, 14};
 
 
     /**
@@ -29,7 +33,6 @@ public class JavaSort {
      */
     private static void selectSort() {
         long startTime = System.nanoTime();    //获取开始时间
-        int temp;
         for (int i = 0; i < array.length - 1; i++) {
             int k = i;
             for (int j = i + 1; j < array.length; j++) {
@@ -38,7 +41,7 @@ public class JavaSort {
                 }
             }
             if (k != i) {
-                temp = array[i];
+                int temp = array[i];
                 array[i] = array[k];
                 array[k] = temp;
             }
@@ -52,7 +55,7 @@ public class JavaSort {
     /**
      * 快速直接插入排序
      */
-    private static void QuickInsertSort() {
+    private static void insert() {
         long startTime = System.nanoTime();    //获取开始时间
         int temp;
         for (int i = 1; i < array.length; i++) {
@@ -95,6 +98,46 @@ public class JavaSort {
         System.out.println("程序运行时间：" + (endTime - startTime) / BASE + "ms");    //输出程序运行时间
     }
 
+    private static int partition(int[] array, int low, int high) {
+        int temp = array[low];
+        int i = low;
+        int j = high;
+        while (i != j) {
+            while (temp < array[j] && i < j) {
+                j--;
+            }
+
+            if (i < j) {
+                array[i] = array[j];
+                i++;
+
+                while (temp > array[i] && i < j) {
+                    i++;
+                }
+
+                if (i < j) {
+                    array[j] = array[i];
+                    j--;
+                }
+
+
+            }
+
+
+        }
+
+        array[i] = temp;
+        return i;
+    }
+
+    private static void quickSort(int[] array, int low, int high) {
+        if (low < high) {
+            int i = partition(array, low, high);
+            quickSort(array, low, i - 1);
+            quickSort(array, i+1, high);
+        }
+    }
+
 
     private static void BubbleSort() {
         long startTime = System.nanoTime();    //获取开始时间
@@ -117,18 +160,18 @@ public class JavaSort {
     private static void BubbleSort2() {
         long startTime = System.nanoTime();    //获取开始时间
         int temp;
-        int flag = array.length - 1;
-        while (flag > 0) {
-            int n = flag - 1;
-            flag = 0;
-            for (int i = 0; i <= n; i++) {
+        int lastChange = array.length - 1;
+        while (lastChange > 0) {
+            int n = lastChange;
+            lastChange = 0;
+            for (int i = 0; i < n; i++) {
                 if (array[i] > array[i + 1]) {
                     temp = array[i];
                     array[i] = array[i + 1];
                     array[i + 1] = temp;
-                    flag = i;
+                    lastChange = i;
                 }
-                System.out.format("when i=%d ,flag=%d     ", i, flag);
+                System.out.format("when i=%d ,flag=%d     ", i, lastChange);
                 System.out.println(Arrays.toString(array));
             }
         }
@@ -176,19 +219,24 @@ public class JavaSort {
 //        System.out.println("list size is " + mList.size());
 
 
-        System.out.println("The Original data is :");
+        System.out.println("The Original data is :\n");
         System.out.println(Arrays.toString(array));
-//        QuickInsertSort();
-        ShellSort();
+//        insert();
+//        ShellSort();
 //        BubbleSort2();
 //        selectSort();
-        System.out.print("\nAfter Sort data is : ");
+
+//        partation(array, 0, array.length - 1);
+
+        quickSort(array,0,array.length-1);
+
+        System.out.print("\nAfter Sort data is : \n");
         System.out.println(Arrays.toString(array));
 
         int pos = BinarySearch(array, 89);
 
         if (pos != -1) {
-            System.out.println("\nSearch result position=" + pos);
+            System.out.printf("\nfind %d at index=%d", 89, pos);
         } else {
             System.err.println("\nerror !");
         }
