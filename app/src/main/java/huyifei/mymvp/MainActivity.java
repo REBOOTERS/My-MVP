@@ -26,6 +26,7 @@ import com.networkbench.agent.impl.NBSAppAgent;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
@@ -106,6 +107,19 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         for (int i = 0; i < b.length; i++) {
             System.out.printf("a[%d]=%d\n", i, b[i]);
         }
+
+
+        char[] src = {'a', 'b', 'c', 'd', 'e', 'f'};
+        System.arraycopy(src, 0, src, 1, src.length - 1);
+        System.out.println("the length=" + src.length);
+        System.out.println("now src=" + Arrays.toString(src));
+
+
+        String code = "abcdefghijklmn";
+
+        int num = code.indexOf("cde");
+
+        System.out.println("the index of cde at abcdefghijklmn is " + num);
     }
 
 
