@@ -1,0 +1,83 @@
+@startuml
+
+interface ObservableSource {
+    void subscribe(Observer<? super T> observer)
+}
+
+
+interface Observer{
+        void onSubscribe( Disposable d);
+
+        void onNext( T t);
+
+        void onError( Throwable e);
+
+        void onComplete();
+}
+
+interface HasUpstreamObservableSource {
+    source()
+}
+
+
+interface Disposable{
+        void dispose();
+        boolean isDisposed();
+}
+
+abstract class Observable{
+    abstract subscribeActual(Observer<? super T> observer)
+}
+
+abstract class AbstractObservableWithUpstream{
+    * final ObservableSource<T> source;
+
+}
+
+class ObservableSubscribeOn {
+    final Scheduler scheduler
+
+    * subscribeActual(Observer<? super T> observer)
+
+}
+
+
+abstract class Scheduler {
+    + abstract Worker createWorker()
+    + Disposable scheduleDirect(Runnable run)
+}
+
+class NewThreadScheduler{
+    ThreadFactory threadFactory
+}
+
+abstract  class Worker{
+  + abstract Disposable schedule();
+}
+
+class NewThreadWorker {
+    - final ScheduledExecutorService executor;
+}
+
+class SubscribeTask {
+    + void run()
+}
+
+note right of NewThreadScheduler : Schedulers.NewThread()
+
+
+ObservableSource <|.. Observable
+SubscribeTask <-- ObservableSubscribeOn
+Observer <-- ObservableSubscribeOn
+Scheduler <-- ObservableSubscribeOn
+Observable <|-- AbstractObservableWithUpstream
+HasUpstreamObservableSource <|.. AbstractObservableWithUpstream
+AbstractObservableWithUpstream <|-- ObservableSubscribeOn
+
+
+Scheduler <|-- NewThreadScheduler
+Worker <-- Scheduler
+Worker <|-- NewThreadWorker
+Disposable <|.. NewThreadWorker
+
+@enduml

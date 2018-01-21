@@ -1,0 +1,74 @@
+@startuml
+
+interface ObservableSource {
+    void subscribe(Observer<? super T> observer)
+}
+
+note top of ObservableSource : 抽象主题（被观察者）
+note top of Observer : 抽象观察者
+note right of Observable : 具体观察者
+interface Observer{
+        void onSubscribe( Disposable d);
+
+        void onNext( T t);
+
+        void onError( Throwable e);
+
+        void onComplete();
+}
+
+interface ObservableOnSubscribe{
+    void subscribe(ObservableEmitter<T> e)
+}
+
+interface ObservableEmitter{
+
+    void setDisposable(Disposable d);
+
+
+    void setCancellable(Cancellable c);
+
+
+    boolean isDisposed();
+
+    boolean tryOnError( Throwable t);
+}
+
+interface Emitter{
+        void onNext(T value);
+        void onError(Throwable error);
+        void onComplete();
+}
+
+interface Disposable{
+        void dispose();
+        boolean isDisposed();
+}
+
+abstract class Observable{
+    abstract subscribeActual(Observer<? super T> observer)
+}
+
+class ObservableCreate {
+    final ObservableOnSubscribe<T> source;
+
+    * subscribeActual(Observer<? super T> observer)
+}
+
+class CreateEmitter {
+    final Observer<? super T> observer
+}
+
+Emitter <|-- ObservableEmitter
+ObservableEmitter <|..CreateEmitter
+Disposable <|..CreateEmitter
+
+
+ObservableOnSubscribe <--ObservableCreate
+ObservableSource <|.. Observable
+Observable <|-- ObservableCreate
+Observer <-- CreateEmitter
+
+CreateEmitter <-- ObservableCreate
+
+@enduml
