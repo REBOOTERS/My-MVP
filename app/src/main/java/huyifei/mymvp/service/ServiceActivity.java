@@ -14,6 +14,8 @@ public class ServiceActivity extends AppCompatActivity {
     //
     private MyServiceConnection connection;
 
+    private Object mObject;
+
     /**
      * [Service 生命周期]("http://www.jianshu.com/p/8d0cde35eb10")
      *

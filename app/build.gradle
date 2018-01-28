@@ -90,7 +90,7 @@ android {
     }
 }
 
-def execute360JiaguCmd(cmd){
+def execute360JiaguCmd(cmd) {
     def p = cmd.execute(null, new File("D:\\搜狗高速下载\\jiagubao\\jiagu\\java\\bin"))
     println p.text
     p.waitFor()  // 用以等待外部进程调用结束

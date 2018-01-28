@@ -6,12 +6,31 @@ import java.util.Arrays;
 public class Runner {
 
 
+    private static int jiecheng(int i){
+        if(i==1){
+            return i;
+        }else {
+            return i*jiecheng(i-1);
+        }
+    }
+
     public static void main(String[] args) {
+
+        Object mO=new Object();
+
+        mO.hashCode();
+
+        System.out.println("the 5! ="+jiecheng(5));
+
         String a = "abc";
         String b = "abc";
+        String c=a;
+        String d=b;
 
         System.out.println("a==b " + a == b);
         System.out.println("a.equals(b) " + a.equals(b));
+        System.out.println("c==d"+c==d);
+        System.out.println("c.equals(d)="+c.equals(d));
         int count = 0;
         ArrayList<Integer> datas = new ArrayList<>();
         while (count < 100) {
@@ -34,24 +53,23 @@ public class Runner {
             array[j + 1] = temp;
         }
 
+        for(int i=0;i<datas.size();i++){
+            if(datas.get(i)==10){
+                datas.remove(i);
+            }
+        }
 
-//        for (int i = 0; i < array.length - 1; i++) {
-//            int k = i;
-//            for (int j = i + 1; j < array.length; j++) {
-//                if ((int) array[j] < (int) array[k]) {
-//                    k = j;
-//                }
-//
-//            }
-//
-//            if (k != i) {
-//                int t = (int) array[i];
-//                array[i] = array[k];
-//                array[k] = t;
-//            }
-//
-//        }
+
+
+
+
         System.out.println("now the datas = " + Arrays.toString(array));
+
+
+
+        for(Color mColor:Color.values()){
+            System.out.println(mColor);
+        }
     }
 
 

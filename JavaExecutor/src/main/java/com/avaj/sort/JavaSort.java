@@ -1,7 +1,9 @@
 package com.avaj.sort;
 
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * author : rookie
@@ -15,17 +17,30 @@ public class JavaSort {
 
     private static final float BASE = 1000000.0f;
 
-    private static final int SIZE = 100;
 
-    //    private static int[] array = new int[]{63, 38, 83, 73, 34, 50, 27, 59, 46, 16, 49, 52, 36, 23,
-//            41, 41, 87, 31, 69, 18, 5, 24, 48, 88, 75, 26, 61, 10, 13, 67, 29, 59, 44, 7, 97, 70,
-//            69, 49, 52, 96, 11, 30, 42, 5, 89, 39, 90, 71, 13, 2, 20, 0, 29, 55, 52, 32, 63, 50,
-//            94, 57, 35, 65, 87, 98, 92, 32, 23, 88, 64, 47, 68, 75, 47, 20, 36, 93, 94, 92, 87,
-//            13, 60, 68, 18, 86, 3, 30, 88, 6, 8, 29, 28, 65, 4, 14, 39, 5, 29, 16, 60, 42};
-    private static int[] array = new int[]{63, 38, 83, 73, 34, 50, 27, 59, 46, 16, 49, 52,
-            36, 23, 41, 87, 31, 69, 18, 5, 24, 48, 88, 75, 26, 61, 10, 13, 67, 29, 44, 7,
-            97, 70, 96, 11, 30, 42, 89, 39, 90, 71, 2, 20, 0, 55, 32, 94, 57, 35, 65, 98,
-            92, 64, 47, 68, 93, 60, 86, 3, 6, 8, 28, 4, 14};
+    private static int[] array = new int[100];
+
+
+    private static int[] generateRandomArray(){
+        int[] array = new int[100];
+        List<Integer> mList = new ArrayList<>();
+
+        int count=0;
+        while(count<100){
+            int data= (int) (Math.random()*100);
+            if(!mList.contains(data)){
+                mList.add(data);
+                count++;
+            }
+        }
+
+        for(int j=0;j<mList.toArray().length;j++){
+            array[j]= (int) mList.toArray()[j];
+        }
+
+
+        return array;
+    }
 
 
     /**
@@ -218,7 +233,7 @@ public class JavaSort {
 //
 //        System.out.println("list size is " + mList.size());
 
-
+        array=generateRandomArray();
         System.out.println("The Original data is :\n");
         System.out.println(Arrays.toString(array));
 //        insert();

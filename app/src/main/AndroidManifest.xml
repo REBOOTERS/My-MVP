@@ -83,6 +83,16 @@
         </activity>
         <activity android:name=".LifeCycleActivity">
         </activity>
+
+        <service
+            android:name=".service.ipc.CustomRemoteService"
+            android:enabled="true"
+            android:process=":remote"
+            android:exported="false">
+        </service>
+
+        <activity android:name=".service.ipc.AIDLActivity">
+        </activity>
     </application>
 
 </manifest>

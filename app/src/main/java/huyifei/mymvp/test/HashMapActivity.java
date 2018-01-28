@@ -3,13 +3,16 @@ package huyifei.mymvp.test;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.TreeMap;
 
 import huyifei.mymvp.R;
 
@@ -38,6 +41,37 @@ public class HashMapActivity extends AppCompatActivity implements View.OnClickLi
         mKey = findViewById(R.id.key);
         mValue = findViewById(R.id.value);
         mResult = findViewById(R.id.result);
+
+
+        mHashMap.put("a", "Apple");
+        mHashMap.put("b", "basket");
+        mHashMap.put("c", "cell");
+        mHashMap.put("d", "dog");
+        mHashMap.put("e", "Earth");
+        mHashMap.put("f", "football");
+
+
+        Log.e(TAG, "onCreate: mHashMap=" + mHashMap);
+
+        TreeMap mTreeMap = new TreeMap();
+        mTreeMap.putAll(mHashMap);
+
+        Log.e(TAG, "onCreate: mTreeMap=" + mTreeMap);
+
+
+        // 按照Value对map进行排序
+        TreeMap mTreeMap1=new TreeMap(new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return mHashMap.get(o1).compareTo(mHashMap.get(o2));
+            }
+
+
+        });
+
+        mTreeMap1.putAll(mHashMap);
+        Log.e(TAG, "onCreate: mTreeMap1=" + mTreeMap1);
+
 
     }
 
