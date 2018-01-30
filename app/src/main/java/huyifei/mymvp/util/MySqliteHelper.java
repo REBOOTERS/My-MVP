@@ -101,7 +101,7 @@ public class MySqliteHelper extends SQLiteOpenHelper {
         boolean result = false;
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
         int flag = sqLiteDatabase.delete(TABLE_NAME, null, null);
-        result = flag == 0 ? false : true;
+        result = flag != 0;
         return result;
     }
 
@@ -109,7 +109,7 @@ public class MySqliteHelper extends SQLiteOpenHelper {
         boolean result=false;
         SQLiteDatabase sqLiteDatabase=getWritableDatabase();
         int flag = sqLiteDatabase.delete(TABLE_NAME, whereClause, whereArgs);
-        result =flag==0 ? false: true;
+        result = flag != 0;
         return  result;
     }
 

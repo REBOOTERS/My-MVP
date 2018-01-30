@@ -32,7 +32,6 @@ public class ServiceActivity extends AppCompatActivity {
         connection = new MyServiceConnection();
         actionView();
 
-
     }
 
     private void actionView() {

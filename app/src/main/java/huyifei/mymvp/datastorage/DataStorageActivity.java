@@ -43,6 +43,7 @@ public class DataStorageActivity extends AppCompatActivity {
     private CheckBox mCheckBox;
     private EditText mEditText;
     private Button write, read;
+    private TextView content;
     private Button insert, getall, delall, get, del, greendao;
     private TextView resultTv;
     private Button getContacts;
@@ -51,7 +52,7 @@ public class DataStorageActivity extends AppCompatActivity {
     private SharedPreferences sp;
     private final String SP_NAME = "only";
     //
-    private String FILENAME = "ONLY";
+    private String FILENAME = "ONLY.txt";
     //Sqlite
     private MySqliteHelper sqHelper;
     //ContentResolver
@@ -116,7 +117,7 @@ public class DataStorageActivity extends AppCompatActivity {
                 }
             }
         });
-
+        content = V.f(this, R.id.content);
         read.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -129,7 +130,8 @@ public class DataStorageActivity extends AppCompatActivity {
                     while ((hasRead = fis.read(bytes)) != -1) {
                         str = new String(bytes, 0, hasRead);
                     }
-                    mEditText.setText(str);
+                    content.setText("");
+                    content.setText(str);
                     fis.close();
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();

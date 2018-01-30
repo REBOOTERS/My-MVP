@@ -1,5 +1,7 @@
 package huyifei.mymvp.util;
 
+import android.os.AsyncTask;
+
 import java.util.concurrent.Callable;
 import java.util.concurrent.FutureTask;
 
@@ -30,5 +32,15 @@ public class MyAsyncTask<Params,Progress,Result> {
                 super.done();
             }
         };
+
+        new MyTask().execute("");
+    }
+
+    class MyTask extends AsyncTask<String,Void,Void>{
+
+        @Override
+        protected Void doInBackground(String... strings) {
+            return null;
+        }
     }
 }
