@@ -35,7 +35,6 @@ import java.util.Locale;
 
 import huyifei.mymvp.R;
 import huyifei.mymvp.util.MySqliteHelper;
-import huyifei.mymvp.util.V;
 
 public class DataStorageActivity extends AppCompatActivity {
     private Context mContext;
@@ -71,6 +70,8 @@ public class DataStorageActivity extends AppCompatActivity {
 
         //
         sqHelper = new MySqliteHelper(mContext);
+
+        FILENAME.toCharArray();
     }
 
     private void initSetup() {
@@ -89,7 +90,7 @@ public class DataStorageActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        mCheckBox = V.f(this, R.id.checkBox);
+        mCheckBox = findViewById(R.id.checkBox);
 
         mCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -99,9 +100,9 @@ public class DataStorageActivity extends AppCompatActivity {
         });
 
         ///
-        mEditText = V.f(this, R.id.et);
-        write = V.f(this, R.id.write);
-        read = V.f(this, R.id.read);
+        mEditText=findViewById(R.id.et);
+        write = findViewById(R.id.write);
+        read = findViewById(R.id.read);
         write.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -117,7 +118,7 @@ public class DataStorageActivity extends AppCompatActivity {
                 }
             }
         });
-        content = V.f(this, R.id.content);
+        content = findViewById(R.id.content);
         read.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -142,8 +143,8 @@ public class DataStorageActivity extends AppCompatActivity {
         });
         //
 
-        resultTv = V.f(this, R.id.resultTv);
-        insert = V.f(this, R.id.insert);
+        resultTv = findViewById(R.id.resultTv);
+        insert = findViewById(R.id.insert);
         insert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -166,7 +167,8 @@ public class DataStorageActivity extends AppCompatActivity {
             }
         });
 
-        getall = V.f(this, R.id.getall);
+        getall = findViewById(R.id.getall);
+
         getall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -181,7 +183,7 @@ public class DataStorageActivity extends AppCompatActivity {
             }
         });
 
-        delall = V.f(this, R.id.delall);
+        delall = findViewById(R.id.delall);
         delall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -194,7 +196,7 @@ public class DataStorageActivity extends AppCompatActivity {
             }
         });
 
-        get = V.f(this, R.id.get);
+        get = findViewById(R.id.get);
         get.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -208,7 +210,7 @@ public class DataStorageActivity extends AppCompatActivity {
             }
         });
 
-        del = V.f(this, R.id.del);
+        del = findViewById(R.id.del);
         del.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -225,7 +227,7 @@ public class DataStorageActivity extends AppCompatActivity {
             }
         });
 
-        greendao = V.f(this, R.id.greendao);
+        greendao = findViewById(R.id.greendao);
         greendao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -233,8 +235,8 @@ public class DataStorageActivity extends AppCompatActivity {
             }
         });
 
-        mListView = V.f(this, R.id.listView);
-        getContacts = V.f(this, R.id.getContacts);
+        mListView = findViewById(R.id.listView);
+        getContacts = findViewById(R.id.getContacts);
 
         getContacts.setOnClickListener(new View.OnClickListener() {
             @Override

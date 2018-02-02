@@ -87,11 +87,13 @@
         <service
             android:name=".service.ipc.CustomRemoteService"
             android:enabled="true"
-            android:process=":remote"
-            android:exported="false">
+            android:exported="false"
+            android:process=":remote">
         </service>
 
         <activity android:name=".service.ipc.AIDLActivity">
+        </activity>
+        <activity android:name=".service.ThreadLocalTestActivity">
         </activity>
     </application>
 
