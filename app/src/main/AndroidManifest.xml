@@ -93,6 +93,8 @@
 
         <activity android:name=".service.ipc.AIDLActivity">
         </activity>
+        <activity android:name=".service.ThreadLocalTestActivity.java">
+        </activity>
         <activity android:name=".service.ThreadLocalTestActivity">
         </activity>
     </application>

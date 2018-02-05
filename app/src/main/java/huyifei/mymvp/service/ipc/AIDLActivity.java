@@ -61,6 +61,10 @@ public class AIDLActivity extends AppCompatActivity {
                 String info = mIMyAidlInterface.loadData("http://www.baidu.com");
                 Log.e(TAG, "onServiceConnected: info=" + info);
 
+
+                int pos = mIMyAidlInterface.binarySearch(5);
+                Log.e(TAG, "onServiceConnected: find 5 at pos=" + pos);
+
             } catch (RemoteException e) {
                 e.printStackTrace();
             }

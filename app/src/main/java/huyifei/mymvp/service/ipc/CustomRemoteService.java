@@ -26,6 +26,26 @@ public class CustomRemoteService extends Service {
             return a+b;
         }
 
+        @Override
+        public int binarySearch(int target) throws RemoteException {
+            int a[]=new int[]{1,2,3,4,5,6,7,8,9,10};
+
+            int low=0;
+            int high=a.length-1;
+            int mid=0;
+            while (low < high) {
+                mid=(low+high)>>>1;
+                if(target<a[mid]){
+                    high=mid-1;
+                }else if(target>a[mid]){
+                    low=mid+1;
+                }else{
+                    return mid;
+                }
+            }
+
+            return -1;
+        }
 
 
         @Override

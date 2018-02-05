@@ -1,11 +1,13 @@
 package com.avaj.datastruct.linear;
 
+import java.util.Arrays;
+
 /**
  * Created by Rookie on 2017/7/31.
  */
 
 public class MainClass {
-
+   Arrays  mArrays;
 
     public static void main(String[] args) {
 //        testDoubleLink();

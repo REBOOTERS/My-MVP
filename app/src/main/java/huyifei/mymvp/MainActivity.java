@@ -29,7 +29,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Deque;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Stack;
 import java.util.Vector;
 
@@ -45,6 +44,7 @@ import huyifei.mymvp.classloader.ClassLoaderActivity;
 import huyifei.mymvp.classloader.SimpleHotFixActivity;
 import huyifei.mymvp.datastorage.DataStorageActivity;
 import huyifei.mymvp.service.ServiceActivity;
+import huyifei.mymvp.service.ThreadLocalTestActivity;
 import huyifei.mymvp.service.ipc.AIDLActivity;
 import huyifei.mymvp.test.HashMapActivity;
 import huyifei.mymvp.util.V;
@@ -57,10 +57,10 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     private Context mContext;
     private RecyclerView recyclerView;
     private SwipeRefreshLayout swipeRefreshLayout;
-    private List<ItemInfo> demos = new ArrayList<>();
+    private ArrayList<ItemInfo> demos = new ArrayList<>();
 
     private Toolbar toolbar;
-
+    private Arrays mArrays;
     AsyncTask mAsyncTask;
     InvocationHandler m;
     Proxy mProxy;
@@ -103,6 +103,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         b[1] = 13;
         b[2] = 14;
 
+
         System.arraycopy(a, 0, b, 3, a.length);
 
         for (int i = 0; i < b.length; i++) {
@@ -142,6 +143,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         demos.add(new ItemInfo(R.string.service, ServiceActivity.class));
         demos.add(new ItemInfo(R.string.aidl, AIDLActivity.class));
         demos.add(new ItemInfo(R.string.service, HashMapActivity.class));
+        demos.add(new ItemInfo(R.string.threadLocal, ThreadLocalTestActivity.class));
     }
 
 

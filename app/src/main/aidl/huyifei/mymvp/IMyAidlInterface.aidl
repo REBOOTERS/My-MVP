@@ -13,6 +13,8 @@ interface IMyAidlInterface {
 
     int add(int a,int b);
 
+    int binarySearch(int target);
+
     String loadData(String url);
 
     String reback();

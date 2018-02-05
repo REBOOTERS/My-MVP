@@ -28,6 +28,7 @@
     <string name="DataStorage">Android 数据存储实现</string>
     <string name="BroadcastReceiver">BroadcastReceiver demo</string>
     <string name="service">Service demo</string>
+    <string name="threadLocal">thread Local demo</string>
     <string name="aidl">AIDL demo</string>
     <string name="classloader">ClassLoader 相关</string>
     <string name="hotfix">Android 热修复简单实现相关</string>
