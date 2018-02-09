@@ -147,8 +147,6 @@ public class RxJavaBaseActivity extends AppCompatActivity {
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(BASE_URL);
         builder.client(mClient);
-//        builder.addConverterFactory(GsonConverterFactory.create());
-//        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
 
         Retrofit mRetrofit = builder.build();
 
