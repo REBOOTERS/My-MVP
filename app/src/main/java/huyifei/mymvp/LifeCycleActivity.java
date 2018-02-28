@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.os.SystemClock;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 
@@ -20,6 +21,13 @@ public class LifeCycleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_life_cycle);
         Log.e(TAG, "onCreate: ");
+
+        findViewById(R.id.button5).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SystemClock.sleep(7000);
+            }
+        });
 
         findViewById(R.id.button4).setOnClickListener(new View.OnClickListener() {
             @Override

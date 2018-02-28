@@ -15,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,6 +60,9 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     private SwipeRefreshLayout swipeRefreshLayout;
     private ArrayList<ItemInfo> demos = new ArrayList<>();
 
+    private static final String TAG = "MainActivity";
+    private static final int One_M = 1024 * 1024;
+
     private Toolbar toolbar;
     private Arrays mArrays;
     AsyncTask mAsyncTask;
@@ -94,6 +98,12 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                 .start(this.getApplicationContext());
 
         testCopy();
+
+        long max = Runtime.getRuntime().maxMemory();
+
+        Log.e(TAG, "onCreate: maxMemory==" + max / One_M+" MB");
+
+
     }
 
     private void testCopy() {
