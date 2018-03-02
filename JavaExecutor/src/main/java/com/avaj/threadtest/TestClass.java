@@ -7,11 +7,14 @@ package com.avaj.threadtest;
 public class TestClass {
     public static void main(String[] args) {
         SyncThread syncThread = new SyncThread();
-        Thread thread1 = new Thread(syncThread, "SyncThread1");
-        Thread thread2 = new Thread(syncThread, "SyncThread2");
-        Thread thread3 = new Thread(syncThread, "SyncThread3");
-        thread1.start();
-        thread2.start();
-        thread3.start();
+//        Thread thread1 = new Thread(syncThread, "SyncThread1");
+//        Thread thread2 = new Thread(syncThread, "SyncThread2");
+//        Thread thread3 = new Thread(syncThread, "SyncThread3");
+//        thread1.start();
+//        thread2.start();
+//        thread3.start();
+        for(int i=0;i<9;i++){
+            new Thread(syncThread).start();
+        }
     }
 }
