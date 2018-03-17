@@ -5,6 +5,6 @@ Android mvp
 
 ***
 
-![SystemInfo](https://raw.githubusercontent.com/REBOOTERS/My-MVP/master/captures/SystemInfo.PNG)
 
-![Index](https://raw.githubusercontent.com/REBOOTERS/My-MVP/master/captures/index.png)
+<img width=200 src="https://github.com/REBOOTERS/My-MVP/blob/master/captures/SystemInfo.PNG"/>
+<img width=200 src="https://github.com/REBOOTERS/My-MVP/blob/master/captures/index.png"/>
