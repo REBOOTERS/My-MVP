@@ -6,5 +6,5 @@ Android mvp
 ***
 
 
-<img width=200 src="https://github.com/REBOOTERS/My-MVP/blob/master/captures/SystemInfo.PNG"/>
-<img width=200 src="https://github.com/REBOOTERS/My-MVP/blob/master/captures/index.png"/>
+<img  src="https://github.com/REBOOTERS/My-MVP/blob/master/captures/SystemInfo.PNG"/>
+<img width=400 src="https://github.com/REBOOTERS/My-MVP/blob/master/captures/index.png"/>
