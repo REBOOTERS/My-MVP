@@ -97,6 +97,10 @@
         </activity>
         <activity android:name=".service.ThreadLocalTestActivity">
         </activity>
+        <activity android:name=".handler.HandlerOneActivity">
+        </activity>
+        <activity android:name=".handler.HandlerTwoActivity">
+        </activity>
     </application>
 
 </manifest>

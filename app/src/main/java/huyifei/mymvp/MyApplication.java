@@ -40,7 +40,7 @@ public class MyApplication extends Application {
             @Override
             public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
                 //禁止截屏
-                activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
+//                activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
                 // 保持屏幕常亮
                 activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
             }

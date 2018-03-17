@@ -1,13 +1,17 @@
 package huyifei.mymvp;
 
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -24,6 +28,7 @@ import android.widget.TextView;
 
 import com.networkbench.agent.impl.NBSAppAgent;
 
+import java.io.File;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
 import java.util.ArrayList;
@@ -44,6 +49,7 @@ import huyifei.mymvp.broadcastreceiver.BroadcastReceiverActivity;
 import huyifei.mymvp.classloader.ClassLoaderActivity;
 import huyifei.mymvp.classloader.SimpleHotFixActivity;
 import huyifei.mymvp.datastorage.DataStorageActivity;
+import huyifei.mymvp.handler.HandlerOneActivity;
 import huyifei.mymvp.service.ServiceActivity;
 import huyifei.mymvp.service.ThreadLocalTestActivity;
 import huyifei.mymvp.service.ipc.AIDLActivity;
@@ -104,7 +110,82 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         Log.e(TAG, "onCreate: maxMemory==" + max / One_M+" MB");
 
 
+        PrintSystemDirInfo();
+
+
     }
+
+    /**
+     * 打印系统目录信息
+     */
+    private void PrintSystemDirInfo() {
+
+
+        final int version = Build.VERSION.SDK_INT;
+        final String mRelease = Build.VERSION.RELEASE;
+        final String mSerial = Build.SERIAL;
+        String android_id = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+        String filepath = Environment.getExternalStorageDirectory().getAbsolutePath();
+        //
+        String getDataDirectory = Environment.getDataDirectory().getAbsolutePath();
+        String getRootDirectory = Environment.getRootDirectory().getAbsolutePath();
+        String getDownloadCacheDirectory = Environment.getDownloadCacheDirectory().getAbsolutePath();
+        //
+        String DIRECTORY_DCIM = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).getAbsolutePath();
+        String DIRECTORY_DOCUMENTS = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).getAbsolutePath();
+        String DIRECTORY_PICTURES = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath();
+        String DIRECTORY_DOWNLOADS = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath();
+        //
+        String cacheDir = mContext.getCacheDir().getAbsolutePath();
+        String filesDir = mContext.getFilesDir().getAbsolutePath();
+        //
+        String getExternalCacheDir = mContext.getExternalCacheDir().getAbsolutePath();
+        String getExternalFilesDir_DIRECTORY_PICTURES = mContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES).getAbsolutePath();
+        String getExternalFilesDir_DIRECTORY_DOCUMENTS = mContext.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS).getAbsolutePath();
+
+
+        String[] files = new String[0];
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
+            files = new String[mContext.getExternalCacheDirs().length];
+            for (int i = 0; i < mContext.getExternalCacheDirs().length; i++) {
+                File mFile = mContext.getExternalCacheDirs()[i];
+                files[i] = mFile.getAbsolutePath() + "\n";
+            }
+        }
+
+
+
+        Log.e(TAG, "android.os.Build.VERSION.SDK_INT = " + version);
+        Log.e(TAG, "android.os.Build.VERSION.RELEASE = " + mRelease);
+        Log.e(TAG, "android.os.Build.SERIAL = " + mSerial);
+        Log.e(TAG, "Secure.ANDROID_ID = " + android_id);
+        Log.e(TAG, "--------------------------------------------------");
+        Log.e(TAG, "Environment.getExternalStorageDirectory() = " + filepath);
+        Log.e(TAG, "Environment.getDataDirectory() = " + getDataDirectory);
+        Log.e(TAG, "Environment.getRootDirectory() = " + getRootDirectory);
+        Log.e(TAG, "Environment.getDownloadCacheDirectory() = " + getDownloadCacheDirectory);
+        Log.e(TAG, "--------------------------------------------------");
+        Log.e(TAG, "Environment.getExternalStorageDirectory(Environment.DIRECTORY_DCIM) = " + DIRECTORY_DCIM);
+        Log.e(TAG, "Environment.getExternalStorageDirectory(Environment.DIRECTORY_DOCUMENTS) = " + DIRECTORY_DOCUMENTS);
+        Log.e(TAG, "Environment.getExternalStorageDirectory(Environment.DIRECTORY_PICTURES) = " + DIRECTORY_PICTURES);
+        Log.e(TAG, "Environment.getExternalStorageDirectory(Environment.DIRECTORY_DOWNLOADS) = " + DIRECTORY_DOWNLOADS);
+        Log.e(TAG, "--------------------------------------------------");
+        Log.e(TAG, "mContext.getCacheDir() = " + cacheDir);
+        Log.e(TAG, "mContext.getFilesDir() = " + filesDir);
+        Log.e(TAG, "--------------------------------------------------");
+        Log.e(TAG, "mContext.getExternalCacheDir() = " + getExternalCacheDir);
+        Log.e(TAG, "mContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES) = " + getExternalFilesDir_DIRECTORY_PICTURES);
+        Log.e(TAG, "mContext.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS) = " + getExternalFilesDir_DIRECTORY_DOCUMENTS);
+        Log.e(TAG, "mContext.getExternalCacheDirs() size=" + files.length + " :"+Arrays.toString(files));
+        ActivityManager mManager = (ActivityManager) mContext.getSystemService(Context.ACTIVITY_SERVICE);
+        int size = mManager.getMemoryClass();
+
+        Log.e(TAG, "mManager.getMemoryClass()  应用可用内存 = " + size + " M");
+
+
+    }
+
+
 
     private void testCopy() {
         int[] a = new int[]{1, 2, 3, 4, 5, 6, 7, 8};
@@ -136,10 +217,10 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
 
     private void setData() {
-        demos.add(new ItemInfo(R.string.classloader, LifeCycleActivity.class));
+        demos.add(new ItemInfo(R.string.lifeCycle, LifeCycleActivity.class));
         demos.add(new ItemInfo(R.string.classloader, ClassLoaderActivity.class));
         demos.add(new ItemInfo(R.string.hotfix, SimpleHotFixActivity.class));
-        demos.add(new ItemInfo(R.string.service, MemoryLeakActivity.class));
+        demos.add(new ItemInfo(R.string.memory_leak, MemoryLeakActivity.class));
         demos.add(new ItemInfo(R.string.simpleRxJava, RxJavaDemoActivity.class));
         demos.add(new ItemInfo(R.string.AndroidHttp, HttpDemoActivity.class));
         demos.add(new ItemInfo(R.string.Retrofit, Retrofit2DemoActivity.class));
@@ -152,8 +233,9 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         demos.add(new ItemInfo(R.string.BroadcastReceiver, BroadcastReceiverActivity.class));
         demos.add(new ItemInfo(R.string.service, ServiceActivity.class));
         demos.add(new ItemInfo(R.string.aidl, AIDLActivity.class));
-        demos.add(new ItemInfo(R.string.service, HashMapActivity.class));
+        demos.add(new ItemInfo(R.string.hashmap, HashMapActivity.class));
         demos.add(new ItemInfo(R.string.threadLocal, ThreadLocalTestActivity.class));
+        demos.add(new ItemInfo(R.string.handler_test, HandlerOneActivity.class));
     }
 
 
