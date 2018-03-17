@@ -28,7 +28,5 @@ RxJava/build/
 RxJava2-Retorfit2/.classpath
 RxJava2-Retorfit2/.settings/
 RxJava2-Retorfit2/libs/
-RxJava2-Retorfit2/src/main/res/drawable/
-RxJava2-Retorfit2/src/main/res/menu/
 app/.classpath
 app/.settings/
