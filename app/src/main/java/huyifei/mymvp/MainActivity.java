@@ -39,10 +39,6 @@ import java.util.Stack;
 import java.util.Vector;
 
 import home.smart.fly.http.activity.RxJava2MainActivity;
-import home.smart.fly.httpurlconnectiondemo.HttpDemoActivity;
-import home.smart.fly.httpurlconnectiondemo.RxJavaDemoActivity;
-import home.smart.fly.httpurlconnectiondemo.retrofit2.Retrofit2DemoActivity;
-import home.times.designpatterns.DesignPatternActivity;
 import huyifei.mymvp.architecture.mvc.MVCActivity;
 import huyifei.mymvp.architecture.mvp.MVPActivity;
 import huyifei.mymvp.broadcastreceiver.BroadcastReceiverActivity;
@@ -221,13 +217,9 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         demos.add(new ItemInfo(R.string.classloader, ClassLoaderActivity.class));
         demos.add(new ItemInfo(R.string.hotfix, SimpleHotFixActivity.class));
         demos.add(new ItemInfo(R.string.memory_leak, MemoryLeakActivity.class));
-        demos.add(new ItemInfo(R.string.simpleRxJava, RxJavaDemoActivity.class));
-        demos.add(new ItemInfo(R.string.AndroidHttp, HttpDemoActivity.class));
-        demos.add(new ItemInfo(R.string.Retrofit, Retrofit2DemoActivity.class));
         demos.add(new ItemInfo(R.string.RxJava2, RxJava2MainActivity.class));
         demos.add(new ItemInfo(R.string.MVC, MVCActivity.class));
         demos.add(new ItemInfo(R.string.Mvp, MVPActivity.class));
-        demos.add(new ItemInfo(R.string.design, DesignPatternActivity.class));
         demos.add(new ItemInfo(R.string.GlideUse, GlideActivity.class));
         demos.add(new ItemInfo(R.string.DataStorage, DataStorageActivity.class));
         demos.add(new ItemInfo(R.string.BroadcastReceiver, BroadcastReceiverActivity.class));

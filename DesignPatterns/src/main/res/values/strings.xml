@@ -1,7 +1,0 @@
-<resources>
-    <string name="app_name">designpatterns</string>
-    <string name="factory">factory pattern</string>
-    <string name="builder">builder pattern</string>
-    <string name="static_proxy">static_proxy pattern</string>
-    <string name="adapter">adapter pattern</string>
-</resources>

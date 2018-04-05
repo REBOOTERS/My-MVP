@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "huyifei.mymvp"
-        minSdkVersion 15
+        minSdkVersion 21
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -36,80 +36,17 @@ android {
         targetGenDir 'src/main/java/'
     }
 
-
-
-    task reinforceAppTask(dependsOn: 'assembleRelease') {
-
-        doLast {
-            println "360jiagu begin"
-            def currFile = new File(".")
-            def appFilePath = currFile.getCanonicalPath() +
-                    File.separator + "app" + File.separator + "build" + File.separator + "outputs" + File.separator + "apk" + File.separator +
-                    "xx-${defaultConfig.versionName}-${defaultConfig.versionCode}-signed-${releaseTime()}.apk";
-
-            println "appFilePath=" + appFilePath
-
-            if (!new File(appFilePath).exists()) {
-                println "apk not exist"
-                return
-            }
-
-            def cmdBase = 'java.exe -jar' + ' D:\\搜狗高速下载\\jiagubao\\jiagu\\jiagu.jar'
-
-            def cmdLogin = cmdBase + ' -login xx xx'
-            def cmdImportsign = cmdBase + ' -importsign ' +
-                    myStoreFile.getCanonicalPath() + ' ' + myStorePassword + ' ' + myKeyAlias + ' ' + myKeyPassword
-            def cmdShowsign = cmdBase + ' -showsign'
-            def cmdConfig = cmdBase + ' -config -x86'
-            def cmdShowconfig = cmdBase + ' -showconfig'
-            def cmdVersion = cmdBase + ' -version'
-            def cmdJiagu = cmdBase + ' -jiagu ' + appFilePath + ' ' + currFile.getCanonicalPath() + ' -autosign'
-
-            execute360JiaguCmd(cmdLogin)
-            execute360JiaguCmd(cmdImportsign)
-            execute360JiaguCmd(cmdShowsign)
-            execute360JiaguCmd(cmdConfig)
-            execute360JiaguCmd(cmdShowconfig)
-            execute360JiaguCmd(cmdVersion)
-            execute360JiaguCmd(cmdJiagu)
-
-            println "360jiagu end"
-        }
-    }
-
-    tasks.whenTaskAdded { theTask ->
-        if (theTask.name == "assembleRelease") {
-            theTask.dependsOn "cleanOutputsDir"
-        }
-    }
-
-    task cleanOutputsDir {
-        def outputsPath = getBuildDir().getAbsolutePath() + File.separator + "outputs" + File.separator
-        println "delete outputsPath=" + outputsPath
-        new File(outputsPath).deleteDir()
-    }
 }
 
-def execute360JiaguCmd(cmd) {
-    def p = cmd.execute(null, new File("D:\\搜狗高速下载\\jiagubao\\jiagu\\java\\bin"))
-    println p.text
-    p.waitFor()  // 用以等待外部进程调用结束
-    println p.exitValue()
-}
 
-def releaseTime() {
-    return new Date().format("yyyyMMdd", TimeZone.getTimeZone("UTC"))
-}
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    compile project(':HttpClient-RxJava1-X')
     compile fileTree(include: ['*.jar'], dir: 'libs')
     //greendao
-    compile project(':DesignPatterns')
     compile 'com.android.support:appcompat-v7:26.1.0'
     compile 'com.android.support:design:26.1.0'
     compile 'org.greenrobot:greendao:3.2.0'
