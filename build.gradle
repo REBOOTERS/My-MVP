@@ -3,6 +3,7 @@
 buildscript {
     ext.kotlin_version = '1.2.30'
     repositories {
+        google()
         jcenter()
         //for greenDao
         mavenCentral()
@@ -10,7 +11,7 @@ buildscript {
             url 'https://maven.google.com/'
             name 'Google'
         }
-        google()
+
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.1.0'
@@ -28,6 +29,7 @@ buildscript {
 
 allprojects {
     repositories {
+        google()
         jcenter()
         maven {
             url 'https://maven.google.com/'

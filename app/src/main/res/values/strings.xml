@@ -37,6 +37,7 @@
     <string name="hotfix">Android 热修复简单实现相关</string>
     <string name="title_activity_mvp">MVPActivity</string>
     <string name="handler_test">Handler 关系测试</string>
+    <string name="dataBind">DataBinding demo</string>
 
     <!--note-->
     <string name="localBroadcast">(1) LocalBroadcastManager 的核心实现实际还是 Handler，只是利用到了 IntentFilter 的 match 功能，至于 BroadcastReceiver 换成其他接口也无所谓，顺便利用了现成的类和概念而已。\n (2) 因为是 Handler 实现的应用内的通信，自然安全性更好，效率更高。</string>

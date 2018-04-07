@@ -101,6 +101,8 @@
         </activity>
         <activity android:name=".handler.HandlerTwoActivity">
         </activity>
+        <activity android:name=".databind.ContentActivity">
+        </activity>
     </application>
 
 </manifest>

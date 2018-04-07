@@ -3,15 +3,16 @@ apply plugin: 'org.greenrobot.greendao'
 apply plugin: 'newlens'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 27
     buildToolsVersion '27.0.3'
 
     defaultConfig {
         applicationId "huyifei.mymvp"
         minSdkVersion 21
-        targetSdkVersion 26
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
     signingConfigs {
@@ -36,6 +37,10 @@ android {
         targetGenDir 'src/main/java/'
     }
 
+    dataBinding {
+        enabled true
+    }
+
 }
 
 
@@ -47,12 +52,14 @@ repositories {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     //greendao
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.android.support:design:26.1.0'
+    implementation 'com.android.support:appcompat-v7:27.1.0'
+    implementation 'com.android.support:design:27.1.0'
     implementation 'org.greenrobot:greendao:3.2.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     implementation 'com.networkbench.newlens.agent.android:nbs.newlens.agent:2.7.0'
     testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     testImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
     implementation 'com.facebook.stetho:stetho:1.5.0'

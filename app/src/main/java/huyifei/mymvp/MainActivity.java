@@ -44,6 +44,7 @@ import huyifei.mymvp.architecture.mvp.MVPActivity;
 import huyifei.mymvp.broadcastreceiver.BroadcastReceiverActivity;
 import huyifei.mymvp.classloader.ClassLoaderActivity;
 import huyifei.mymvp.classloader.SimpleHotFixActivity;
+import huyifei.mymvp.databind.ContentActivity;
 import huyifei.mymvp.datastorage.DataStorageActivity;
 import huyifei.mymvp.handler.HandlerOneActivity;
 import huyifei.mymvp.service.ServiceActivity;
@@ -214,6 +215,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     private void setData() {
         demos.add(new ItemInfo(R.string.lifeCycle, LifeCycleActivity.class));
+        demos.add(new ItemInfo(R.string.dataBind, ContentActivity.class));
         demos.add(new ItemInfo(R.string.classloader, ClassLoaderActivity.class));
         demos.add(new ItemInfo(R.string.hotfix, SimpleHotFixActivity.class));
         demos.add(new ItemInfo(R.string.memory_leak, MemoryLeakActivity.class));
