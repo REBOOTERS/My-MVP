@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="/Users/zhuyongging/Documents/mygithub/My-MVP/DesignPatterns/src/main/assets"/><source path="/Users/zhuyongging/Documents/mygithub/My-MVP/DesignPatterns/build/generated/assets/shaders/debug"/></dataSet><dataSet config="debug"><source path="/Users/zhuyongging/Documents/mygithub/My-MVP/DesignPatterns/src/debug/assets"/></dataSet></merger>
