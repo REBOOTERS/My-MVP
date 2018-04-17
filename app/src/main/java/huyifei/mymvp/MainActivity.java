@@ -46,6 +46,9 @@ import huyifei.mymvp.classloader.ClassLoaderActivity;
 import huyifei.mymvp.classloader.SimpleHotFixActivity;
 import huyifei.mymvp.databind.ContentActivity;
 import huyifei.mymvp.datastorage.DataStorageActivity;
+import huyifei.mymvp.fragments.FragmentsActivity;
+import huyifei.mymvp.fragments.HomeActivity;
+import huyifei.mymvp.fragments.MultiTabActivity;
 import huyifei.mymvp.handler.HandlerOneActivity;
 import huyifei.mymvp.service.ServiceActivity;
 import huyifei.mymvp.service.ThreadLocalTestActivity;
@@ -100,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                 .withLocationServiceEnabled(true)
                 .start(this.getApplicationContext());
 
-        testCopy();
+
 
         long max = Runtime.getRuntime().maxMemory();
 
@@ -182,38 +185,10 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     }
 
-
-
-    private void testCopy() {
-        int[] a = new int[]{1, 2, 3, 4, 5, 6, 7, 8};
-        int[] b = new int[a.length * 2];
-        b[0] = 12;
-        b[1] = 13;
-        b[2] = 14;
-
-
-        System.arraycopy(a, 0, b, 3, a.length);
-
-        for (int i = 0; i < b.length; i++) {
-            System.out.printf("a[%d]=%d\n", i, b[i]);
-        }
-
-
-        char[] src = {'a', 'b', 'c', 'd', 'e', 'f'};
-        System.arraycopy(src, 0, src, 1, src.length - 1);
-        System.out.println("the length=" + src.length);
-        System.out.println("now src=" + Arrays.toString(src));
-
-
-        String code = "abcdefghijklmn";
-
-        int num = code.indexOf("cde");
-
-        System.out.println("the index of cde at abcdefghijklmn is " + num);
-    }
-
-
     private void setData() {
+        demos.add(new ItemInfo(R.string.fragment, HomeActivity.class));
+        demos.add(new ItemInfo(R.string.fragment, FragmentsActivity.class));
+        demos.add(new ItemInfo(R.string.tabs, MultiTabActivity.class));
         demos.add(new ItemInfo(R.string.lifeCycle, LifeCycleActivity.class));
         demos.add(new ItemInfo(R.string.dataBind, ContentActivity.class));
         demos.add(new ItemInfo(R.string.classloader, ClassLoaderActivity.class));

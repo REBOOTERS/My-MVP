@@ -31,6 +31,8 @@
     <string name="threadLocal">thread Local demo</string>
     <string name="aidl">AIDL demo</string>
     <string name="classloader">ClassLoader 相关</string>
+    <string name="fragment">单Activity多Fragment</string>
+    <string name="tabs">BottomNavigationView</string>
     <string name="lifeCycle">Activity 生命周期相关</string>
     <string name="memory_leak">内存泄漏相关demo</string>
     <string name="hashmap">HashMap 原理demo</string>
@@ -42,5 +44,21 @@
     <!--note-->
     <string name="localBroadcast">(1) LocalBroadcastManager 的核心实现实际还是 Handler，只是利用到了 IntentFilter 的 match 功能，至于 BroadcastReceiver 换成其他接口也无所谓，顺便利用了现成的类和概念而已。\n (2) 因为是 Handler 实现的应用内的通信，自然安全性更好，效率更高。</string>
     <string name="title_activity_class_loader">ClassLoaderActivity</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_multi_tab">MultiTabActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_fragments">FragmentsActivity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="tab_text_3">Tab 3</string>
+    <string name="section_format">Hello World from section: %1$d</string>
 
 </resources>

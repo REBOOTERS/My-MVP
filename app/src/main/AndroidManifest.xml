@@ -103,6 +103,20 @@
         </activity>
         <activity android:name=".databind.ContentActivity">
         </activity>
+        <activity
+            android:name=".fragments.HomeActivity"
+            android:label="@string/title_activity_home"
+            android:theme="@style/AppTheme">
+        </activity>
+        <activity
+            android:name=".fragments.MultiTabActivity"
+            android:label="@string/title_activity_multi_tab">
+        </activity>
+        <activity
+            android:name=".fragments.FragmentsActivity"
+            android:label="@string/title_activity_fragments"
+            android:theme="@style/AppTheme">
+        </activity>
     </application>
 
 </manifest>
