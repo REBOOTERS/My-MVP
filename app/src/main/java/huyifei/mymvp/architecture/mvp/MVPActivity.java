@@ -32,7 +32,7 @@ public class MVPActivity extends AppCompatActivity implements IDownloadView {
     private void init() {
         mDownloadPresenter = new DownloadPresenter(this);
         //view init
-        mImageView = (ImageView) findViewById(R.id.image);
+        mImageView = findViewById(R.id.image);
         findViewById(R.id.downloadBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

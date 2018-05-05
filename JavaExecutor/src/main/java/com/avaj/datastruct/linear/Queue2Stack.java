@@ -34,7 +34,7 @@ public class Queue2Stack {
             }
         }
 
-        private E pop() throws Exception {
+        private E pop() {
             if (mEQueueA.isEmpty() && mEQueueB.isEmpty()) {
                 return null;
             }

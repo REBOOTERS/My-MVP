@@ -98,11 +98,6 @@
             android:layout_height="wrap_content"
             android:text="del"/>
 
-        <Button
-            android:id="@+id/greendao"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="greendao"/>
     </LinearLayout>
 
     <TextView

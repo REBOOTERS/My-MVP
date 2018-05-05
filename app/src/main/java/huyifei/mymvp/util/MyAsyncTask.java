@@ -21,7 +21,7 @@ public class MyAsyncTask<Params,Progress,Result> {
     public MyAsyncTask(){
         mWorker=new WorkRunnable<Params, Result>() {
             @Override
-            public Result call() throws Exception {
+            public Result call() {
                 return null;
             }
         };

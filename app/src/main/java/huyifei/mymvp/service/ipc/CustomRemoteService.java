@@ -16,18 +16,18 @@ public class CustomRemoteService extends Service {
     private class ServiceBinder extends IMyAidlInterface.Stub {
 
         @Override
-        public void basicTypes(int anInt, long aLong, boolean aBoolean, float aFloat, double aDouble, String aString) throws RemoteException {
+        public void basicTypes(int anInt, long aLong, boolean aBoolean, float aFloat, double aDouble, String aString) {
         }
 
         @Override
-        public int add(int a, int b) throws RemoteException {
+        public int add(int a, int b) {
             Log.e(TAG, "add: a="+a);
             Log.e(TAG, "add: b="+b);
             return a+b;
         }
 
         @Override
-        public int binarySearch(int target) throws RemoteException {
+        public int binarySearch(int target) {
             int a[]=new int[]{1,2,3,4,5,6,7,8,9,10};
 
             int low=0;
@@ -49,12 +49,12 @@ public class CustomRemoteService extends Service {
 
 
         @Override
-        public String loadData(String url) throws RemoteException {
+        public String loadData(String url) {
             return url.concat(url);
         }
 
         @Override
-        public String reback() throws RemoteException {
+        public String reback() {
             return "Hello This is Msg from Remote";
         }
 

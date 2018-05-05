@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import home.smart.fly.http.R;
-import home.smart.fly.http.V;
 
 /**
  * Created by engineer on 2017/12/4.
@@ -34,7 +33,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyHolder> {
 
     @Override
     public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        mContext=parent.getContext();
+        mContext = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View view = inflater.inflate(R.layout.demo_info_item, null);
         MyHolder holder = new MyHolder(view);
@@ -66,19 +65,17 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyHolder> {
     }
 
 
-
-
-
-
     class MyHolder extends RecyclerView.ViewHolder {
         TextView title, desc;
         LinearLayout itemshell;
 
         public MyHolder(View itemView) {
             super(itemView);
-            title = V.f(itemView, R.id.title);
-            desc = V.f(itemView, R.id.desc);
-            itemshell = V.f(itemView, R.id.itemshell);
+
+
+            title = itemView.findViewById(R.id.title);
+            desc = itemView.findViewById(R.id.desc);
+            itemshell = itemView.findViewById(R.id.itemshell);
         }
     }
 }

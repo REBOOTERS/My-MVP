@@ -40,10 +40,10 @@ public class GlideActivity extends AppCompatActivity {
         sb.append("当前应用可用Heap Size is " + mActivityManager.getMemoryClass() + "MB\n");
         sb.append("要加载的图片在虚拟机中所占的内存: " + 2560 * 1600 * 4 / ONE_MB + "MB\n");
 
-        info = (TextView) findViewById(R.id.info);
+        info = findViewById(R.id.info);
         info.setText(sb);
 
-        final ImageView imageView = (ImageView) findViewById(R.id.image);
+        final ImageView imageView = findViewById(R.id.image);
         Glide.with(this).load(picUrl).into(imageView);
         findViewById(R.id.loadimg)
                 .setOnClickListener(new View.OnClickListener() {

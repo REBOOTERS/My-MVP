@@ -63,7 +63,7 @@ public class MVCActivity extends AppCompatActivity {
 
     private void init() {
         //view init
-        mImageView = (ImageView) findViewById(R.id.image);
+        mImageView = findViewById(R.id.image);
         progressDialog = new ProgressDialog(mContext);
         progressDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancle", new DialogInterface.OnClickListener() {
             @Override

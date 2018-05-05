@@ -121,7 +121,7 @@ public class RxJavaOperatorActivity extends AppCompatActivity {
     private void flowableOperatorPro() {
         Flowable<Integer> mIntegerFlowable = Flowable.create(new FlowableOnSubscribe<Integer>() {
             @Override
-            public void subscribe(FlowableEmitter<Integer> e) throws Exception {
+            public void subscribe(FlowableEmitter<Integer> e) {
                 for (int i = 0; i < 1000; i++) {
                     e.onNext(i);
                     Log.e(TAG, "subscribe: " + i);
@@ -175,7 +175,7 @@ public class RxJavaOperatorActivity extends AppCompatActivity {
     private void flowableOperator() {
         Flowable<Integer> mIntegerFlowable = Flowable.create(new FlowableOnSubscribe<Integer>() {
             @Override
-            public void subscribe(FlowableEmitter<Integer> e) throws Exception {
+            public void subscribe(FlowableEmitter<Integer> e) {
                 e.onNext(1);
                 e.onNext(2);
                 e.onNext(3);
@@ -221,7 +221,7 @@ public class RxJavaOperatorActivity extends AppCompatActivity {
     private void sampleOperator() {
         Observable<Integer> mIntegerObservable = Observable.create(new ObservableOnSubscribe<Integer>() {
             @Override
-            public void subscribe(ObservableEmitter<Integer> e) throws Exception {
+            public void subscribe(ObservableEmitter<Integer> e) {
                 for (int i = 0; ; i++) {
                     e.onNext(i);
                 }
@@ -232,7 +232,7 @@ public class RxJavaOperatorActivity extends AppCompatActivity {
 
         Observable<String> mStringObservable = Observable.create(new ObservableOnSubscribe<String>() {
             @Override
-            public void subscribe(ObservableEmitter<String> e) throws Exception {
+            public void subscribe(ObservableEmitter<String> e) {
                 e.onNext("Message");
             }
         })
@@ -241,21 +241,21 @@ public class RxJavaOperatorActivity extends AppCompatActivity {
 
         Observable.zip(mIntegerObservable, mStringObservable, new BiFunction<Integer, String, String>() {
             @Override
-            public String apply(Integer integer, String s) throws Exception {
+            public String apply(Integer integer, String s) {
                 return integer + " & " + s;
             }
         })
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<String>() {
                     @Override
-                    public void accept(String s) throws Exception {
+                    public void accept(String s) {
                         Log.e(TAG, "accept: s=" + s);
                         sb.append(s + "\n");
                         logContent.setText(sb.toString());
                     }
                 }, new Consumer<Throwable>() {
                     @Override
-                    public void accept(Throwable throwable) throws Exception {
+                    public void accept(Throwable throwable) {
                         Log.e(TAG, "accept: trowable=" + throwable);
                     }
                 });
@@ -271,7 +271,7 @@ public class RxJavaOperatorActivity extends AppCompatActivity {
     private void zipOperator() {
         Observable<Integer> mIntegerObservable = Observable.create(new ObservableOnSubscribe<Integer>() {
             @Override
-            public void subscribe(ObservableEmitter<Integer> e) throws Exception {
+            public void subscribe(ObservableEmitter<Integer> e) {
 
                 sb.append("Zip通过一个函数将多个Observable发送的事件结合到一起，\n" +
                         " 然后发送这些组合到一起的事件. 它按照严格的顺序应用这个函数。\n" +
@@ -291,7 +291,7 @@ public class RxJavaOperatorActivity extends AppCompatActivity {
         Observable<String> mStringObservable = Observable
                 .create(new ObservableOnSubscribe<String>() {
                     @Override
-                    public void subscribe(ObservableEmitter<String> e) throws Exception {
+                    public void subscribe(ObservableEmitter<String> e) {
                         e.onNext("Monday");
                         e.onNext("Tuesday");
                         e.onNext("Wednesday");
@@ -305,14 +305,14 @@ public class RxJavaOperatorActivity extends AppCompatActivity {
         Observable
                 .zip(mIntegerObservable, mStringObservable, new BiFunction<Integer, String, String>() {
                     @Override
-                    public String apply(Integer integer, String s) throws Exception {
+                    public String apply(Integer integer, String s) {
                         return s + "<---------->" + integer;
                     }
                 })
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<String>() {
                     @Override
-                    public void accept(String s) throws Exception {
+                    public void accept(String s) {
                         sb.append(s + "\n");
                         logContent.setText(sb.toString());
                         Log.e(TAG, "accept: " + s);
@@ -329,7 +329,7 @@ public class RxJavaOperatorActivity extends AppCompatActivity {
         Observable
                 .create(new ObservableOnSubscribe<Integer>() {
                     @Override
-                    public void subscribe(ObservableEmitter<Integer> e) throws Exception {
+                    public void subscribe(ObservableEmitter<Integer> e) {
                         sb.append("FlatMap将一个发送事件的上游Observable变换为多个发送事件的Observables，" +
                                 "然后将它们发射的事件合并后放进一个单独的Observable里");
                         sb.append("\n");
@@ -350,7 +350,7 @@ public class RxJavaOperatorActivity extends AppCompatActivity {
                 })
                 .flatMap(new Function<Integer, ObservableSource<String>>() {
                     @Override
-                    public ObservableSource<String> apply(Integer integer) throws Exception {
+                    public ObservableSource<String> apply(Integer integer) {
                         final List<String> mList = new ArrayList<>();
                         for (int i = 0; i < 4; i++) {
                             mList.add("the Square is " + integer * integer);
@@ -362,7 +362,7 @@ public class RxJavaOperatorActivity extends AppCompatActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<String>() {
                     @Override
-                    public void accept(String s) throws Exception {
+                    public void accept(String s) {
                         Log.e(TAG, "accept: s=" + s);
                         sb.append("accept= " + s).append("\n");
 
@@ -374,7 +374,7 @@ public class RxJavaOperatorActivity extends AppCompatActivity {
     private void mapOperator() {
         Observable.create(new ObservableOnSubscribe<Integer>() {
             @Override
-            public void subscribe(ObservableEmitter<Integer> e) throws Exception {
+            public void subscribe(ObservableEmitter<Integer> e) {
                 sb.append("e: 1,2,3\n");
                 sb.append("通过Map, 可以将上游发来的事件转换为任意的类型, 可以是一个Object, 也可以是一个集合");
                 e.onNext(1);
@@ -384,12 +384,12 @@ public class RxJavaOperatorActivity extends AppCompatActivity {
             }
         }).map(new Function<Integer, Integer>() {
             @Override
-            public Integer apply(Integer integer) throws Exception {
+            public Integer apply(Integer integer) {
                 return integer * integer;
             }
         }).subscribe(new Consumer<Integer>() {
             @Override
-            public void accept(Integer integer) throws Exception {
+            public void accept(Integer integer) {
                 Log.e(TAG, "accept: interger=" + integer);
                 sb.append("result=" + integer).append("\n");
                 logContent.setText(sb.toString());

@@ -79,7 +79,7 @@ public class BroadcastReceiverActivity extends AppCompatActivity {
      * 获取系统电量
      */
     private void getBattery() {
-        battery = (TextView) findViewById(R.id.battery);
+        battery = findViewById(R.id.battery);
         IntentFilter batteryFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
         Intent batteryIntent = getApplicationContext().registerReceiver(null, batteryFilter);
         int total = batteryIntent.getIntExtra(BatteryManager.EXTRA_SCALE, 1);

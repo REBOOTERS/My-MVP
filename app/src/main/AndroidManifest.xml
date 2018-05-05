@@ -68,8 +68,6 @@
             android:exported="false">
         </service>
 
-        <activity android:name=".datastorage.GreenDaoActivity">
-        </activity>
         <activity android:name=".MemoryLeakActivity">
         </activity>
         <activity
@@ -92,8 +90,6 @@
         </service>
 
         <activity android:name=".service.ipc.AIDLActivity">
-        </activity>
-        <activity android:name=".service.ThreadLocalTestActivity.java">
         </activity>
         <activity android:name=".service.ThreadLocalTestActivity">
         </activity>

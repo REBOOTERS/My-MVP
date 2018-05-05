@@ -3,7 +3,6 @@ package huyifei.mymvp.datastorage;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
@@ -227,13 +226,7 @@ public class DataStorageActivity extends AppCompatActivity {
             }
         });
 
-        greendao = findViewById(R.id.greendao);
-        greendao.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(mContext, GreenDaoActivity.class));
-            }
-        });
+
 
         mListView = findViewById(R.id.listView);
         getContacts = findViewById(R.id.getContacts);

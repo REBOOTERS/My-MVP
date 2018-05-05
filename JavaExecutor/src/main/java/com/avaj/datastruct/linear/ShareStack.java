@@ -105,15 +105,9 @@ public class ShareStack<T> {
     public boolean isEmpty(int i){
 
         if(i == 1){
-            if(top1 == -1)
-                return true;
-            else
-                return false;
+            return top1 == -1;
         } else if(i == 2){
-            if(top2 == stackSize)
-                return true;
-            else
-                return false;
+            return top2 == stackSize;
         } else
             throw new RuntimeException("输入错误！");
     }
@@ -130,18 +124,18 @@ public class ShareStack<T> {
 
         for(int i=top1;i>=0;i--){
             if(i == 0)
-                str1 = str1 + (T)element[i];
+                str1 = str1 + element[i];
             else
-                str1 = str1 + (T)element[i] + ",";
+                str1 = str1 + element[i] + ",";
         }
 
         str1 += "]";
 
         for(int i=top2;i<stackSize;i++){
             if(i == stackSize-1)
-                str2 = str2 + (T)element[i];
+                str2 = str2 + element[i];
             else
-                str2 = str2 + (T)element[i] + ",";
+                str2 = str2 + element[i] + ",";
         }
 
         str2 += "]";

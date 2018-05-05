@@ -46,7 +46,7 @@ public class RxJava2MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_rxjava2_main);
         ButterKnife.bind(this);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         fab.setOnClickListener(new View.OnClickListener() {

@@ -112,14 +112,14 @@ public class RxJavaBaseActivity extends AppCompatActivity {
                 .subscribeOn(Schedulers.io())
                 .map(new Function<GankAndroid, GankAndroid.ResultsEntity>() {
                     @Override
-                    public GankAndroid.ResultsEntity apply(GankAndroid gankAndroid) throws Exception {
+                    public GankAndroid.ResultsEntity apply(GankAndroid gankAndroid) {
                         return gankAndroid.getResults().get(0);
                     }
                 })
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<GankAndroid.ResultsEntity>() {
                     @Override
-                    public void accept(GankAndroid.ResultsEntity resultsEntity) throws Exception {
+                    public void accept(GankAndroid.ResultsEntity resultsEntity) {
                         sb.append(resultsEntity.getCreatedAt()).append("\n")
                                 .append(resultsEntity.getType()).append("\n")
                                 .append(resultsEntity.getDesc()).append("\n")
@@ -199,7 +199,7 @@ public class RxJavaBaseActivity extends AppCompatActivity {
     private void multiThread() {
         Observable.create(new ObservableOnSubscribe<String>() {
             @Override
-            public void subscribe(ObservableEmitter<String> e) throws Exception {
+            public void subscribe(ObservableEmitter<String> e) {
                 e.onNext("This msg from work thread :" + Thread.currentThread().getName());
                 sb.append("\nsubscribe: currentThreadName==" + Thread.currentThread().getName());
             }
@@ -209,7 +209,7 @@ public class RxJavaBaseActivity extends AppCompatActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<String>() {
                     @Override
-                    public void accept(String s) throws Exception {
+                    public void accept(String s) {
                         Log.e(TAG, "accept: s= " + s);
                         Log.e(TAG, "accept: currentThreadName==" + Thread.currentThread().getName());
 
@@ -226,7 +226,7 @@ public class RxJavaBaseActivity extends AppCompatActivity {
     private void thread() {
         Observable mObservable = Observable.create(new ObservableOnSubscribe() {
             @Override
-            public void subscribe(ObservableEmitter e) throws Exception {
+            public void subscribe(ObservableEmitter e) {
                 Log.e(TAG, "subscribe: currentThreadName==" + Thread.currentThread().getName());
                 sb.append("\nsubscribe: currentThreadName==" + Thread.currentThread().getName());
                 e.onNext("1000");
@@ -237,7 +237,7 @@ public class RxJavaBaseActivity extends AppCompatActivity {
 
         Consumer mObserver = new Consumer<String>() {
             @Override
-            public void accept(String s) throws Exception {
+            public void accept(String s) {
                 Log.e(TAG, "accept: currentThreadName==" + Thread.currentThread().getName());
                 Log.e(TAG, "accept: s=" + s);
 
@@ -252,19 +252,19 @@ public class RxJavaBaseActivity extends AppCompatActivity {
     private void consumer() {
         Observable.create(new ObservableOnSubscribe<String>() {
             @Override
-            public void subscribe(ObservableEmitter<String> e) throws Exception {
+            public void subscribe(ObservableEmitter<String> e) {
                 e.onNext("Hello World");
                 e.onError(new Throwable("Some Thing wrong !"));
             }
         }).subscribe(new Consumer<String>() {
             @Override
-            public void accept(String s) throws Exception {
+            public void accept(String s) {
                 Log.e(TAG, "accept: s=" + s);
                 logContent.setText(s);
             }
         }, new Consumer<Throwable>() {
             @Override
-            public void accept(Throwable throwable) throws Exception {
+            public void accept(Throwable throwable) {
                 Log.e(TAG, "accept: throwable=" + throwable.toString());
                 logContent.setText(throwable.toString());
             }
@@ -275,7 +275,7 @@ public class RxJavaBaseActivity extends AppCompatActivity {
     private void basicRxjava2() {
         Observable mObservable = Observable.create(new ObservableOnSubscribe() {
             @Override
-            public void subscribe(ObservableEmitter e) throws Exception {
+            public void subscribe(ObservableEmitter e) {
                 e.onNext("1");
                 e.onNext("2");
                 e.onNext("3");
@@ -319,7 +319,7 @@ public class RxJavaBaseActivity extends AppCompatActivity {
     private void basicRxjava2Chian() {
         Observable.create(new ObservableOnSubscribe<String>() {
             @Override
-            public void subscribe(ObservableEmitter<String> e) throws Exception {
+            public void subscribe(ObservableEmitter<String> e) {
                 e.onNext("A");
                 e.onNext("B");
                 e.onNext("C");
