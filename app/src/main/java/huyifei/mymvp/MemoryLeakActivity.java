@@ -7,8 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import java.lang.ref.WeakReference;
-import java.util.ArrayList;
-import java.util.LinkedList;
 
 public class MemoryLeakActivity extends AppCompatActivity {
 
@@ -18,26 +16,20 @@ public class MemoryLeakActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_memory_leak);
-
         mLeakyHandler.postDelayed(new Job(), 10 * 1000);
-        finish();
 
-        ArrayList<String> datas = new ArrayList<>();
-        LinkedList<String> links = new LinkedList<>();
     }
 
-    private static class Job implements Runnable{
+    private class Job implements Runnable {
 
         @Override
         public void run() {
-
+            finish();
         }
     }
 
 
-
-
-    private static class MyHandler extends Handler {
+    private class MyHandler extends Handler {
         private final WeakReference<MemoryLeakActivity> mActivity;
 
         public MyHandler(MemoryLeakActivity activity) {

@@ -2,18 +2,15 @@ package huyifei.mymvp;
 
 import android.app.Activity;
 import android.app.ActivityManager;
-import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
-import android.support.v4.app.NotificationCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -29,14 +26,8 @@ import android.widget.TextView;
 import com.networkbench.agent.impl.NBSAppAgent;
 
 import java.io.File;
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Proxy;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.Stack;
-import java.util.Vector;
 
 import home.smart.fly.http.activity.RxJava2MainActivity;
 import huyifei.mymvp.architecture.mvc.MVCActivity;
@@ -46,9 +37,6 @@ import huyifei.mymvp.classloader.ClassLoaderActivity;
 import huyifei.mymvp.classloader.SimpleHotFixActivity;
 import huyifei.mymvp.databind.ContentActivity;
 import huyifei.mymvp.datastorage.DataStorageActivity;
-import huyifei.mymvp.fragments.FragmentsActivity;
-import huyifei.mymvp.fragments.HomeActivity;
-import huyifei.mymvp.fragments.MultiTabActivity;
 import huyifei.mymvp.handler.HandlerOneActivity;
 import huyifei.mymvp.service.ServiceActivity;
 import huyifei.mymvp.service.ThreadLocalTestActivity;
@@ -70,24 +58,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     private static final int One_M = 1024 * 1024;
 
     private Toolbar toolbar;
-    private Arrays mArrays;
-    AsyncTask mAsyncTask;
-    InvocationHandler m;
-    Proxy mProxy;
-
-    Handler mHandler;
-    HashMapActivity map;
-    ArrayList mArrayList;
-    Deque mDeque;
-    Stack mStack;
-    Vector mVector;
-    LinkedList mLinkedList;
-    Comparable mComparable;
-
-    ClassLoader mClassLoader;
-
-    NotificationManager mNotificationManager;
-    NotificationCompat mNotificationCompat;
 
 
     @Override
@@ -104,10 +74,9 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                 .start(this.getApplicationContext());
 
 
-
         long max = Runtime.getRuntime().maxMemory();
 
-        Log.e(TAG, "onCreate: maxMemory==" + max / One_M+" MB");
+        Log.e(TAG, "onCreate: maxMemory==" + max / One_M + " MB");
 
 
         PrintSystemDirInfo();
@@ -154,7 +123,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         }
 
 
-
         Log.e(TAG, "android.os.Build.VERSION.SDK_INT = " + version);
         Log.e(TAG, "android.os.Build.VERSION.RELEASE = " + mRelease);
         Log.e(TAG, "android.os.Build.SERIAL = " + mSerial);
@@ -176,7 +144,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         Log.e(TAG, "mContext.getExternalCacheDir() = " + getExternalCacheDir);
         Log.e(TAG, "mContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES) = " + getExternalFilesDir_DIRECTORY_PICTURES);
         Log.e(TAG, "mContext.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS) = " + getExternalFilesDir_DIRECTORY_DOCUMENTS);
-        Log.e(TAG, "mContext.getExternalCacheDirs() size=" + files.length + " :"+Arrays.toString(files));
+        Log.e(TAG, "mContext.getExternalCacheDirs() size=" + files.length + " :" + Arrays.toString(files));
         ActivityManager mManager = (ActivityManager) mContext.getSystemService(Context.ACTIVITY_SERVICE);
         int size = mManager.getMemoryClass();
 
@@ -186,9 +154,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     }
 
     private void setData() {
-        demos.add(new ItemInfo(R.string.fragment, HomeActivity.class));
-        demos.add(new ItemInfo(R.string.fragment, FragmentsActivity.class));
-        demos.add(new ItemInfo(R.string.tabs, MultiTabActivity.class));
         demos.add(new ItemInfo(R.string.lifeCycle, LifeCycleActivity.class));
         demos.add(new ItemInfo(R.string.dataBind, ContentActivity.class));
         demos.add(new ItemInfo(R.string.classloader, ClassLoaderActivity.class));

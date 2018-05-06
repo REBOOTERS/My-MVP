@@ -1,6 +1,5 @@
 package home.smart.fly.http.OkHttpCache;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -25,15 +24,13 @@ import okhttp3.logging.HttpLoggingInterceptor;
 
 public class OkHttpCacheActivity extends AppCompatActivity {
     private final String TAG = "OkHttpCacheActivity";
-        private final String BASE_URL = "http://gank.io/api/data/Android/10/1";
+    private final String BASE_URL = "http://gank.io/api/data/Android/10/1";
 //    private final String BASE_URL = "https://www.baidu.com";
 
 
     private final int TIME = 30;
 
     private final int ONE_M = 1024 * 1024;
-
-    private ProgressDialog mProgressDialog;
 
 
     @Override

@@ -4,15 +4,17 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import huyifei.mymvp.R
+import huyifei.mymvp.R.id.run1
+import huyifei.mymvp.R.id.run2
 import kotlinx.android.synthetic.main.activity_thread_local_test.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
 
-abstract class ThreadLocalTestActivity : AppCompatActivity() {
+class ThreadLocalTestActivity : AppCompatActivity() {
 
     private val mThreadLocal = ThreadLocal<String>()
-    internal abstract var mExecutor: ExecutorService
+    private lateinit var mExecutor: ExecutorService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

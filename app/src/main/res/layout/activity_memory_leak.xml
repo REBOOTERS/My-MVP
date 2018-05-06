@@ -7,4 +7,15 @@
     android:layout_height="match_parent"
     tools:context="huyifei.mymvp.MemoryLeakActivity">
 
+
+    <TextView
+        android:textSize="25sp"
+        android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Activity will finish in 10 second"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 </android.support.constraint.ConstraintLayout>
