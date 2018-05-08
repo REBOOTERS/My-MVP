@@ -26,16 +26,4 @@ public class MainClass {
     }
 
 
-    private static void createProxyClassFile() {
-        String name = "ProxySubject";
-        byte[] data = ProxyGenerator.generateProxyClass(name, new Class[]{Subject.class});
-        try {
-            FileOutputStream out = new FileOutputStream(name + ".class");
-            out.write(data);
-            out.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
 }

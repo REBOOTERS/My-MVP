@@ -54,9 +54,6 @@ public class GlideActivity extends AppCompatActivity {
                     }
                 });
 
-        Handler mHandler;
-        AsyncTask m;
-
         try {
             Runtime.getRuntime().exec("adb logcat");
         } catch (IOException e) {
