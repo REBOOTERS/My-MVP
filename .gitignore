@@ -1,9 +1,7 @@
 *.iml
 .gradle
+.idea
 /local.properties
-/.idea/workspace.xml
-/.idea/libraries
-/.idea/misc.xml
 .DS_Store
 /build
 /uml
@@ -17,16 +15,4 @@
 
 
 
-.settings/
-DesignPatterns/.classpath
-DesignPatterns/.settings/
-HttpClient-RxJava1-X/.classpath
-HttpClient-RxJava1-X/.settings/
-JavaExecutor/.classpath
-JavaExecutor/.settings/
-RxJava/build/
-RxJava2-Retorfit2/.classpath
-RxJava2-Retorfit2/.settings/
-RxJava2-Retorfit2/libs/
-app/.classpath
-app/.settings/
+
