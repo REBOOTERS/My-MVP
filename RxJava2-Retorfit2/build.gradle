@@ -22,10 +22,14 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     implementation 'com.android.support:design:27.1.1'
@@ -35,15 +39,12 @@ dependencies {
     androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.mcxiaoke.volley:library:1.0.19'
     implementation 'com.github.bumptech.glide:glide:3.8.0'
-
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
-
-    implementation "io.reactivex.rxjava2:rxjava:2.1.7"
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.7'
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
     //retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
@@ -55,5 +56,4 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1'
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
-
 }

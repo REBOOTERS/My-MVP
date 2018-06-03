@@ -22,7 +22,9 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.Observer;
+import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
@@ -56,12 +58,14 @@ public class RxJavaBaseActivity extends AppCompatActivity {
 
 
     private StringBuilder sb = new StringBuilder();
+    private CompositeDisposable mCompositeDisposable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rx_java_base);
         ButterKnife.bind(this);
+        mCompositeDisposable = new CompositeDisposable();
     }
 
     @OnClick({R2.id.basic1, R2.id.basic2,
@@ -108,27 +112,19 @@ public class RxJavaBaseActivity extends AppCompatActivity {
 
         GankApi mGankApi = mRetrofit.create(GankApi.class);
         Observable<GankAndroid> mAndroidObservable = mGankApi.getData("10/1");
-        mAndroidObservable
+        mCompositeDisposable.add(mAndroidObservable
                 .subscribeOn(Schedulers.io())
-                .map(new Function<GankAndroid, GankAndroid.ResultsEntity>() {
-                    @Override
-                    public GankAndroid.ResultsEntity apply(GankAndroid gankAndroid) {
-                        return gankAndroid.getResults().get(0);
-                    }
-                })
+                .map(gankAndroid -> gankAndroid.getResults().get(0))
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<GankAndroid.ResultsEntity>() {
-                    @Override
-                    public void accept(GankAndroid.ResultsEntity resultsEntity) {
-                        sb.append(resultsEntity.getCreatedAt()).append("\n")
-                                .append(resultsEntity.getType()).append("\n")
-                                .append(resultsEntity.getDesc()).append("\n")
-                                .append(resultsEntity.getUrl()).append("\n")
-                                .append(resultsEntity.getWho());
+                .subscribe(resultsEntity -> {
+                    sb.append(resultsEntity.getCreatedAt()).append("\n")
+                            .append(resultsEntity.getType()).append("\n")
+                            .append(resultsEntity.getDesc()).append("\n")
+                            .append(resultsEntity.getUrl()).append("\n")
+                            .append(resultsEntity.getWho());
 
-                        logContent.setText(sb.toString());
-                    }
-                });
+                    logContent.setText(sb.toString());
+                }));
 
     }
 
@@ -153,21 +149,8 @@ public class RxJavaBaseActivity extends AppCompatActivity {
         final GankApi mGankApi = mRetrofit.create(GankApi.class);
         final Call<ResponseBody> mCall = mGankApi.getJson("10/1");
 
-        Observable.create(new ObservableOnSubscribe<ResponseBody>() {
-            @Override
-            public void subscribe(ObservableEmitter<ResponseBody> e) throws Exception {
-                e.onNext(mCall.execute().body());
-
-            }
-        })
-
-                .map(new Function<ResponseBody, String>() {
-
-                    @Override
-                    public String apply(ResponseBody responseBody) throws Exception {
-                        return responseBody.string();
-                    }
-                })
+        Observable.create((ObservableOnSubscribe<ResponseBody>) e -> e.onNext(mCall.execute().body()))
+                .map(ResponseBody::string)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<String>() {
@@ -197,110 +180,86 @@ public class RxJavaBaseActivity extends AppCompatActivity {
 
 
     private void multiThread() {
-        Observable.create(new ObservableOnSubscribe<String>() {
-            @Override
-            public void subscribe(ObservableEmitter<String> e) {
-                e.onNext("This msg from work thread :" + Thread.currentThread().getName());
-                sb.append("\nsubscribe: currentThreadName==" + Thread.currentThread().getName());
-            }
+        mCompositeDisposable.add(Observable.create((ObservableOnSubscribe<String>) e -> {
+            e.onNext("This msg from work thread :" + Thread.currentThread().getName());
+            sb.append("\nsubscribe: currentThreadName==").append(Thread.currentThread().getName());
         })
                 .subscribeOn(Schedulers.newThread())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<String>() {
-                    @Override
-                    public void accept(String s) {
-                        Log.e(TAG, "accept: s= " + s);
-                        Log.e(TAG, "accept: currentThreadName==" + Thread.currentThread().getName());
+                .subscribe(s -> {
+                    Log.e(TAG, "accept: s= " + s);
+                    Log.e(TAG, "accept: currentThreadName==" + Thread.currentThread().getName());
 
-                        sb.append("\naccept: currentThreadName==" + Thread.currentThread().getName());
-                        sb.append("\n\n简单的来说, subscribeOn() 指定的是上游发送事件的线程, observeOn() 指定的是下游接收事件的线程.\n" +
-                                "\n" +
-                                "多次指定上游的线程只有第一次指定的有效, 也就是说多次调用subscribeOn() 只有第一次的有效, 其余的会被忽略.\n" +
-                                "多次指定下游的线程是可以的, 也就是说每调用一次observeOn() , 下游的线程就会切换一次.");
-                        logContent.setText(sb.toString());
-                    }
-                });
+                    sb.append("\naccept: currentThreadName==").append(Thread.currentThread().getName());
+                    sb.append("\n\n简单的来说, subscribeOn() 指定的是上游发送事件的线程, observeOn() 指定的是下游接收事件的线程.\n" +
+                            "\n" +
+                            "多次指定上游的线程只有第一次指定的有效, 也就是说多次调用subscribeOn() 只有第一次的有效, 其余的会被忽略.\n" +
+                            "多次指定下游的线程是可以的, 也就是说每调用一次observeOn() , 下游的线程就会切换一次.");
+                    logContent.setText(sb.toString());
+                }));
     }
 
     private void thread() {
-        Observable mObservable = Observable.create(new ObservableOnSubscribe() {
-            @Override
-            public void subscribe(ObservableEmitter e) {
-                Log.e(TAG, "subscribe: currentThreadName==" + Thread.currentThread().getName());
-                sb.append("\nsubscribe: currentThreadName==" + Thread.currentThread().getName());
-                e.onNext("1000");
-
-
-            }
+        Observable<String> mObservable = Observable.create(e -> {
+            Log.e(TAG, "subscribe: currentThreadName==" + Thread.currentThread().getName());
+            sb.append("\nsubscribe: currentThreadName==").append(Thread.currentThread().getName());
+            e.onNext("1000");
         });
 
-        Consumer mObserver = new Consumer<String>() {
-            @Override
-            public void accept(String s) {
-                Log.e(TAG, "accept: currentThreadName==" + Thread.currentThread().getName());
-                Log.e(TAG, "accept: s=" + s);
+        Consumer<String> mConsumer = s -> {
+            Log.e(TAG, "accept: currentThreadName==" + Thread.currentThread().getName());
+            Log.e(TAG, "accept: s=" + s);
 
-                sb.append("\naccept: currentThreadName==" + Thread.currentThread().getName());
-                logContent.setText(sb.toString());
-            }
+            sb.append("\naccept: currentThreadName==").append(Thread.currentThread().getName());
+            logContent.setText(sb.toString());
         };
 
-        mObservable.subscribe(mObserver);
+        mCompositeDisposable.add(mObservable.subscribe(mConsumer));
     }
 
     private void consumer() {
-        Observable.create(new ObservableOnSubscribe<String>() {
-            @Override
-            public void subscribe(ObservableEmitter<String> e) {
-                e.onNext("Hello World");
-                e.onError(new Throwable("Some Thing wrong !"));
-            }
-        }).subscribe(new Consumer<String>() {
-            @Override
-            public void accept(String s) {
-                Log.e(TAG, "accept: s=" + s);
-                logContent.setText(s);
-            }
-        }, new Consumer<Throwable>() {
-            @Override
-            public void accept(Throwable throwable) {
-                Log.e(TAG, "accept: throwable=" + throwable.toString());
-                logContent.setText(throwable.toString());
-            }
-        });
+        mCompositeDisposable.add(Observable.create((ObservableOnSubscribe<String>) e -> {
+            e.onNext("Hello World");
+            e.onError(new Throwable("Some Thing wrong !"));
+        }).subscribe(s -> {
+            Log.e(TAG, "accept: s=" + s);
+            logContent.setText(s);
+        }, throwable -> {
+            Log.e(TAG, "accept: throwable=" + throwable.toString());
+            logContent.setText(throwable.toString());
+        }));
     }
 
 
     private void basicRxjava2() {
-        Observable mObservable = Observable.create(new ObservableOnSubscribe() {
-            @Override
-            public void subscribe(ObservableEmitter e) {
-                e.onNext("1");
-                e.onNext("2");
-                e.onNext("3");
-                e.onNext("4");
-                e.onComplete();
-            }
+
+        Observable<String> mObservable = Observable.create(e -> {
+            e.onNext("1");
+            e.onNext("2");
+            e.onNext("3");
+            e.onNext("4");
+            e.onComplete();
         });
 
-        Observer mObserver = new Observer() {
+
+        Observer<String> mObserver = new Observer<String>() {
             @Override
             public void onSubscribe(Disposable d) {
                 Log.e(TAG, "onSubscribe: d=" + d);
-                sb.append("\nonSubcribe: d=" + d);
+                sb.append("\nonSubcribe: d=").append(d);
             }
 
             @Override
-            public void onNext(Object s) {
+            public void onNext(String s) {
                 Log.e(TAG, "onNext: " + s);
-                sb.append("\nonNext: " + s);
+                sb.append("\nonNext: ").append(s);
             }
 
             @Override
             public void onError(Throwable e) {
                 Log.e(TAG, "onError: " + e);
-                sb.append("\nonError: " + e.toString());
+                sb.append("\nonError: ").append(e.toString());
                 logContent.setText(sb.toString());
             }
 
@@ -317,34 +276,32 @@ public class RxJavaBaseActivity extends AppCompatActivity {
 
 
     private void basicRxjava2Chian() {
-        Observable.create(new ObservableOnSubscribe<String>() {
-            @Override
-            public void subscribe(ObservableEmitter<String> e) {
-                e.onNext("A");
-                e.onNext("B");
-                e.onNext("C");
-                e.onNext("D");
-                e.onComplete();
-                e.onNext("E");
-            }
+
+        Observable.create((ObservableOnSubscribe<String>) e -> {
+            e.onNext("A");
+            e.onNext("B");
+            e.onNext("C");
+            e.onNext("D");
+            e.onComplete();
+            e.onNext("E");
         }).subscribe(new Observer<String>() {
             @Override
             public void onSubscribe(Disposable d) {
                 Log.e(TAG, "onSubscribe: d=" + d);
-                sb.append("\nonSubcribe: d=" + d);
+                sb.append("\nonSubcribe: d=").append(d);
 
             }
 
             @Override
             public void onNext(String s) {
                 Log.e(TAG, "onNext: " + s);
-                sb.append("\nonNext: " + s);
+                sb.append("\nonNext: ").append(s);
             }
 
             @Override
             public void onError(Throwable e) {
                 Log.e(TAG, "onError: " + e);
-                sb.append("\nonError: " + e.toString());
+                sb.append("\nonError: ").append(e.toString());
                 logContent.setText(sb.toString());
             }
 
@@ -355,6 +312,14 @@ public class RxJavaBaseActivity extends AppCompatActivity {
                 logContent.setText(sb.toString());
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mCompositeDisposable != null) {
+            mCompositeDisposable.dispose();
+        }
     }
 }
 
