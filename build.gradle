@@ -1,7 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.kotlin_version = '1.2.41'
+    apply from: file('libs.gradle')
     repositories {
         google()
         jcenter()
@@ -14,7 +14,7 @@ buildscript {
 
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.2'
+        classpath "com.android.tools.build:gradle:$gradle_version"
 
         classpath 'com.networkbench.newlens.agent.android:agent-gradle-plugin:2.8.3'
         //for butterknife
@@ -35,6 +35,7 @@ allprojects {
         maven { url "https://jitpack.io" }
     }
 }
+
 
 task clean(type: Delete) {
     delete rootProject.buildDir

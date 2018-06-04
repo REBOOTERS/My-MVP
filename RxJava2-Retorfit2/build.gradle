@@ -1,15 +1,17 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.jakewharton.butterknife'
+
+def ext = rootProject.ext
 android {
-    compileSdkVersion 27
-    buildToolsVersion '27.0.3'
+    compileSdkVersion ext.compileSdkVersion
+    buildToolsVersion ext.buildToolsVersion
 
 
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion ext.minSdkVersion
+        targetSdkVersion ext.targetSdkVersion
+        versionCode ext.versionCode
+        versionName ext.versionName
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -30,30 +32,30 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
-    implementation 'com.android.support:design:27.1.1'
-    implementation 'com.android.support:support-v4:27.1.1'
-    implementation 'com.android.support:recyclerview-v7:27.1.1'
+    implementation "com.android.support:appcompat-v7:${ext.supportLibVersion}"
+    implementation "com.android.support.constraint:constraint-layout:${ext.constraint_layout}"
+    implementation "com.android.support:design:${ext.supportLibVersion}"
+    implementation "com.android.support:support-v4:${ext.supportLibVersion}"
+    implementation "com.android.support:recyclerview-v7:${ext.supportLibVersion}"
     testImplementation 'junit:junit:4.12'
     androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation "com.android.support:appcompat-v7:${ext.supportLibVersion}"
     implementation 'com.mcxiaoke.volley:library:1.0.19'
-    implementation 'com.github.bumptech.glide:glide:3.8.0'
-    implementation 'com.jakewharton:butterknife:8.8.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
-    implementation 'io.reactivex.rxjava2:rxjava:2.1.7'
-    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    implementation "com.github.bumptech.glide:glide:${ext.glide}"
+    implementation "com.jakewharton:butterknife:${ext.butterknife_version}"
+    annotationProcessor "com.jakewharton:butterknife-compiler:${ext.butterknife_version}"
+    implementation "io.reactivex.rxjava2:rxjava:${ext.rxjava2}"
+    implementation "io.reactivex.rxjava2:rxandroid:${ext.rxandroid}"
     //retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation "com.squareup.retrofit2:retrofit:${ext.retrofit2}"
     //Gson converter
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     //RxJava2 Adapter
     implementation 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
     //okhttp
-    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+    implementation "com.squareup.okhttp3:okhttp:${ext.okhttp}"
     implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1'
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
 }
