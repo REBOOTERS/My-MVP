@@ -33,11 +33,36 @@ android {
         }
     }
     buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+            ext.enableCrashlytics = false
+            ext.alwaysUpdateBuildId = false
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
         }
+    }
+    flavorDimensions "stage"
+    productFlavors {
+        dev {
+            dimension "stage"
+            versionNameSuffix "-dev"
+            applicationIdSuffix '.dev'
+        }
+    }
+
+    dexOptions {
+        preDexLibraries true
+        maxProcessCount 8
+        // Instead of setting the heap size for the DEX process, increase Gradle's
+        // heap size to enable dex-in-process. To learm more, read the next section.
+        // javaMaxHeapSize "2048m"
+    }
+
+    aaptOptions {
+        cruncherEnabled false
     }
 
 
@@ -62,14 +87,14 @@ dependencies {
     implementation "com.android.support:appcompat-v7:${ext.supportLibVersion}"
     implementation "com.android.support:design:${ext.supportLibVersion}"
     implementation "com.android.support.constraint:constraint-layout:${ext.constraint_layout}"
-    implementation 'com.networkbench.newlens.agent.android:nbs.newlens.agent:2.8.3'
+    implementation "com.networkbench.newlens.agent.android:nbs.newlens.agent:${ext.newlens}"
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    testImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
+    testImplementation "com.squareup.leakcanary:leakcanary-android-no-op:${ext.leakcanary}"
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:${ext.leakcanary}"
     implementation 'com.facebook.stetho:stetho:1.5.0'
-    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
+    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:${ext.leakcanary}"
     implementation project(':RxJava2-Retorfit2')
     implementation "com.squareup.okhttp3:okhttp:${ext.okhttp}"
     implementation "com.github.bumptech.glide:glide:${ext.glide}"
@@ -79,3 +104,4 @@ dependencies {
 }
 
 
+// https://developer.android.google.cn/studio/build/optimize-your-build 优化gradle 配置，加快编译速度
