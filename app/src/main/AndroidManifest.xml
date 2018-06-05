@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="huyifei.mymvp">
+    package="huyifei.mymvp">
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
-    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
-    <uses-permission android:name="android.permission.READ_PROFILE"/>
-    <uses-permission android:name="android.permission.READ_CONTACTS"/>
-    <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <uses-permission android:name="android.permission.READ_LOGS"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".MyApplication"
@@ -24,81 +24,61 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".GlideActivity">
-        </activity>
-        <activity android:name=".architecture.mvc.MVCActivity">
-        </activity>
-        <activity android:name=".architecture.mvp.MVPActivity">
-        </activity>
-        <activity android:name=".datastorage.DataStorageActivity">
-        </activity>
-        <activity android:name=".broadcastreceiver.BroadcastReceiverActivity">
-        </activity>
+        <activity android:name=".GlideActivity"></activity>
+        <activity android:name=".architecture.mvc.MVCActivity"></activity>
+        <activity android:name=".architecture.mvp.MVPActivity"></activity>
+        <activity android:name=".datastorage.DataStorageActivity"></activity>
+        <activity android:name=".broadcastreceiver.BroadcastReceiverActivity"></activity>
 
         <receiver
             android:name=".broadcastreceiver.MyReceiver"
             android:enabled="true"
-            android:exported="true">
-        </receiver>
+            android:exported="true"></receiver>
         <receiver
             android:name=".broadcastreceiver.SecondReceiver"
             android:enabled="true"
-            android:exported="true">
-        </receiver>
+            android:exported="true"></receiver>
         <receiver
             android:name=".broadcastreceiver.ThirdReceiver"
             android:enabled="true"
-            android:exported="true">
-        </receiver>
+            android:exported="true"></receiver>
 
-        <activity android:name=".service.ServiceActivity"/>
+        <activity android:name=".service.ServiceActivity" />
 
         <service
             android:name=".service.MyService"
             android:enabled="true"
-            android:exported="true">
-        </service>
+            android:exported="true"></service>
         <service
             android:name=".service.MyIntentService"
-            android:exported="false">
-        </service>
+            android:exported="false"></service>
 
-        <activity android:name=".MemoryLeakActivity">
-        </activity>
+        <activity android:name=".MemoryLeakActivity"></activity>
         <activity
             android:name=".classloader.ClassLoaderActivity"
             android:label="@string/title_activity_class_loader"
-            android:theme="@style/AppTheme">
-        </activity>
-        <activity android:name=".classloader.SimpleHotFixActivity">
-        </activity>
-        <activity android:name=".test.HashMapActivity">
-        </activity>
-        <activity android:name=".LifeCycleActivity">
-        </activity>
+            android:theme="@style/AppTheme"></activity>
+        <activity android:name=".classloader.SimpleHotFixActivity"></activity>
+        <activity android:name=".test.HashMapActivity"></activity>
+        <activity android:name=".LifeCycleActivity"></activity>
 
         <service
             android:name=".service.ipc.CustomRemoteService"
             android:enabled="true"
             android:exported="false"
-            android:process=":remote">
-        </service>
+            android:process=":remote"></service>
 
-        <activity android:name=".service.ipc.AIDLActivity">
-        </activity>
-        <activity android:name=".service.ThreadLocalTestActivity">
-        </activity>
-        <activity android:name=".handler.HandlerOneActivity">
-        </activity>
-        <activity android:name=".handler.HandlerTwoActivity">
-        </activity>
-        <activity android:name=".databind.ContentActivity">
-        </activity>
+        <activity android:name=".service.ipc.AIDLActivity"></activity>
+        <activity android:name=".service.ThreadLocalTestActivity"></activity>
+        <activity android:name=".handler.HandlerOneActivity"></activity>
+        <activity android:name=".handler.HandlerTwoActivity"></activity>
+        <activity android:name=".databind.ContentActivity"></activity>
+        <activity android:name=".JacksonActivity"></activity>
     </application>
 
 </manifest>

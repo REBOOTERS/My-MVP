@@ -88,6 +88,7 @@ dependencies {
     implementation "com.android.support:design:${ext.supportLibVersion}"
     implementation "com.android.support.constraint:constraint-layout:${ext.constraint_layout}"
     implementation "com.networkbench.newlens.agent.android:nbs.newlens.agent:${ext.newlens}"
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
@@ -100,8 +101,9 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:${ext.glide}"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "com.jakewharton:butterknife:${ext.butterknife_version}"
+    implementation "com.fasterxml.jackson.core:jackson-core:${jackson_core}"
     annotationProcessor "com.jakewharton:butterknife-compiler:${ext.butterknife_version}"
 }
 
-
 // https://developer.android.google.cn/studio/build/optimize-your-build 优化gradle 配置，加快编译速度
+
