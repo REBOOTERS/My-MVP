@@ -16,7 +16,6 @@ buildscript {
     dependencies {
         classpath "com.android.tools.build:gradle:$gradle_version"
 
-        classpath "com.networkbench.newlens.agent.android:agent-gradle-plugin:$newlens"
         //for butterknife
         classpath "com.jakewharton:butterknife-gradle-plugin:8.4.0"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"

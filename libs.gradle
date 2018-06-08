@@ -18,7 +18,6 @@ ext {
     retrofit2 = '2.4.0'
     butterknife_version = '8.8.1'
     okhttp = '3.10.0'
-    newlens = '2.9.0'
     leakcanary = '1.5.4'
     jackson_core = '2.9.4'
 

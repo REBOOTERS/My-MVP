@@ -23,7 +23,6 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.networkbench.agent.impl.NBSAppAgent;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -67,13 +66,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         setContentView(R.layout.activity_main);
         setData();
         initView();
-
-        NBSAppAgent
-                .setLicenseKey("52d5f19f17d849d1b7cf04dc686969dd")
-                .withLocationServiceEnabled(true)
-                .start(this.getApplicationContext());
-
-
         long max = Runtime.getRuntime().maxMemory();
 
         Log.e(TAG, "onCreate: maxMemory==" + max / One_M + " MB");
@@ -113,13 +105,10 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         String getExternalFilesDir_DIRECTORY_DOCUMENTS = mContext.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS).getAbsolutePath();
 
 
-        String[] files = new String[0];
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
-            files = new String[mContext.getExternalCacheDirs().length];
-            for (int i = 0; i < mContext.getExternalCacheDirs().length; i++) {
-                File mFile = mContext.getExternalCacheDirs()[i];
-                files[i] = mFile.getAbsolutePath() + "\n";
-            }
+        String[] files = new String[mContext.getExternalCacheDirs().length];
+        for (int i = 0; i < mContext.getExternalCacheDirs().length; i++) {
+            File mFile = mContext.getExternalCacheDirs()[i];
+            files[i] = mFile.getAbsolutePath() + "\n";
         }
 
 
