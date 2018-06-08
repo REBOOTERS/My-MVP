@@ -4,7 +4,6 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 def ext = rootProject.ext
-
 android {
     compileSdkVersion ext.compileSdkVersion
     buildToolsVersion ext.buildToolsVersion
@@ -16,6 +15,8 @@ android {
         versionCode ext.versionCode
         versionName ext.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+
     }
 
     signingConfigs {
@@ -50,6 +51,11 @@ android {
             dimension "stage"
             versionNameSuffix "-dev"
             applicationIdSuffix '.dev'
+        }
+        mi {
+            dimension "stage"
+            versionNameSuffix "-mi"
+            applicationIdSuffix '.mi'
         }
     }
 
