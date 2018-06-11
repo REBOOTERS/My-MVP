@@ -92,10 +92,6 @@ dependencies {
     implementation "com.android.support:appcompat-v7:${ext.supportLibVersion}"
     implementation "com.android.support:design:${ext.supportLibVersion}"
     implementation "com.android.support.constraint:constraint-layout:${ext.constraint_layout}"
-    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     testImplementation "com.squareup.leakcanary:leakcanary-android-no-op:${ext.leakcanary}"
     debugImplementation "com.squareup.leakcanary:leakcanary-android:${ext.leakcanary}"
     implementation 'com.facebook.stetho:stetho:1.5.0'
@@ -107,6 +103,10 @@ dependencies {
     implementation "com.jakewharton:butterknife:${ext.butterknife_version}"
     implementation "com.fasterxml.jackson.core:jackson-core:${jackson_core}"
     annotationProcessor "com.jakewharton:butterknife-compiler:${ext.butterknife_version}"
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }
 
 // https://developer.android.google.cn/studio/build/optimize-your-build 优化gradle 配置，加快编译速度
