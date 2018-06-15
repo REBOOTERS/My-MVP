@@ -23,6 +23,6 @@ ext {
     leakcanary = '1.5.4'
     jackson_core = '2.9.4'
 
-    kotlin_version = '1.2.41'
+    kotlin_version = '1.2.50'
     gradle_version = '3.1.2'
 }
