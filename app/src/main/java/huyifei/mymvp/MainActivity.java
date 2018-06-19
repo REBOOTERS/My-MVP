@@ -5,6 +5,7 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -27,6 +28,8 @@ import android.widget.TextView;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import home.smart.fly.http.activity.RxJava2MainActivity;
 import huyifei.mymvp.architecture.mvc.MVCActivity;
@@ -71,9 +74,68 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         Log.e(TAG, "onCreate: maxMemory==" + max / One_M + " MB");
 
 
-        PrintSystemDirInfo();
+//        PrintSystemDirInfo();
 
 
+        String pic1 = "https://pic4.zhimg.com/50/v2-90a75e1031331207e91827548184d18e_qhd.jpg";
+        String pic2 = "https://pic1.zhimg.com/v2-7e2aef6272186b346ad468311acca63c_hd.jpg";
+
+        String pic3 = "https://pic4.zhimg.com/10/v2-90a75e1031331207e91827548184d18e_qhd.jpg";
+        String pic4 = "https://pic4.zhimg.com/0/v2-90a75e1031331207e91827548184d18e_qhd.jpg";
+        String pic5 = "https://pic4.zhimg.com/100/v2-90a75e1031331207e91827548184d18e_qhd.jpg";
+
+
+        printPattenr(pic1);
+        printPattenr(pic2);
+        printPattenr(pic3);
+        printPattenr(pic4);
+        printPattenr(pic5);
+
+
+        printUriParams(pic1);
+        printUriParams(pic2);
+
+
+    }
+
+    private void printPattenr(String url) {
+        String pattern = "/[0-9]{1,2}";
+
+        // 创建 Pattern 对象
+        Pattern r = Pattern.compile(pattern);
+
+        Matcher m = r.matcher(url);
+
+        Log.e(TAG, "onCreate: pic---"+url+"----" +  "-------" + (m.find() ? m.group() : ""));
+
+    }
+
+    private void printUriParams(String url) {
+        Uri uri = Uri.parse(url);
+        Log.e(TAG, "printUriParams: host: " + uri.getHost());
+        Log.e(TAG, "printUriParams: path: " + uri.getPath());
+        Log.e(TAG, "printUriParams: scheme: " + uri.getScheme());
+        Log.e(TAG, "printUriParams: authority " + uri.getAuthority());
+        for (String str : uri.getPathSegments()) {
+            Log.e(TAG, "printUriParams: params= " + str);
+        }
+    }
+
+
+    public static String fixImageQuality(String url, String oldQuality, String newQuality) {
+        String result = url;
+
+        int indexOfQuality = url.indexOf(oldQuality);
+
+        if (indexOfQuality > 0) {
+            // 图片地址中包含有可替换的质量系数,直接替换
+            result = result.replace(oldQuality, newQuality);
+        } else {
+            // 图片中原来没有质量系数，需要添加
+            result = result.replace("com/", "com/" + newQuality + "/");
+        }
+
+        return result;
     }
 
     /**

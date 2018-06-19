@@ -1,5 +1,7 @@
 package com;
 
+import com.sun.xml.internal.rngom.util.Uri;
+
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Locale;
@@ -18,9 +20,6 @@ public class Driver {
 
 
         System.err.println("replace /80 with /100  " + fixImageQuality(pic1,"/50","/80"));
-
-
-
 
     }
 
