@@ -29,56 +29,57 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".GlideActivity"></activity>
-        <activity android:name=".architecture.mvc.MVCActivity"></activity>
-        <activity android:name=".architecture.mvp.MVPActivity"></activity>
-        <activity android:name=".datastorage.DataStorageActivity"></activity>
-        <activity android:name=".broadcastreceiver.BroadcastReceiverActivity"></activity>
+        <activity android:name=".GlideActivity" />
+        <activity android:name=".architecture.mvc.MVCActivity" />
+        <activity android:name=".architecture.mvp.MVPActivity" />
+        <activity android:name=".datastorage.DataStorageActivity" />
+        <activity android:name=".broadcastreceiver.BroadcastReceiverActivity" />
 
         <receiver
             android:name=".broadcastreceiver.MyReceiver"
             android:enabled="true"
-            android:exported="true"></receiver>
+            android:exported="true" />
         <receiver
             android:name=".broadcastreceiver.SecondReceiver"
             android:enabled="true"
-            android:exported="true"></receiver>
+            android:exported="true" />
         <receiver
             android:name=".broadcastreceiver.ThirdReceiver"
             android:enabled="true"
-            android:exported="true"></receiver>
+            android:exported="true" />
 
         <activity android:name=".service.ServiceActivity" />
 
         <service
             android:name=".service.MyService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
         <service
             android:name=".service.MyIntentService"
-            android:exported="false"></service>
+            android:exported="false" />
 
-        <activity android:name=".MemoryLeakActivity"></activity>
+        <activity android:name=".memoryleak.MemoryLeakActivity" />
         <activity
             android:name=".classloader.ClassLoaderActivity"
             android:label="@string/title_activity_class_loader"
-            android:theme="@style/AppTheme"></activity>
-        <activity android:name=".classloader.SimpleHotFixActivity"></activity>
-        <activity android:name=".test.HashMapActivity"></activity>
-        <activity android:name=".LifeCycleActivity"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".classloader.SimpleHotFixActivity" />
+        <activity android:name=".test.HashMapActivity" />
+        <activity android:name=".LifeCycleActivity" />
 
         <service
             android:name=".service.ipc.CustomRemoteService"
             android:enabled="true"
             android:exported="false"
-            android:process=":remote"></service>
+            android:process=":remote" />
 
-        <activity android:name=".service.ipc.AIDLActivity"></activity>
-        <activity android:name=".service.ThreadLocalTestActivity"></activity>
-        <activity android:name=".handler.HandlerOneActivity"></activity>
-        <activity android:name=".handler.HandlerTwoActivity"></activity>
-        <activity android:name=".databind.ContentActivity"></activity>
-        <activity android:name=".JacksonActivity"></activity>
+        <activity android:name=".service.ipc.AIDLActivity" />
+        <activity android:name=".service.ThreadLocalTestActivity" />
+        <activity android:name=".handler.HandlerOneActivity" />
+        <activity android:name=".handler.HandlerTwoActivity" />
+        <activity android:name=".databind.ContentActivity" />
+        <activity android:name=".JacksonActivity" />
+        <activity android:name=".memoryleak.LifeCycleActivity" />
     </application>
 
 </manifest>

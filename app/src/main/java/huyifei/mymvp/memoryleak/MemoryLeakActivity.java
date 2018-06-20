@@ -1,4 +1,4 @@
-package huyifei.mymvp;
+package huyifei.mymvp.memoryleak;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import java.lang.ref.WeakReference;
+
+import huyifei.mymvp.R;
 
 public class MemoryLeakActivity extends AppCompatActivity {
 
@@ -29,7 +31,7 @@ public class MemoryLeakActivity extends AppCompatActivity {
     }
 
 
-    private class MyHandler extends Handler {
+    private static class MyHandler extends Handler {
         private final WeakReference<MemoryLeakActivity> mActivity;
 
         public MyHandler(MemoryLeakActivity activity) {

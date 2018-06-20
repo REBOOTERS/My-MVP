@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="home.smart.fly.http">
+    package="home.smart.fly.http">
 
     <application>
         <activity
             android:name=".activity.RxJava2MainActivity"
             android:label="@string/title_activity_rx_java2_main"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-        <activity android:name=".OkHttpCache.OkHttpCacheActivity">
-        </activity>
-        <activity android:name=".activity.RxJavaBaseActivity">
-        </activity>
-        <activity android:name=".activity.RxJavaOperatorActivity">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".OkHttpCache.OkHttpCacheActivity" />
+        <activity android:name=".activity.RxJavaBaseActivity" />
+        <activity android:name=".activity.RxJavaOperatorActivity" />
+        <activity android:name="home.smart.fly.view.MemoryLeakWithRxActivity" />
+        <activity android:name="home.smart.fly.view.MemoryLeakWithRx2Activity"></activity>
     </application>
 
 </manifest>
