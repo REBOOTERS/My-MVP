@@ -17,6 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +29,8 @@ import android.widget.TextView;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -77,65 +80,107 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         Log.e(TAG, "onCreate: maxMemory==" + max / One_M + " MB");
 
 
-//        PrintSystemDirInfo();
+        PrintSystemDirInfo();
 
-
-        String pic1 = "https://pic4.zhimg.com/50/v2-90a75e1031331207e91827548184d18e_qhd.jpg";
-        String pic2 = "https://pic1.zhimg.com/v2-7e2aef6272186b346ad468311acca63c_hd.jpg";
-
-        String pic3 = "https://pic4.zhimg.com/10/v2-90a75e1031331207e91827548184d18e_qhd.jpg";
-        String pic4 = "https://pic4.zhimg.com/0/v2-90a75e1031331207e91827548184d18e_qhd.jpg";
-        String pic5 = "https://pic4.zhimg.com/100/v2-90a75e1031331207e91827548184d18e_qhd.jpg";
-
-
-        printPattenr(pic1);
-        printPattenr(pic2);
-        printPattenr(pic3);
-        printPattenr(pic4);
-        printPattenr(pic5);
-
-
-        printUriParams(pic1);
-        printUriParams(pic2);
-
-
+        arrayTest();
     }
 
-    private void printPattenr(String url) {
-        String pattern = "/[0-9]{1,2}";
+    private void arrayTest() {
+        ArrayList<String> datas = new ArrayList<>();
+        datas.add("1");
+        datas.add("11");
+        datas.add("");
+        datas.add("");
+        datas.add("");
+        datas.add("12");
+        datas.add("13");
+        datas.add("14");
+        datas.add("");
+        datas.add("15");
+        datas.add("16");
 
-        // 创建 Pattern 对象
-        Pattern r = Pattern.compile(pattern);
-
-        Matcher m = r.matcher(url);
-
-        Log.e(TAG, "onCreate: pic---"+url+"----" +  "-------" + (m.find() ? m.group() : ""));
-
-    }
-
-    private void printUriParams(String url) {
-        Uri uri = Uri.parse(url);
-        Log.e(TAG, "printUriParams: host: " + uri.getHost());
-        Log.e(TAG, "printUriParams: path: " + uri.getPath());
-        Log.e(TAG, "printUriParams: scheme: " + uri.getScheme());
-        Log.e(TAG, "printUriParams: authority " + uri.getAuthority());
-        for (String str : uri.getPathSegments()) {
-            Log.e(TAG, "printUriParams: params= " + str);
+        for(int i=0;i<datas.size();i++) {
+            if(TextUtils.isEmpty(datas.get(i))){
+                datas.remove(datas.get(i));
+                continue;
+            }
+            Log.e(TAG, "arrayTest: "+datas.get(i) );
         }
+
+
+        Iterator<String> it=datas.iterator();
+        while (it.hasNext()) {
+            if (TextUtils.isEmpty(it.next())) {
+                it.remove();
+            }
+        }
+        for(int i=0;i<datas.size();i++) {
+            Log.e(TAG, "new Array: "+datas.get(i) );
+        }
+
+         String m80Quality = "/80/";  // 质量为80
+         String mAnyQuality = "/[0-9]{1,2}/";  // 以左斜杠打头，质量为0-99之内的一个数值
+
+        List<String> urls = new ArrayList<>();
+        urls.add("https://www.zhihu.com/90/fdadfafdasf.jpg");
+        urls.add("https://www.zhihu.com/8998898989fdadfafdasf.jpg");
+        urls.add("https://www.zhihu.com/90/444v2-89fdadfafdasf.jpg");
+        urls.add("https://www.zhihu.com/90/3333v2-89fdadfafdasf.jpg");
+        urls.add("https://www.zhihu.com/333333fdadfafdasf.jpg");
+
+        for(int i=0;i<urls.size();i++ ) {
+            Log.e(TAG, "arrayTest: "+fixImageQuality(urls.get(i),mAnyQuality,"/") );
+        }
+
+        System.out.println("==================");
+
+        for(int i=0;i<urls.size();i++ ) {
+            Log.e(TAG, "arrayTest: "+fixImageQuality(urls.get(i),mAnyQuality,m80Quality) );
+        }
+
+        System.out.println("==================");
+
+        urls.clear();
+        urls.add("https://www.zhihu.com/80/v2-89fdadfafdasf.jpg");
+        for(int i=0;i<urls.size();i++ ) {
+            Log.e(TAG, "arrayTest: "+fixImageQuality(urls.get(i),m80Quality,"/") );
+        }
+
+
+        String address = Environment.getExternalStorageDirectory() + File.separator + "rotate.jpg";
+        String url = new File(address).toURI().toString();
+
+
+        Log.e(TAG, "arrayTest: url=" + url);
+
+        Uri uri = Uri.parse(url);
+
+        Log.e(TAG, "arrayTest: uri.scheme=="+uri.getHost() );
+
+        String zhihu ="https://www.zhihu.com";
+        Uri zhihuUri = Uri.parse(zhihu);
+
+        Log.e(TAG, "arrayTest: zhihu.host==" + zhihuUri.getHost());
+        Log.e(TAG, "arrayTest: zhihu.scheme==" + zhihuUri.getScheme());
+
+
+
     }
 
-
-    public static String fixImageQuality(String url, String oldQuality, String newQuality) {
+    private String fixImageQuality(String url, String oldQuality, String newQuality) {
         String result = url;
 
-        int indexOfQuality = url.indexOf(oldQuality);
+        Pattern r = Pattern.compile(oldQuality);
+        Matcher m = r.matcher(url);
 
-        if (indexOfQuality > 0) {
-            // 图片地址中包含有可替换的质量系数,直接替换
-            result = result.replace(oldQuality, newQuality);
+        if (m.find()) {
+            // 图片地址中包含有可替换的元素,直接替换
+            result = result.replace(m.group(), newQuality);
         } else {
             // 图片中原来没有质量系数，需要添加
-            result = result.replace("com/", "com/" + newQuality + "/");
+            if (!TextUtils.isEmpty(newQuality)) {
+                result = result.replace("com/", "com" + newQuality );
+            }
         }
 
         return result;
