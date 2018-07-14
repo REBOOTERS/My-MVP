@@ -27,7 +27,11 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.ObservableSource;
+import io.reactivex.Observer;
+import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.BiFunction;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
@@ -51,16 +55,18 @@ public class RxJavaOperatorActivity extends AppCompatActivity {
     private StringBuilder sb;
 
     private Subscription mSubscription;
+    private CompositeDisposable mCompositeDisposable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rx_java_operator);
         ButterKnife.bind(this);
+        mCompositeDisposable = new CompositeDisposable();
     }
 
-    @OnClick({R2.id.basic1, R2.id.basic2,
-            R2.id.basic3, R2.id.basic4, R2.id.basic5, R2.id.basic6, R2.id.basic7})
+    @OnClick({R2.id.basic1, R2.id.basic2, R2.id.basic3, R2.id.basic4, R2.id.basic5,
+            R2.id.basic6, R2.id.basic7, R2.id.basic8, R2.id.basic9})
     public void OnClick(View v) {
         if (sb != null) {
             sb = null;
@@ -82,7 +88,63 @@ public class RxJavaOperatorActivity extends AppCompatActivity {
             flowableOperatorPro();
         } else if (v.getId() == R.id.basic7) {
             flowableOperatorBackpressure();
+        } else if (v.getId() == R.id.basic8) {
+            intervalOperator();
+        } else if (v.getId() == R.id.basic9) {
+            intervalRangeOperator();
         }
+    }
+
+    private void intervalRangeOperator() {
+        Observable.intervalRange(1,10,0,500,TimeUnit.MILLISECONDS,AndroidSchedulers.mainThread())
+                .subscribe(new Observer<Long>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        mCompositeDisposable.add(d);
+                    }
+
+                    @Override
+                    public void onNext(Long aLong) {
+                        Log.e(TAG, "onNext: aLong=" + aLong);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    private void intervalOperator() {
+        Observable.interval(1,TimeUnit.SECONDS)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<Long>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        mCompositeDisposable.add(d);
+                    }
+
+                    @Override
+                    public void onNext(Long aLong) {
+                        Log.e(TAG, "onNext: aLong==" + aLong);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 
     /**
@@ -239,7 +301,7 @@ public class RxJavaOperatorActivity extends AppCompatActivity {
                 .subscribeOn(Schedulers.io());
 
 
-        Observable.zip(mIntegerObservable, mStringObservable, new BiFunction<Integer, String, String>() {
+        mCompositeDisposable.add(Observable.zip(mIntegerObservable, mStringObservable, new BiFunction<Integer, String, String>() {
             @Override
             public String apply(Integer integer, String s) {
                 return integer + " & " + s;
@@ -258,7 +320,7 @@ public class RxJavaOperatorActivity extends AppCompatActivity {
                     public void accept(Throwable throwable) {
                         Log.e(TAG, "accept: trowable=" + throwable);
                     }
-                });
+                }));
     }
 
     /**
@@ -302,7 +364,7 @@ public class RxJavaOperatorActivity extends AppCompatActivity {
                 })
                 .subscribeOn(Schedulers.io());
 
-        Observable
+        mCompositeDisposable.add(Observable
                 .zip(mIntegerObservable, mStringObservable, new BiFunction<Integer, String, String>() {
                     @Override
                     public String apply(Integer integer, String s) {
@@ -317,7 +379,7 @@ public class RxJavaOperatorActivity extends AppCompatActivity {
                         logContent.setText(sb.toString());
                         Log.e(TAG, "accept: " + s);
                     }
-                });
+                }));
     }
 
     /**
@@ -326,7 +388,7 @@ public class RxJavaOperatorActivity extends AppCompatActivity {
     private void flatMapOperator() {
 
 
-        Observable
+        mCompositeDisposable.add(Observable
                 .create(new ObservableOnSubscribe<Integer>() {
                     @Override
                     public void subscribe(ObservableEmitter<Integer> e) {
@@ -368,11 +430,11 @@ public class RxJavaOperatorActivity extends AppCompatActivity {
 
                         logContent.setText(sb.toString());
                     }
-                });
+                }));
     }
 
     private void mapOperator() {
-        Observable.create(new ObservableOnSubscribe<Integer>() {
+        mCompositeDisposable.add(Observable.create(new ObservableOnSubscribe<Integer>() {
             @Override
             public void subscribe(ObservableEmitter<Integer> e) {
                 sb.append("e: 1,2,3\n");
@@ -395,12 +457,15 @@ public class RxJavaOperatorActivity extends AppCompatActivity {
                 logContent.setText(sb.toString());
 
             }
-        });
+        }));
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mSubscription.cancel();
+        if (mSubscription != null) {
+            mSubscription.cancel();
+        }
+        mCompositeDisposable.clear();
     }
 }
