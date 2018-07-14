@@ -24,6 +24,6 @@ ext {
     jackson_core = '2.9.4'
     rxlifecycle_version = '2.2.1'
 
-    kotlin_version = '1.2.50'
+    kotlin_version = '1.2.51'
     gradle_version = '3.1.2'
 }
