@@ -3,6 +3,7 @@ package huyifei.mymvp.datastorage;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
@@ -241,6 +242,8 @@ public class DataStorageActivity extends AppCompatActivity {
                 }
             }
         });
+
+        findViewById(R.id.room).setOnClickListener(v -> startActivity(new Intent(mContext,RoomActivity.class)));
 
 
     }

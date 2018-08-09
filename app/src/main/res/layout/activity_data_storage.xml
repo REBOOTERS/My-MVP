@@ -107,6 +107,12 @@
         android:layout_marginTop="10dp"
         />
 
+    <Button
+        android:id="@+id/room"
+        android:layout_width="match_parent"
+        android:text= "Room"
+        android:layout_height="wrap_content" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

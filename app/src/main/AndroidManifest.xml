@@ -80,6 +80,8 @@
         <activity android:name=".databind.ContentActivity" />
         <activity android:name=".JacksonActivity" />
         <activity android:name=".memoryleak.LifeCycleActivity" />
+        <activity android:name=".datastorage.RoomPracticeActivity" />
+        <activity android:name=".datastorage.RoomActivity"></activity>
     </application>
 
 </manifest>

@@ -71,7 +71,7 @@ public class RxJavaBaseActivity extends AppCompatActivity {
     @OnClick({R2.id.basic1, R2.id.basic2,
             R2.id.basic3, R2.id.basic4,
             R2.id.basic5, R2.id.basic6,
-            R2.id.basic7})
+            R2.id.basic7,R2.id.basic8})
     public void onClick(View v) {
         if (sb != null) {
             sb = null;
@@ -93,8 +93,12 @@ public class RxJavaBaseActivity extends AppCompatActivity {
             withRetrofit2();
         } else if (v.getId() == R.id.basic7) {
             withRetrofit2AndGson();
+        } else if (v.getId() == R.id.basic8) {
+            onlysubscribe();
         }
     }
+
+
 
     private void withRetrofit2AndGson() {
         final OkHttpClient mClient = new OkHttpClient.Builder()
@@ -272,6 +276,33 @@ public class RxJavaBaseActivity extends AppCompatActivity {
         };
 
         mObservable.subscribe(mObserver);
+    }
+
+    private void onlysubscribe() {
+        Observable.create((ObservableOnSubscribe<String>) emitter -> {
+            emitter.onNext("A");
+            throw new Exception("I'm just a test");
+        }).subscribe(new Observer<String>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
+            public void onNext(String s) {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.e(TAG, "onError: e==" + e.toString());
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
     }
 
 

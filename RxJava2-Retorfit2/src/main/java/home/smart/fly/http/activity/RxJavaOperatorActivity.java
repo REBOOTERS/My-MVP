@@ -66,7 +66,7 @@ public class RxJavaOperatorActivity extends AppCompatActivity {
     }
 
     @OnClick({R2.id.basic1, R2.id.basic2, R2.id.basic3, R2.id.basic4, R2.id.basic5,
-            R2.id.basic6, R2.id.basic7, R2.id.basic8, R2.id.basic9})
+            R2.id.basic6, R2.id.basic7, R2.id.basic8, R2.id.basic9,R2.id.basic10})
     public void OnClick(View v) {
         if (sb != null) {
             sb = null;
@@ -92,11 +92,26 @@ public class RxJavaOperatorActivity extends AppCompatActivity {
             intervalOperator();
         } else if (v.getId() == R.id.basic9) {
             intervalRangeOperator();
+        } else if (v.getId() == R.id.basic10) {
+            throttleFirstOperator();
         }
     }
 
+    private void throttleFirstOperator() {
+        mCompositeDisposable.add(Observable.create((ObservableOnSubscribe<String>) emitter -> {
+            int i=0;
+            while (i < 10) {
+                emitter.onNext("up==" + i);
+                i++;
+            }
+            emitter.onComplete();
+        })
+                .throttleFirst(1,TimeUnit.SECONDS)
+                .subscribe(s -> Log.e(TAG, "accept: s==" + s)));
+    }
+
     private void intervalRangeOperator() {
-        Observable.intervalRange(1,10,0,500,TimeUnit.MILLISECONDS,AndroidSchedulers.mainThread())
+        Observable.intervalRange(1, 10, 0, 500, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Long>() {
                     @Override
                     public void onSubscribe(Disposable d) {
@@ -121,7 +136,7 @@ public class RxJavaOperatorActivity extends AppCompatActivity {
     }
 
     private void intervalOperator() {
-        Observable.interval(1,TimeUnit.SECONDS)
+        Observable.interval(1, TimeUnit.SECONDS)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Long>() {
