@@ -20,6 +20,9 @@ import home.smart.fly.http.R;
 import home.smart.fly.http.R2;
 import home.smart.fly.http.adapter.ItemInfo;
 import home.smart.fly.http.adapter.MyAdapter;
+import home.smart.fly.proxy.ApiGenerator;
+import home.smart.fly.proxy.LoginService;
+import home.smart.fly.proxy.model.User;
 
 /**
  * author : Rookie
@@ -52,8 +55,14 @@ public class RxJava2MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+
+
+                LoginService loginService = ApiGenerator.generatorApi(LoginService.class);
+                User user = loginService.login("123","456");
+
+                Snackbar.make(view, user.toString(), Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+
             }
         });
 

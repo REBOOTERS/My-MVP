@@ -10,7 +10,6 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.READ_LOGS" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -25,6 +24,7 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -79,9 +79,7 @@
         <activity android:name=".handler.HandlerTwoActivity" />
         <activity android:name=".databind.ContentActivity" />
         <activity android:name=".JacksonActivity" />
-        <activity android:name=".memoryleak.LifeCycleActivity" />
-        <activity android:name=".datastorage.RoomPracticeActivity" />
-        <activity android:name=".datastorage.RoomActivity"></activity>
+        <activity android:name=".datastorage.RoomActivity" />
     </application>
 
 </manifest>

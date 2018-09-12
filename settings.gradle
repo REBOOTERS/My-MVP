@@ -1,1 +1,1 @@
-include ':app', ':JavaExecutor',  ':RxJava2-Retorfit2'
+include ':app', ':JavaExecutor',  ':RxJava2-Retorfit2', ':jetpack'

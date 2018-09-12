@@ -266,6 +266,7 @@ public class DataStorageActivity extends AppCompatActivity {
         //联系人URI
         Uri contactsUri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
         Cursor cursor = mContentResolver.query(contactsUri, null, null, null, null);
+        assert cursor != null;
         cursor.moveToFirst();
         while (cursor.moveToNext()) {
             String name = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
