@@ -118,8 +118,14 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             Log.e(TAG, "new Array: "+datas.get(i) );
         }
 
-         String m80Quality = "/80/";  // 质量为80
-         String mAnyQuality = "/[0-9]{1,2}/";  // 以左斜杠打头，质量为0-99之内的一个数值
+//        imageFeature();
+
+
+    }
+
+    private void imageFeature() {
+        String m80Quality = "/80/";  // 质量为80
+        String mAnyQuality = "/[0-9]{1,2}/";  // 以左斜杠打头，质量为0-99之内的一个数值
 
         List<String> urls = new ArrayList<>();
         urls.add("https://www.zhihu.com/90/fdadfafdasf.jpg");
@@ -162,9 +168,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
         Log.e(TAG, "arrayTest: zhihu.host==" + zhihuUri.getHost());
         Log.e(TAG, "arrayTest: zhihu.scheme==" + zhihuUri.getScheme());
-
-
-
     }
 
     private String fixImageQuality(String url, String oldQuality, String newQuality) {
