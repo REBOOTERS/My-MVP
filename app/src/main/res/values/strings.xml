@@ -34,6 +34,8 @@
     <string name="fragment">单Activity多Fragment</string>
     <string name="tabs">BottomNavigationView</string>
     <string name="lifeCycle">Activity 生命周期相关</string>
+    <string name="jackson">jackson </string>
+    <string name="jetpack">jeppack 全家桶 </string>
     <string name="memory_leak">内存泄漏相关demo</string>
     <string name="hashmap">HashMap 原理demo</string>
     <string name="hotfix">Android 热修复简单实现相关</string>

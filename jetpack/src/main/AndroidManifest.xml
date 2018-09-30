@@ -1,2 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.engineer.jetpack" />
+    package="com.engineer.jetpack">
+
+    <application>
+        <activity android:name=".JetPackActivity" />
+        <activity android:name=".ui.DBActivity" />
+        <activity android:name=".ui.VMActivity" />
+        <activity android:name=".ui.VMFragmentActivity"></activity>
+    </application>
+
+</manifest>

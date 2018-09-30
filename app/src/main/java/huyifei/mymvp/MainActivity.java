@@ -25,6 +25,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.engineer.jetpack.JetPackActivity;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -42,15 +43,14 @@ import huyifei.mymvp.architecture.mvp.MVPActivity;
 import huyifei.mymvp.broadcastreceiver.BroadcastReceiverActivity;
 import huyifei.mymvp.classloader.ClassLoaderActivity;
 import huyifei.mymvp.classloader.SimpleHotFixActivity;
-import huyifei.mymvp.databind.ContentActivity;
 import huyifei.mymvp.datastorage.DataStorageActivity;
 import huyifei.mymvp.handler.HandlerOneActivity;
+import huyifei.mymvp.memoryleak.MemoryLeakActivity;
 import huyifei.mymvp.service.ServiceActivity;
 import huyifei.mymvp.service.ThreadLocalTestActivity;
 import huyifei.mymvp.service.ipc.AIDLActivity;
 import huyifei.mymvp.test.HashMapActivity;
 import huyifei.mymvp.util.V;
-import huyifei.mymvp.memoryleak.MemoryLeakActivity;
 
 /**
  * Created by rookie on 2016/11/2.
@@ -99,23 +99,23 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         datas.add("15");
         datas.add("16");
 
-        for(int i=0;i<datas.size();i++) {
-            if(TextUtils.isEmpty(datas.get(i))){
+        for (int i = 0; i < datas.size(); i++) {
+            if (TextUtils.isEmpty(datas.get(i))) {
                 datas.remove(datas.get(i));
                 continue;
             }
-            Log.e(TAG, "arrayTest: "+datas.get(i) );
+            Log.e(TAG, "arrayTest: " + datas.get(i));
         }
 
 
-        Iterator<String> it=datas.iterator();
+        Iterator<String> it = datas.iterator();
         while (it.hasNext()) {
             if (TextUtils.isEmpty(it.next())) {
                 it.remove();
             }
         }
-        for(int i=0;i<datas.size();i++) {
-            Log.e(TAG, "new Array: "+datas.get(i) );
+        for (int i = 0; i < datas.size(); i++) {
+            Log.e(TAG, "new Array: " + datas.get(i));
         }
 
 //        imageFeature();
@@ -134,22 +134,22 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         urls.add("https://www.zhihu.com/90/3333v2-89fdadfafdasf.jpg");
         urls.add("https://www.zhihu.com/333333fdadfafdasf.jpg");
 
-        for(int i=0;i<urls.size();i++ ) {
-            Log.e(TAG, "arrayTest: "+fixImageQuality(urls.get(i),mAnyQuality,"/") );
+        for (int i = 0; i < urls.size(); i++) {
+            Log.e(TAG, "arrayTest: " + fixImageQuality(urls.get(i), mAnyQuality, "/"));
         }
 
         System.out.println("==================");
 
-        for(int i=0;i<urls.size();i++ ) {
-            Log.e(TAG, "arrayTest: "+fixImageQuality(urls.get(i),mAnyQuality,m80Quality) );
+        for (int i = 0; i < urls.size(); i++) {
+            Log.e(TAG, "arrayTest: " + fixImageQuality(urls.get(i), mAnyQuality, m80Quality));
         }
 
         System.out.println("==================");
 
         urls.clear();
         urls.add("https://www.zhihu.com/80/v2-89fdadfafdasf.jpg");
-        for(int i=0;i<urls.size();i++ ) {
-            Log.e(TAG, "arrayTest: "+fixImageQuality(urls.get(i),m80Quality,"/") );
+        for (int i = 0; i < urls.size(); i++) {
+            Log.e(TAG, "arrayTest: " + fixImageQuality(urls.get(i), m80Quality, "/"));
         }
 
 
@@ -161,9 +161,9 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
         Uri uri = Uri.parse(url);
 
-        Log.e(TAG, "arrayTest: uri.scheme=="+uri.getHost() );
+        Log.e(TAG, "arrayTest: uri.scheme==" + uri.getHost());
 
-        String zhihu ="https://www.zhihu.com";
+        String zhihu = "https://www.zhihu.com";
         Uri zhihuUri = Uri.parse(zhihu);
 
         Log.e(TAG, "arrayTest: zhihu.host==" + zhihuUri.getHost());
@@ -182,7 +182,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         } else {
             // 图片中原来没有质量系数，需要添加
             if (!TextUtils.isEmpty(newQuality)) {
-                result = result.replace("com/", "com" + newQuality );
+                result = result.replace("com/", "com" + newQuality);
             }
         }
 
@@ -192,6 +192,8 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     /**
      * 打印系统目录信息
      */
+
+    //<editor-fold desc="print system dir info">
     private void PrintSystemDirInfo() {
 
 
@@ -254,11 +256,12 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
 
     }
+    //</editor-fold>
 
     private void setData() {
         demos.add(new ItemInfo(R.string.lifeCycle, LifeCycleActivity.class));
         demos.add(new ItemInfo(R.string.lifeCycle, JacksonActivity.class));
-        demos.add(new ItemInfo(R.string.dataBind, ContentActivity.class));
+        demos.add(new ItemInfo(R.string.jetpack, JetPackActivity.class));
         demos.add(new ItemInfo(R.string.classloader, ClassLoaderActivity.class));
         demos.add(new ItemInfo(R.string.hotfix, SimpleHotFixActivity.class));
         demos.add(new ItemInfo(R.string.memory_leak, MemoryLeakActivity.class));

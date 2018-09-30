@@ -1,9 +1,6 @@
 package com.avaj.proxy;
 
-import java.io.FileOutputStream;
 import java.lang.reflect.Proxy;
-
-import sun.misc.ProxyGenerator;
 
 /**
  * Created by Rookie on 2017/9/28.

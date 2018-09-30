@@ -7,8 +7,8 @@ ext {
 
 
     compileSdkVersion = 28
-    buildToolsVersion = '27.0.3'
-    supportLibVersion = "28.0.0-rc02"
+    buildToolsVersion = '28.0.3'
+    supportLibVersion = "28.0.0"
     constraint_layout = '1.1.3'
 
     build_gradle = '3.1.3'
@@ -25,6 +25,6 @@ ext {
     rxlifecycle_version = '2.2.1'
     room_version = '1.1.1'
 
-    kotlin_version = '1.2.51'
+    kotlin_version = '1.2.71'
     gradle_version = '3.1.2'
 }
