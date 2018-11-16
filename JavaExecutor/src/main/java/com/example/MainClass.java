@@ -1,7 +1,11 @@
 package com.example;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.Optional;
 
 /**
  * Created by engineer on 2017/6/25.
@@ -43,6 +47,18 @@ public class MainClass {
         //这样做是不行的
         printStudents(colleges);
 
+
+        System.out.println("the result is "+formatStringToTime("fekjfkad"));
+
+    }
+
+
+    public static String formatStringToTime(String path) {
+        return Optional.ofNullable(path)
+                .map(s -> {
+                    long duration = Long.parseLong("5678");
+                    return  new SimpleDateFormat("mm:ss", Locale.CHINESE).format(new Date(duration));
+                }).orElse("");
     }
 
 
