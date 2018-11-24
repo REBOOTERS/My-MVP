@@ -1,20 +1,20 @@
 package com.design.decorator;
 
 /**
- * @author: zhuyongging
+ * @author: Rookie
  * @since: 2018-11-16
  * @desc
  */
 public class Client {
     public static void main(String[] args) {
-        AbstrctCompoent apple = new ConcreteCompoentApple();
+        AbstractComponent apple = new ConcreteComponentApple();
         apple.doSomeThing();
 
         // 装饰一下
         apple = new ConcreteDecorator(apple);
         apple.doSomeThing();
 
-        AbstrctCompoent subApple = new SubConcreteComponetApp();
+        AbstractComponent subApple = new SubConcreteComponentApp();
         subApple.doSomeThing();
     }
 }

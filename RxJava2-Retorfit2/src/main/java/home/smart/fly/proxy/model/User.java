@@ -1,7 +1,7 @@
 package home.smart.fly.proxy.model;
 
 /**
- * @author: zhuyongging
+ * @author: Rookie
  * @date: 2018-09-10
  * @desc
  */

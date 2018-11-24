@@ -4,7 +4,7 @@ import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 
 /**
- * @author: zhuyongging
+ * @author: Rookie
  * @date: 2018-09-30
  * @desc
  */

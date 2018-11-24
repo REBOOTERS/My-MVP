@@ -5,7 +5,7 @@ import home.smart.fly.proxy.annotations.URL;
 import home.smart.fly.proxy.model.User;
 
 /**
- * @author: zhuyongging
+ * @author: Rookie
  * @date: 2018-09-10
  * @desc
  */

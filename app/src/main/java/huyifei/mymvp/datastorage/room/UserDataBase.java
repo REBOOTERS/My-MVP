@@ -10,7 +10,7 @@ import huyifei.mymvp.datastorage.room.entity.UserEntity;
 
 /**
  * @version V1.0
- * @author: zhuyongging
+ * @author: Rookie
  * @date: 2018-08-04 09:31
  */
 @Database(entities = {UserEntity.class},version = 1,exportSchema = false)

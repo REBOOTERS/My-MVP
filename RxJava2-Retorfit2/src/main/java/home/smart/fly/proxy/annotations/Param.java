@@ -7,7 +7,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * @author: zhuyongging
+ * @author: Rookie
  * @date: 2018-09-10
  * @desc
  */

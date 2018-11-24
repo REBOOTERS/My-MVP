@@ -1,11 +1,11 @@
 package com.design.decorator;
 
 /**
- * @author: zhuyongging
+ * @author: Rookie
  * @since: 2018-11-16
  * @desc
  */
-public class ConcreteCompoentApple implements AbstrctCompoent {
+public class ConcreteComponentApple implements AbstractComponent {
     @Override
     public void doSomeThing() {
         String result = "I'm just an Apple";

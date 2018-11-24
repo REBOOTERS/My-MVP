@@ -3,7 +3,7 @@ package com.engineer.jetpack.util;
 import android.widget.SeekBar;
 
 /**
- * @author: zhuyongging
+ * @author: Rookie
  * @date: 2018-09-30
  * @desc
  */

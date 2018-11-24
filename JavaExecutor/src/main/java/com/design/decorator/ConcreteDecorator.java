@@ -1,14 +1,14 @@
 package com.design.decorator;
 
 /**
- * @author: zhuyongging
+ * @author: Rookie
  * @since: 2018-11-16
  * @desc 具体装饰类
  */
 public class ConcreteDecorator extends AbstractDecorator {
 
-    public ConcreteDecorator(AbstrctCompoent abstrctCompoent) {
-        super(abstrctCompoent);
+    public ConcreteDecorator(AbstractComponent abstractComponent) {
+        super(abstractComponent);
     }
 
     @Override

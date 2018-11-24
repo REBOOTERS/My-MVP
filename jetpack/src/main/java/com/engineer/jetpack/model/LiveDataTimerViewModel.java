@@ -9,7 +9,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author: zhuyongging
+ * @author: Rookie
  * @date: 2018-09-30
  * @desc
  */

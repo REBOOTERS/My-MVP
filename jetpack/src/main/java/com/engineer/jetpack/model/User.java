@@ -1,7 +1,7 @@
 package com.engineer.jetpack.model;
 
 /**
- * @author: zhuyongging
+ * @author: Rookie
  * @date: 2018-09-29
  * @desc
  */

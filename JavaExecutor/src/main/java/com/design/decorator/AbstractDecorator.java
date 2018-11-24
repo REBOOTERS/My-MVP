@@ -1,20 +1,20 @@
 package com.design.decorator;
 
 /**
- * @author: zhuyongging
+ * @author: Rookie
  * @since: 2018-11-16
  * @desc
  */
-public class AbstractDecorator implements AbstrctCompoent {
+public class AbstractDecorator implements AbstractComponent {
 
-    protected AbstrctCompoent mAbstrctCompoent;
+    protected AbstractComponent mAbstractComponent;
 
-    public AbstractDecorator(AbstrctCompoent abstrctCompoent) {
-        mAbstrctCompoent = abstrctCompoent;
+    public AbstractDecorator(AbstractComponent abstractComponent) {
+        mAbstractComponent = abstractComponent;
     }
 
     @Override
     public void doSomeThing() {
-         mAbstrctCompoent.doSomeThing();
+         mAbstractComponent.doSomeThing();
     }
 }

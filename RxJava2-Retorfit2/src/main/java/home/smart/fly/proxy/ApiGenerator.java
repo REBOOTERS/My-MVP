@@ -18,7 +18,7 @@ import home.smart.fly.proxy.interfaces.INetExecutor;
 import home.smart.fly.proxy.interfaces.IRequest;
 
 /**
- * @author: zhuyongging
+ * @author: Rookie
  * @date: 2018-09-10
  * @desc   自己动动手实现类似 Retrofit 的东东
  */

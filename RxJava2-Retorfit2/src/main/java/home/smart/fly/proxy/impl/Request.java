@@ -5,7 +5,7 @@ import java.util.Map;
 import home.smart.fly.proxy.interfaces.IRequest;
 
 /**
- * @author: zhuyongging
+ * @author: Rookie
  * @date: 2018-09-10
  * @desc
  */
