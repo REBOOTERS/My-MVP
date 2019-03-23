@@ -93,7 +93,7 @@ dependencies {
     implementation "com.android.support:design:${ext.supportLibVersion}"
     implementation "com.android.support.constraint:constraint-layout:${ext.constraint_layout}"
     testImplementation "com.squareup.leakcanary:leakcanary-android-no-op:${ext.leakcanary}"
-    debugImplementation "com.squareup.leakcanary:leakcanary-android:${ext.leakcanary}"
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:${ext.leakcanary_android}"
     implementation 'com.facebook.stetho:stetho:1.5.0'
     releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:${ext.leakcanary}"
     implementation project(':RxJava2-Retorfit2')
