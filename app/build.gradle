@@ -96,7 +96,7 @@ dependencies {
     debugImplementation "com.squareup.leakcanary:leakcanary-android:${ext.leakcanary_android}"
     implementation 'com.facebook.stetho:stetho:1.5.0'
     releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:${ext.leakcanary}"
-    implementation project(':RxJava2-Retorfit2')
+//    implementation project(':RxJava2-Retorfit2')
     implementation "com.squareup.okhttp3:okhttp:${ext.okhttp}"
     implementation "com.github.bumptech.glide:glide:${ext.glide}"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -111,7 +111,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'net.sourceforge.streamsupport:streamsupport:1.6.3'
-//    implementation project(':jetpack')
 }
 
 // https://developer.android.google.cn/studio/build/optimize-your-build 优化gradle 配置，加快编译速度

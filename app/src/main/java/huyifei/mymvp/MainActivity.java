@@ -33,9 +33,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import home.smart.fly.http.activity.RxJava2MainActivity;
-import home.smart.fly.view.MemoryLeakWithRx2Activity;
-import home.smart.fly.view.MemoryLeakWithRxActivity;
 import huyifei.mymvp.architecture.mvc.MVCActivity;
 import huyifei.mymvp.architecture.mvp.MVPActivity;
 import huyifei.mymvp.broadcastreceiver.BroadcastReceiverActivity;
@@ -262,9 +259,9 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         demos.add(new ItemInfo(R.string.classloader, ClassLoaderActivity.class));
         demos.add(new ItemInfo(R.string.hotfix, SimpleHotFixActivity.class));
         demos.add(new ItemInfo(R.string.memory_leak, MemoryLeakActivity.class));
-        demos.add(new ItemInfo(R.string.memory_leak, MemoryLeakWithRxActivity.class));
-        demos.add(new ItemInfo(R.string.memory_leak, MemoryLeakWithRx2Activity.class));
-        demos.add(new ItemInfo(R.string.RxJava2, RxJava2MainActivity.class));
+//        demos.add(new ItemInfo(R.string.memory_leak, MemoryLeakWithRxActivity.class));
+//        demos.add(new ItemInfo(R.string.memory_leak, MemoryLeakWithRx2Activity.class));
+//        demos.add(new ItemInfo(R.string.RxJava2, RxJava2MainActivity.class));
         demos.add(new ItemInfo(R.string.MVC, MVCActivity.class));
         demos.add(new ItemInfo(R.string.Mvp, MVPActivity.class));
         demos.add(new ItemInfo(R.string.GlideUse, GlideActivity.class));

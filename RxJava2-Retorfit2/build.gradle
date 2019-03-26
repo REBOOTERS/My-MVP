@@ -1,4 +1,4 @@
-apply plugin: 'com.android.library'
+apply plugin: 'com.android.application'
 apply plugin: 'com.jakewharton.butterknife'
 
 def ext = rootProject.ext
@@ -8,6 +8,7 @@ android {
 
 
     defaultConfig {
+        applicationId "home.smart.fly.http"
         minSdkVersion ext.minSdkVersion
         targetSdkVersion ext.targetSdkVersion
         versionCode ext.versionCode
