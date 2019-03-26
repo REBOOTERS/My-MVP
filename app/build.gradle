@@ -111,7 +111,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'net.sourceforge.streamsupport:streamsupport:1.6.3'
-    implementation project(':jetpack')
+//    implementation project(':jetpack')
 }
 
 // https://developer.android.google.cn/studio/build/optimize-your-build 优化gradle 配置，加快编译速度

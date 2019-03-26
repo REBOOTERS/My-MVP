@@ -25,8 +25,6 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.engineer.jetpack.JetPackActivity;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -261,7 +259,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     private void setData() {
         demos.add(new ItemInfo(R.string.lifeCycle, LifeCycleActivity.class));
         demos.add(new ItemInfo(R.string.lifeCycle, JacksonActivity.class));
-        demos.add(new ItemInfo(R.string.jetpack, JetPackActivity.class));
         demos.add(new ItemInfo(R.string.classloader, ClassLoaderActivity.class));
         demos.add(new ItemInfo(R.string.hotfix, SimpleHotFixActivity.class));
         demos.add(new ItemInfo(R.string.memory_leak, MemoryLeakActivity.class));

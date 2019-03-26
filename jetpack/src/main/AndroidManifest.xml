@@ -2,11 +2,24 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.engineer.jetpack">
 
-    <application>
-        <activity android:name=".JetPackActivity" />
+    <application
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        >
+
+        <activity android:name=".JetPackActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
         <activity android:name=".ui.DBActivity" />
         <activity android:name=".ui.VMActivity" />
-        <activity android:name=".ui.VMFragmentActivity"></activity>
+        <activity android:name=".ui.VMFragmentActivity"/>
     </application>
 
 </manifest>
