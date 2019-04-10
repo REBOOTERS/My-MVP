@@ -18,7 +18,6 @@ public class Driver {
 
 
         System.err.println("replace /80 with /100  " + fixImageQuality(pic1,"/50","/80"));
-
     }
 
 

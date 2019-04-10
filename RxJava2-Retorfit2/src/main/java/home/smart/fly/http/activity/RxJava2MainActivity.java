@@ -56,7 +56,6 @@ public class RxJava2MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-
                 LoginService loginService = ApiGenerator.generatorApi(LoginService.class);
                 User user = loginService.login("123","456");
 
@@ -70,6 +69,7 @@ public class RxJava2MainActivity extends AppCompatActivity {
         demos.add(new ItemInfo(R.string.app_name, OkHttpCacheActivity.class));
         demos.add(new ItemInfo(R.string.rx_basic, RxJavaBaseActivity.class));
         demos.add(new ItemInfo(R.string.rx_operator, RxJavaOperatorActivity.class));
+        demos.add(new ItemInfo(R.string.rx_lifecycle, LifeCycleActivity.class));
         MyAdapter myAdapter = new MyAdapter(demos);
         list.setLayoutManager(new LinearLayoutManager(mContext));
         list.setAdapter(myAdapter);

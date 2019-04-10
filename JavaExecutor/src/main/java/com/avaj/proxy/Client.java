@@ -15,5 +15,8 @@ public class Client {
         ProxySubject mProxy = new ProxySubject(mRealSubject);
         //由代理类去做具体的操作
         mProxy.doSomething();
+
+
+
     }
 }

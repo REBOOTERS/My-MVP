@@ -7,6 +7,9 @@ import android.view.View;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.nio.charset.Charset;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.ButterKnife;
@@ -50,6 +53,36 @@ public class OkHttpCacheActivity extends AppCompatActivity {
         } else if (id == R.id.cache) {
             cacheUse();
         }
+    }
+
+    private void basicUse() {
+        OkHttpClient.Builder mBuilder = new OkHttpClient.Builder();
+        mBuilder.connectTimeout(TIME, TimeUnit.SECONDS)
+                .readTimeout(TIME, TimeUnit.SECONDS)
+                .retryOnConnectionFailure(true);
+
+        OkHttpClient mClient = mBuilder.build();
+        Request mRequest = new Request.Builder()
+                .url(BASE_URL)
+                .method("GET", null)
+                .build();
+        Call mCall = mClient.newCall(mRequest);
+        mCall.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.e(TAG, "onFailure: call==" + call.isExecuted());
+                Log.e(TAG, "onFailure: e===" + e.toString());
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                Log.e(TAG, "onResponse: call==" + call.toString());
+                Log.e(TAG, "onResponse: response==" + response.toString());
+                Log.e(TAG, "onResponse: response.head=" + response.headers().toString());
+                Log.e(TAG, "onResponse: response.body=" + response.body().string());
+            }
+        });
+
     }
 
     class CacheInterceptor implements Interceptor {
@@ -129,7 +162,18 @@ public class OkHttpCacheActivity extends AppCompatActivity {
 
     private void logUse() {
 
-        HttpLoggingInterceptor mLoggingInterceptor = new HttpLoggingInterceptor();
+        HttpLoggingInterceptor mLoggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
+            @Override
+            public void log(String message) {
+                String utf_8 = Charset.forName("utf-8").toString();
+                try {
+                    String msg = URLDecoder.decode(message, utf_8);
+                    Log.e("OKHTTP", msg);
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
         mLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
         OkHttpClient mClient = new OkHttpClient.Builder()
@@ -156,33 +200,5 @@ public class OkHttpCacheActivity extends AppCompatActivity {
         });
     }
 
-    private void basicUse() {
-        OkHttpClient.Builder mBuilder = new OkHttpClient.Builder();
-        mBuilder.connectTimeout(TIME, TimeUnit.SECONDS)
-                .readTimeout(TIME, TimeUnit.SECONDS)
-                .retryOnConnectionFailure(true);
 
-        OkHttpClient mClient = mBuilder.build();
-        Request mRequest = new Request.Builder()
-                .url(BASE_URL)
-                .method("GET", null)
-                .build();
-        Call mCall = mClient.newCall(mRequest);
-        mCall.enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                Log.e(TAG, "onFailure: call==" + call.isExecuted());
-                Log.e(TAG, "onFailure: e===" + e.toString());
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                Log.e(TAG, "onResponse: call==" + call.toString());
-                Log.e(TAG, "onResponse: response==" + response.toString());
-                Log.e(TAG, "onResponse: response.head=" + response.headers().toString());
-                Log.e(TAG, "onResponse: response.body=" + response.body().string());
-            }
-        });
-
-    }
 }
