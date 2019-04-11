@@ -15,6 +15,10 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cn.hikyson.godeye.core.GodEye;
+import cn.hikyson.godeye.core.internal.modules.fps.Fps;
+import cn.hikyson.godeye.core.internal.modules.fps.FpsInfo;
+import cn.hikyson.godeye.monitor.GodEyeMonitor;
 import home.smart.fly.http.OkHttpCache.OkHttpCacheActivity;
 import home.smart.fly.http.R;
 import home.smart.fly.http.R2;
@@ -23,6 +27,7 @@ import home.smart.fly.http.adapter.MyAdapter;
 import home.smart.fly.proxy.ApiGenerator;
 import home.smart.fly.proxy.LoginService;
 import home.smart.fly.proxy.model.User;
+import io.reactivex.functions.Consumer;
 
 /**
  * author : Rookie
@@ -73,8 +78,26 @@ public class RxJava2MainActivity extends AppCompatActivity {
         MyAdapter myAdapter = new MyAdapter(demos);
         list.setLayoutManager(new LinearLayoutManager(mContext));
         list.setAdapter(myAdapter);
+
+        GodEyeMonitor.work(this);
+        GodEye.instance().<Fps>getModule(GodEye.ModuleName.FPS).subject()
+                .subscribe(new Consumer<FpsInfo>() {
+                    @Override
+                    public void accept(FpsInfo fpsInfo) throws Exception {
+//                        Log.e(TAG, "accept: " + fpsInfo.currentFps);
+//                        Log.e(TAG, "accept: " + fpsInfo.systemFps);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        throwable.printStackTrace();
+                    }
+                });
     }
 
-
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        GodEyeMonitor.shutDown();
+    }
 }

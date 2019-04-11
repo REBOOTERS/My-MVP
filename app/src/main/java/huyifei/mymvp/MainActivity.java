@@ -89,8 +89,8 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                 .subscribe(new Consumer<FpsInfo>() {
                     @Override
                     public void accept(FpsInfo fpsInfo) throws Exception {
-                        Log.e(TAG, "accept: " + fpsInfo.currentFps);
-                        Log.e(TAG, "accept: " + fpsInfo.systemFps);
+//                        Log.e(TAG, "accept: " + fpsInfo.currentFps);
+//                        Log.e(TAG, "accept: " + fpsInfo.systemFps);
                     }
                 }, new Consumer<Throwable>() {
                     @Override
@@ -101,8 +101,8 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
+    protected void onDestroy() {
+        super.onDestroy();
         GodEyeMonitor.shutDown();
     }
 
