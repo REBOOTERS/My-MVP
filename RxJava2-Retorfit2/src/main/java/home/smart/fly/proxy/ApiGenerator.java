@@ -9,7 +9,6 @@ import java.lang.reflect.Proxy;
 import java.util.HashMap;
 import java.util.Map;
 
-import home.smart.fly.http.R;
 import home.smart.fly.proxy.annotations.Param;
 import home.smart.fly.proxy.annotations.URL;
 import home.smart.fly.proxy.impl.Request;
@@ -20,7 +19,7 @@ import home.smart.fly.proxy.interfaces.IRequest;
 /**
  * @author: Rookie
  * @date: 2018-09-10
- * @desc   自己动动手实现类似 Retrofit 的东东
+ * @desc 自己动动手实现类似 Retrofit 的东东
  */
 public class ApiGenerator {
     private static HashMap<Class, Object> sApiCache = new HashMap<>();
@@ -31,7 +30,6 @@ public class ApiGenerator {
         if (apiInterface == null || !apiInterface.isInterface()) {
             throw new RuntimeException("big error");
         }
-
         synchronized (ApiGenerator.class) {
             Object api = sApiCache.get(apiInterface);
             if (api == null) {
@@ -46,9 +44,9 @@ public class ApiGenerator {
 
     private static <T> IRequest assembleRequest(Method method, Object[] args, Class<T> apiInterface) {
         StringBuilder stringBuilder = new StringBuilder();
-        Map<String,Object> parms=null;
+        Map<String, Object> parms = null;
 
-        if(apiInterface.isAnnotationPresent(URL.class)){
+        if (apiInterface.isAnnotationPresent(URL.class)) {
             String url = apiInterface.getAnnotation(URL.class).value();
             if (!TextUtils.isEmpty(url)) {
                 stringBuilder.append(url);
@@ -63,16 +61,16 @@ public class ApiGenerator {
         }
 
 
-        int count=0;
+        int count = 0;
         for (Annotation[] annotations : method.getParameterAnnotations()) {
             for (Annotation annotation : annotations) {
                 if (annotation instanceof Param) {
-                    String param =((Param) annotation).value();
+                    String param = ((Param) annotation).value();
                     if (!TextUtils.isEmpty(param)) {
                         if (parms == null) {
                             parms = new HashMap<>();
                         }
-                        parms.put(param,args[count]);
+                        parms.put(param, args[count]);
                     }
                     break;
                 }
@@ -91,7 +89,7 @@ public class ApiGenerator {
         }
 
         @Override
-        public Object invoke(Object proxy, Method method, Object[] args)  {
+        public Object invoke(Object proxy, Method method, Object[] args) {
             IRequest request = assembleRequest(method, args, apiInterface);
             if (sNetExecutor == null) {
                 sNetExecutor = new SimpleNetExecutor();

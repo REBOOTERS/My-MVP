@@ -1,33 +1,38 @@
 package home.smart.fly.http.activity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import home.smart.fly.http.model.GankAndroid;
-import home.smart.fly.http.model.GankApi;
 import home.smart.fly.http.R;
 import home.smart.fly.http.R2;
+import home.smart.fly.http.model.GankAndroid;
+import home.smart.fly.http.model.GankApi;
+import home.smart.fly.proxy.ApiGenerator;
+import home.smart.fly.transformer.SimpleRequestResponseTransformer;
+import home.smart.fly.transformer.SimpleRequestTransformer;
+import io.reactivex.Completable;
+import io.reactivex.CompletableEmitter;
+import io.reactivex.CompletableObserver;
 import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.Observer;
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
@@ -39,7 +44,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * @author Rookie
  */
-public class RxJavaBaseActivity extends AppCompatActivity {
+public class RxJavaBaseActivity extends RxAppCompatActivity {
     private static final String BASE_URL = "http://gank.io/api/";
 
     private static final String TAG = "RxJavaBaseActivity";
@@ -71,7 +76,8 @@ public class RxJavaBaseActivity extends AppCompatActivity {
     @OnClick({R2.id.basic1, R2.id.basic2,
             R2.id.basic3, R2.id.basic4,
             R2.id.basic5, R2.id.basic6,
-            R2.id.basic7,R2.id.basic8})
+            R2.id.basic7, R2.id.basic8,
+            R2.id.basic9, R2.id.basic10})
     public void onClick(View v) {
         if (sb != null) {
             sb = null;
@@ -95,9 +101,57 @@ public class RxJavaBaseActivity extends AppCompatActivity {
             withRetrofit2AndGson();
         } else if (v.getId() == R.id.basic8) {
             onlysubscribe();
+        } else if (v.getId() == R.id.basic9) {
+            completable();
+        } else if (v.getId() == R.id.basic10) {
+            useSimpleRequest();
         }
     }
 
+    @SuppressLint("CheckResult")
+    private void useSimpleRequest() {
+        GankApi api = ApiGenerator.generatorApi(GankApi.class);
+        api.getDataResponse("10/1")
+                .compose(new SimpleRequestResponseTransformer<GankAndroid>(bindToLifecycle()) {
+                    @Override
+                    public void onRequestFailure(Throwable throwable) {
+                        Toast.makeText(RxJavaBaseActivity.this, "fail" + throwable.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onRequestSuccess(GankAndroid result) {
+                        GankAndroid.ResultsEntity resultsEntity = result.getResults().get(0);
+                        sb.append(resultsEntity.getCreatedAt()).append("\n")
+                                .append(resultsEntity.getType()).append("\n")
+                                .append(resultsEntity.getDesc()).append("\n")
+                                .append(resultsEntity.getUrl()).append("\n")
+                                .append(resultsEntity.getWho());
+
+                        logContent.setText(sb.toString());
+                    }
+                });
+    }
+
+    private void completable() {
+        Completable.create(CompletableEmitter::onComplete).compose(new SimpleRequestTransformer<>())
+                .subscribe(new CompletableObserver() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Log.e(TAG, "onComplete: ");
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+                });
+
+    }
 
 
     private void withRetrofit2AndGson() {
@@ -178,8 +232,6 @@ public class RxJavaBaseActivity extends AppCompatActivity {
 
                     }
                 });
-
-
     }
 
 

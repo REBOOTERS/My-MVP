@@ -33,6 +33,10 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import cn.hikyson.godeye.core.GodEye;
+import cn.hikyson.godeye.core.internal.modules.fps.Fps;
+import cn.hikyson.godeye.core.internal.modules.fps.FpsInfo;
+import cn.hikyson.godeye.monitor.GodEyeMonitor;
 import huyifei.mymvp.architecture.mvc.MVCActivity;
 import huyifei.mymvp.architecture.mvp.MVPActivity;
 import huyifei.mymvp.broadcastreceiver.BroadcastReceiverActivity;
@@ -46,6 +50,7 @@ import huyifei.mymvp.service.ThreadLocalTestActivity;
 import huyifei.mymvp.service.ipc.AIDLActivity;
 import huyifei.mymvp.test.HashMapActivity;
 import huyifei.mymvp.util.V;
+import io.reactivex.functions.Consumer;
 
 /**
  * Created by rookie on 2016/11/2.
@@ -78,6 +83,27 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         PrintSystemDirInfo();
 
         arrayTest();
+
+        GodEyeMonitor.work(this);
+        GodEye.instance().<Fps>getModule(GodEye.ModuleName.FPS).subject()
+                .subscribe(new Consumer<FpsInfo>() {
+                    @Override
+                    public void accept(FpsInfo fpsInfo) throws Exception {
+                        Log.e(TAG, "accept: " + fpsInfo.currentFps);
+                        Log.e(TAG, "accept: " + fpsInfo.systemFps);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        throwable.printStackTrace();
+                    }
+                });
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        GodEyeMonitor.shutDown();
     }
 
     private void arrayTest() {
