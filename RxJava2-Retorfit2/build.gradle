@@ -71,6 +71,6 @@ dependencies {
     debugImplementation "cn.hikyson.godeye:godeye-monitor:$VERSION_NAME"
     releaseImplementation "cn.hikyson.godeye:godeye-monitor-no-op:$VERSION_NAME"
     implementation "cn.hikyson.godeye:godeye-toolbox:$VERSION_NAME"
-    implementation 'com.facebook.stetho:stetho:1.5.0'
+    implementation 'com.facebook.stetho:stetho:1.5.1'
 
 }
