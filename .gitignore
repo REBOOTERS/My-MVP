@@ -4,7 +4,6 @@
 /.idea
 .DS_Store
 /build
-/uml
 .project
 .setting
 .vscode

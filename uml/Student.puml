@@ -1,0 +1,12 @@
+@startuml
+class Student {
+    + name:String = "mike"
+    - score:int
+    * number:int = 89757
+
+    + getName():String
+    - setScore(int score)
+    * setNumber(int number)
+}
+
+@enduml
