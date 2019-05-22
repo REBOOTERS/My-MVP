@@ -1,0 +1,14 @@
+@startuml
+
+
+interface NestedScrollingChild
+interface NestedScrollingChild2
+interface ScrollingView
+class RecyclerView
+
+NestedScrollingChild <|-- NestedScrollingChild2
+NestedScrollingChild2 <|-- RecyclerView
+ScrollingView <|-- RecyclerView
+
+
+@enduml

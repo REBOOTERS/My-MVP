@@ -1,0 +1,10 @@
+@startuml
+
+class View
+class ViewGroup
+class RecyclerView
+
+View <|-- ViewGroup
+ViewGroup <|-- RecyclerView
+
+@enduml
