@@ -19,7 +19,6 @@ import cn.hikyson.godeye.core.GodEyeConfig;
 public class MyApplication extends Application {
 
 
-
     @Override
     public void onCreate() {
         super.onCreate();
@@ -75,11 +74,8 @@ public class MyApplication extends Application {
             // You can find assets file sample in assets path of android-godeye module
             GodEye.instance().install(GodEyeConfig.fromAssets("install.config"));
         }
-
-
-
-
     }
+
     /**
      * is main process
      */
