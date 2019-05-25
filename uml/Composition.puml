@@ -1,0 +1,10 @@
+@startuml
+
+
+Activity *-- TextView
+Activity *-- Presenter
+Activity *-- ViewModel
+Activity *-- DataBean
+
+
+@enduml

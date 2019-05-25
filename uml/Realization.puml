@@ -1,14 +1,26 @@
 @startuml
 
-
-interface NestedScrollingChild
+together {
 interface NestedScrollingChild2
 interface ScrollingView
 class RecyclerView
+}
 
-NestedScrollingChild <|-- NestedScrollingChild2
-NestedScrollingChild2 <|-- RecyclerView
-ScrollingView <|-- RecyclerView
+NestedScrollingChild2 <|.. RecyclerView
+ScrollingView <|.. RecyclerView
+
+
+together {
+interface Drawable.Callback
+interface KeyEvent.Callback
+interface AccessibilityEventSource
+class View
+}
+
+Drawable.Callback <|.. View
+AccessibilityEventSource <|.. View
+KeyEvent.Callback <|.. View
+
 
 
 @enduml

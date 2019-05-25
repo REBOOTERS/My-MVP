@@ -1,0 +1,15 @@
+@startuml
+
+class Handler
+class Looper
+class MessageQueue
+class Message
+
+'Message <.. MessageQueue
+'Handler *-- Looper
+'Handler *-- MessageQueue
+'Handler *-- Message
+
+
+
+@enduml

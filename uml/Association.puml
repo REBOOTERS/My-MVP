@@ -1,0 +1,10 @@
+@startuml
+
+
+class LayoutParams
+class ViewGroup
+
+
+LayoutParams <-- ViewGroup
+
+@enduml

@@ -3,8 +3,14 @@
 class View
 class ViewGroup
 class RecyclerView
+class LinearLayout
+class ImageView
+class CircleImageView
 
 View <|-- ViewGroup
+View <|-- ImageView
+ImageView <|-- CircleImageView
 ViewGroup <|-- RecyclerView
+ViewGroup <|-- LinearLayout
 
 @enduml

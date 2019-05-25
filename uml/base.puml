@@ -23,4 +23,8 @@ HOURS
 MINUTES
 }
 
+class Util {
+   {static} dp2px()
+   {static} px2dp()
+}
 @enduml

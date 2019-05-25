@@ -1,0 +1,12 @@
+@startuml
+
+class View
+class Canvas
+class MotionEvent
+abstract class BaseCanvas
+
+BaseCanvas <|-- Canvas
+Canvas <.. View
+MotionEvent <.. View
+
+@enduml

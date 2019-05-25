@@ -3,6 +3,7 @@ class Student {
     + name:String = "mike"
     - score:int
     * number:int = 89757
+    ~ address:String
 
     + getName():String
     - setScore(int score)
