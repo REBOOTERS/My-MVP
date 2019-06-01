@@ -1,14 +1,5 @@
 @startuml
 
-class ClockView
-class Paint
-class TextPaint
-class RectF
-class ValueAnimator
-
-ClockView o-- Paint
-ClockView o-- TextPaint
-ClockView o-- RectF
-ClockView o-- ValueAnimator
+MyAdapter o-- OnRecyclerViewListener
 
 @enduml

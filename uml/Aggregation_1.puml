@@ -1,9 +1,41 @@
 @startuml
 
-class Handler
-class Looper
-class MessageQueue
-class Message
+class Handler {
+    final mLooper:Looper
+    final mQueue:MessageQueue
+    final mCallback:Callback
+
+    + getLooper():Looper
+    + sendMessage(msg:Message)
+    + obtainMessage():Message
+    + getMain():Handler
+    + handleMessage(msg:Message)
+}
+class Looper {
+    final mQueue:MessageQueue
+    {static} prepare()
+    {static} prepareMainLooper()
+    {static} getMainLooper():Looper
+    {static} loop()
+    {static} myQueue():MessageQueue
+}
+class MessageQueue {
+    mMessages:Message
+    next():Message
+    enqueueMessage(msg:Message,when:long)
+}
+class Message {
+    + what:int
+    + arg1:int
+    + arg2:int
+    + obj:Object
+    data: Bundle
+    target:Handler
+    callback:Runnable
+    next:Message
+
+    + {static} obtain():Message
+}
 
 'Message <.. MessageQueue
 'Handler *-- Looper

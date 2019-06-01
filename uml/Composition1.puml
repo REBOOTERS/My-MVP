@@ -1,0 +1,14 @@
+@startuml
+
+class ClockView
+class Paint
+class TextPaint
+class RectF
+class ValueAnimator
+
+ClockView *-- Paint
+ClockView *-- TextPaint
+ClockView *-- RectF
+ClockView *-- ValueAnimator
+
+@enduml

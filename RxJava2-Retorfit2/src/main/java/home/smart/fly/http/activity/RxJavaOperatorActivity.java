@@ -10,6 +10,7 @@ import android.widget.TextView;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -28,7 +29,6 @@ import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.ObservableSource;
 import io.reactivex.Observer;
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -66,7 +66,8 @@ public class RxJavaOperatorActivity extends AppCompatActivity {
     }
 
     @OnClick({R2.id.basic1, R2.id.basic2, R2.id.basic3, R2.id.basic4, R2.id.basic5,
-            R2.id.basic6, R2.id.basic7, R2.id.basic8, R2.id.basic9,R2.id.basic10})
+            R2.id.basic6, R2.id.basic7, R2.id.basic8, R2.id.basic9, R2.id.basic10,
+            R2.id.basic11})
     public void OnClick(View v) {
         if (sb != null) {
             sb = null;
@@ -94,19 +95,42 @@ public class RxJavaOperatorActivity extends AppCompatActivity {
             intervalRangeOperator();
         } else if (v.getId() == R.id.basic10) {
             throttleFirstOperator();
+        } else if (v.getId() == R.id.basic11) {
+            mergeAndZipOnError();
         }
+    }
+
+    /**
+     * 当 merge 和 zip 遇到  error 时改怎么办
+     */
+    private void mergeAndZipOnError() {
+        Observable<String> fail = Observable.create(emitter -> emitter.onError(new Throwable("obviously error")));
+
+        Observable<Integer> success = Observable.create(emitter -> emitter.onNext(1));
+
+        Disposable d = Observable.merge(fail, success)
+                .subscribe((Consumer<Serializable>) serializable -> {
+                    if (serializable instanceof String) {
+
+                    }
+
+                }, throwable -> Log.e(TAG, "accept: merge error " + throwable.getMessage()));
+
+        d = Observable.zip(fail, success, (BiFunction<String, Integer, Object>)
+                (s, integer) -> new String("success")).subscribe(o -> { },
+                throwable -> Log.e(TAG, "accept: zip error " + throwable.getMessage()));
     }
 
     private void throttleFirstOperator() {
         mCompositeDisposable.add(Observable.create((ObservableOnSubscribe<String>) emitter -> {
-            int i=0;
+            int i = 0;
             while (i < 10) {
                 emitter.onNext("up==" + i);
                 i++;
             }
             emitter.onComplete();
         })
-                .throttleFirst(1,TimeUnit.SECONDS)
+                .throttleFirst(1, TimeUnit.SECONDS)
                 .subscribe(s -> Log.e(TAG, "accept: s==" + s)));
     }
 

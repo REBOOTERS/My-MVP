@@ -157,6 +157,18 @@
                 android:background="#63d175"
                 android:text="RxJava_Operator_throttleFirst"
                 android:textColor="#fff" />
+
+            <Button
+                android:id="@+id/basic11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:background="#63d175"
+                android:text="RxJava_Operator_merge vs zip on Error"
+                android:textColor="#fff" />
         </LinearLayout>
 
 
