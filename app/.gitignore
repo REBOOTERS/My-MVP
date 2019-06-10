@@ -2,3 +2,5 @@
 /release
 /mi
 /dev
+.classpath
+.settings/
