@@ -75,6 +75,13 @@ public class RxJavaBaseActivity extends RxAppCompatActivity {
         setContentView(R.layout.activity_rx_java_base);
         ButterKnife.bind(this);
         mCompositeDisposable = new CompositeDisposable();
+
+        RxJavaPlugins.setErrorHandler(new Consumer<Throwable>() {
+            @Override
+            public void accept(Throwable throwable) throws Exception {
+
+            }
+        });
     }
 
     @OnClick({R2.id.basic1, R2.id.basic2,

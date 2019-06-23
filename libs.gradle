@@ -16,7 +16,7 @@ ext {
 
     glide = '3.8.0'
     rxjava2 = '2.1.9'
-    rxandroid = '2.0.1'
+    rxandroid = '2.1.1'
     retrofit2 = '2.4.0'
     butterknife_version = '8.8.1'
     okhttp = '3.10.0'
