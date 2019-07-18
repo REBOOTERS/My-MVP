@@ -20,7 +20,6 @@ public class Client {
 
         boolean result = alist.getClass() == blist.getClass();
 
-        alist = blist;
 
         List<? extends A> a_sub_list = new ArrayList<>();
         a_sub_list = alist;
@@ -28,20 +27,16 @@ public class Client {
 
         List<? super A> a_super_list = new ArrayList<>();
         a_super_list = alist;
-        alist = a_super_list;
 
 
         List<? extends A> list = new ArrayList<>();
 
         A object = list.get(0);
 
-        list.add(new A());
-        list.add(new B());
-        list.add(new C());
-        list.add(new D());
 
 
-        List<?> anys = new ArrayList<A>();
+
+        List<A> anys = new ArrayList<A>();
         Object o = anys.get(0);
         anys.add(new A());
 
@@ -50,7 +45,7 @@ public class Client {
 
         List<A> listA = new ArrayList<>();
 
-        A a = listA.get(0);
+        A aaa = listA.get(0);
         listA.add(new A());
         listA.add(new B());
         listA.add(new C());
@@ -58,7 +53,7 @@ public class Client {
 
         List<? super A> listAA = new ArrayList<>();
 
-        A aa = listAA.get(0);
+        Object aa = listAA.get(0);
 
         listAA.add(new A());
         listAA.add(new B());
