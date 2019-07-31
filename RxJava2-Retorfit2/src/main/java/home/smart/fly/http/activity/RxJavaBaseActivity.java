@@ -27,15 +27,12 @@ import io.reactivex.Completable;
 import io.reactivex.CompletableEmitter;
 import io.reactivex.CompletableObserver;
 import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
-import io.reactivex.internal.functions.Functions;
-import io.reactivex.internal.observers.LambdaObserver;
 import io.reactivex.plugins.RxJavaPlugins;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
@@ -76,12 +73,7 @@ public class RxJavaBaseActivity extends RxAppCompatActivity {
         ButterKnife.bind(this);
         mCompositeDisposable = new CompositeDisposable();
 
-        RxJavaPlugins.setErrorHandler(new Consumer<Throwable>() {
-            @Override
-            public void accept(Throwable throwable) throws Exception {
-
-            }
-        });
+        RxJavaPlugins.setErrorHandler(throwable -> Log.e(TAG, "throwable: " + throwable.getMessage()));
     }
 
     @OnClick({R2.id.basic1, R2.id.basic2,
@@ -122,28 +114,13 @@ public class RxJavaBaseActivity extends RxAppCompatActivity {
         }
     }
 
+    @SuppressWarnings("checkResult")
     private void lambdaObserverTest() {
-        Observable<String> up = Observable.create(new ObservableOnSubscribe<String>() {
-            @Override
-            public void subscribe(ObservableEmitter<String> emitter) throws Exception {
-                throw new IllegalAccessException("just test");
-            }
-        });
+        Observable.create((ObservableOnSubscribe<String>) emitter -> {
+            emitter.onError(new Throwable("just test"));
+        }).subscribe(s -> Log.e(TAG, "accept: " + s));
 
-        LambdaObserver<String> down = new LambdaObserver<>(new Consumer<String>() {
-            @Override
-            public void accept(String s) throws Exception {
-                Log.e(TAG, "accept: " + s);
-            }
-        }, Functions.ON_ERROR_MISSING, Functions.EMPTY_ACTION, Functions.emptyConsumer());
-
-        RxJavaPlugins.setErrorHandler(new Consumer<Throwable>() {
-            @Override
-            public void accept(Throwable throwable) throws Exception {
-                Log.e(TAG, "accept: error handle by at here");
-            }
-        });
-        up.subscribe(down);
+//        RxJavaPlugins.setErrorHandler(throwable -> Log.e(TAG, "accept: error handle by at here"));
     }
 
     @SuppressLint("CheckResult")
