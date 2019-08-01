@@ -10,7 +10,6 @@ import android.view.WindowManager;
 import com.facebook.stetho.Stetho;
 
 import cn.hikyson.godeye.core.GodEye;
-import cn.hikyson.godeye.core.GodEyeConfig;
 
 /**
  * Created by rookie on 2017/1/18.
@@ -72,7 +71,7 @@ public class MyApplication extends Application {
 
         if (isMainProcess(this)) {//can not install modules in sub process
             // You can find assets file sample in assets path of android-godeye module
-            GodEye.instance().install(GodEyeConfig.fromAssets("install.config"));
+//            GodEye.instance().install(GodEyeConfig.fromAssets("install.config"));
         }
     }
 

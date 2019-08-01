@@ -136,5 +136,21 @@ public class GankAndroid {
         public void setImages(List<String> images) {
             this.images = images;
         }
+
+        @Override
+        public String toString() {
+            return "ResultsEntity{" +
+                    "_id='" + _id + '\'' +
+                    ", createdAt='" + createdAt + '\'' +
+                    ", desc='" + desc + '\'' +
+                    ", publishedAt='" + publishedAt + '\'' +
+                    ", source='" + source + '\'' +
+                    ", type='" + type + '\'' +
+                    ", url='" + url + '\'' +
+                    ", used=" + used +
+                    ", who='" + who + '\'' +
+                    ", images=" + images +
+                    '}';
+        }
     }
 }
