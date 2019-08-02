@@ -49,7 +49,6 @@ import huyifei.mymvp.service.ServiceActivity;
 import huyifei.mymvp.service.ThreadLocalTestActivity;
 import huyifei.mymvp.service.ipc.AIDLActivity;
 import huyifei.mymvp.test.HashMapActivity;
-import huyifei.mymvp.util.V;
 import io.reactivex.functions.Consumer;
 
 /**
@@ -302,13 +301,13 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
 
     private void initView() {
-        toolbar = V.f(this, R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        swipeRefreshLayout = V.f(this, R.id.swipe);
+        swipeRefreshLayout = findViewById(R.id.swipe);
         swipeRefreshLayout.setOnRefreshListener(this);
         swipeRefreshLayout.setColorSchemeResources(R.color.colorAccent, R.color.colorPrimary);
         swipeRefreshLayout.setProgressBackgroundColorSchemeColor(Color.WHITE);
-        recyclerView = V.f(this, R.id.list);
+        recyclerView = findViewById(R.id.list);
         MyAdapter myAdapter = new MyAdapter();
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         recyclerView.setAdapter(myAdapter);
@@ -378,9 +377,9 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
             public MyHolder(View itemView) {
                 super(itemView);
-                title = V.f(itemView, R.id.title);
-                desc = V.f(itemView, R.id.desc);
-                itemshell = V.f(itemView, R.id.itemshell);
+                title = itemView.findViewById(R.id.title);
+                desc = itemView.findViewById(R.id.desc);
+                itemshell = itemView.findViewById(R.id.itemshell);
             }
         }
 
