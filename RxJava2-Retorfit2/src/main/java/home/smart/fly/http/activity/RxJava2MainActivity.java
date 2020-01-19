@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -27,6 +29,8 @@ import home.smart.fly.http.adapter.MyAdapter;
 import home.smart.fly.proxy.ApiGenerator;
 import home.smart.fly.proxy.LoginService;
 import home.smart.fly.proxy.model.User;
+import io.reactivex.Observable;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 
 /**
@@ -93,6 +97,16 @@ public class RxJava2MainActivity extends AppCompatActivity {
                         throwable.printStackTrace();
                     }
                 });
+
+        tempTEst();
+    }
+
+    private void tempTEst() {
+        Disposable d = Observable.just("eeee")
+                .filter(it->!TextUtils.isEmpty(it))
+                .map(s -> 100+s.hashCode()).subscribe(integer ->
+                                Log.e("zzzz", "tempTEst: " + integer),
+                        throwable -> Log.e("zzzz", "accept: "+throwable.getMessage() ));
     }
 
     @Override
