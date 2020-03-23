@@ -1,20 +1,14 @@
 package huyifei.mymvp.datastorage;
 
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-
-import org.reactivestreams.Publisher;
-
-import java.util.List;
 
 import huyifei.mymvp.R;
 import huyifei.mymvp.datastorage.room.UserDataBase;
 import huyifei.mymvp.datastorage.room.entity.UserEntity;
 import io.reactivex.Observable;
-import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 public class RoomActivity extends AppCompatActivity {

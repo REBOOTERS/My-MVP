@@ -5,13 +5,10 @@ import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.widget.TextView;
 
 import org.jetbrains.annotations.Nullable;
-
-import java8.util.Optional;
-import java8.util.function.Consumer;
 
 public class JacksonActivity extends AppCompatActivity {
 

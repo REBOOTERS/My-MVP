@@ -12,7 +12,7 @@ import android.os.BatteryManager;
 import android.os.Build;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
-import android.support.annotation.RestrictTo;
+import androidx.annotation.RestrictTo;
 
 import java.lang.reflect.Method;
 import java.util.Calendar;

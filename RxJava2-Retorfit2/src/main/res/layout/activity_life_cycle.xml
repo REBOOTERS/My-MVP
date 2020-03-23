@@ -7,14 +7,14 @@
     android:orientation="vertical"
     tools:context=".activity.LifeCycleActivity">
 
-    <android.support.design.button.MaterialButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/simple"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:text="simple" />
 
-    <android.support.design.button.MaterialButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/simple_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

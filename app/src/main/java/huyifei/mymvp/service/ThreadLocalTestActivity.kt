@@ -1,7 +1,7 @@
 package huyifei.mymvp.service
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import huyifei.mymvp.R
 import huyifei.mymvp.R.id.run1

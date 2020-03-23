@@ -9,7 +9,7 @@
     tools:context="home.smart.fly.http.activity.RxJava2MainActivity"
     tools:showIn="@layout/activity_rxjava2_main">
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
