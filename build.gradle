@@ -6,17 +6,11 @@ buildscript {
         google()
         jcenter()
         mavenCentral()
-        maven {
-            url 'https://maven.google.com/'
-            name 'Google'
-        }
 
     }
     dependencies {
         classpath "com.android.tools.build:gradle:${build_gradle}"
-
-        //for butterknife
-        classpath "com.jakewharton:butterknife-gradle-plugin:10.2.1"
+        classpath "com.jakewharton:butterknife-gradle-plugin:$butterknife_version"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -25,11 +19,6 @@ allprojects {
     repositories {
         google()
         jcenter()
-        maven {
-            url 'https://maven.google.com/'
-            name 'Google'
-        }
-
         maven { url "https://jitpack.io" }
     }
 }
